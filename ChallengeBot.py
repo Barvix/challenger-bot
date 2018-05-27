@@ -54,6 +54,10 @@ async def help(ctx):
     await bot.send_message(ctx.message.channel, embed=embed)
 
 @bot.command(pass_context = True)
+async def heroku(ctx):
+    await bot.say("We on live 24/7 now :D")
+    
+@bot.command(pass_context = True)
 async def producer(ctx):
     role = discord.utils.get(ctx.message.server.roles, name="🎹🎹🎹Producer🎹🎹🎹")
     await bot.add_roles(ctx.message.author, role)
