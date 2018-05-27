@@ -4,7 +4,8 @@ import os.path
 import os
 import datetime
 import random
-from dateutil.relativedelta import relativedelta
+import dateutil
+#from dateutil.relativedelta import relativedelta
 import datetime
 
 #https://discordapp.com/oauth2/authorize?&client_id=428972162779578368&scope=bot&
