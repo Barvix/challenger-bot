@@ -300,4 +300,4 @@ async def sayinchannel(ctx, roomid: str, *, msg_str: str):
 async def playing(*, mygame : str):
     await bot.change_presence(game=discord.Game(name=str(mygame)))
         
-bot.run('NDI4OTcyMTYyNzc5NTc4MzY4.DZ63QQ.LGjVb69vKV1weHrwN-IA8AqPLOE')
+bot.run(os.environ['BOT_TOKEN'])
