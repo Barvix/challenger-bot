@@ -21,7 +21,9 @@ async def on_ready():
     print(bot.user.id)
     print('------')
     chn = bot.get_channel("376573686968221701")
-    await bot.send_message(chn, "Reset complete :D")
+    await bot.send_message(chn, "Reset complete 😄")
+    mygame = "Making Music 🎹 🎼 🎧 🎤"
+    await bot.change_presence(game=discord.Game(name=str(mygame)))
 
 @bot.event
 async def on_message(message):
@@ -301,8 +303,8 @@ async def sayinchannel(ctx, roomid: str, *, msg_str: str):
     if (id != "173850040568119296"):
         await bot.say("Hey now, you can't use that")
 
-@bot.command()
-async def playing(*, mygame : str):
-    await bot.change_presence(game=discord.Game(name=str(mygame)))
+#@bot.command()
+#async def playing(*, mygame : str):
+#    await bot.change_presence(game=discord.Game(name=str(mygame)))
         
 bot.run(os.environ['BOT_TOKEN'])
