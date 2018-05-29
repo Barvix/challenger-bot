@@ -47,8 +47,9 @@ async def on_message(message):
 async def on_server_join(member):
     server = member.server.id
     if (server == "446157087211520030"):
-        message = "Welcome {} to HipHop Challenges Central! Please be sure to read the #rules! If you need help using me head to #bot-commands and type !help".format(member.mention)
-        await bot.send_message(bot.get_channel("446171284142030858"), message)
+        message = 'Welcome {} to HipHop Challenges Central! Please be sure to read the #rules! If you need help using me head to #bot-commands and type !help'.format(member.mention)
+        chn = bot.get_channel("446171284142030858")
+        await bot.send_message(chn, message)
     
 @bot.command(pass_context = True)
 async def help(ctx):
