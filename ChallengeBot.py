@@ -40,6 +40,30 @@ async def on_message(message):
         if ("https://" in message.content or "soundcloud.com" in message.content):
             await bot.delete_message(message)
             print("track deleted")
+            
+    if (message.channel.id == "446168661607186434"):
+        if "🎧🎧🎧feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
+             if "feedback" not in [y.name.lower() for y in message.author.roles]:
+                    await bot.delete_message(message)
+                    await bot.say("Hey now, you must first give feedback before asking for some. If you think you got this message in error, please contact a mod or admin.")
+             if "feedback" in [y.name.lower() for y in message.author.roles]:
+                return
+        if "🎧🎧🎧feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]:
+            return
+        
+    if ("thank" in message.content.lower() and "@" in message.content.lower()):
+        old,kar = message.content.split("@")
+        fb,other = kar.split(">")
+        fb = fb.replace("!", "")
+        
+        #if (fb == message.author.id):
+        #    return
+        
+        feedbacker = bot.get_member(fb)
+        
+        role = discord.utils.get(ctx.message.server.roles, name="Feedback")
+        
+        await bot.add_roles(feedbacker, role)
            
     await bot.process_commands(message)
 
