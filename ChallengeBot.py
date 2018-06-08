@@ -41,7 +41,7 @@ async def on_message(message):
             await bot.delete_message(message)
             print("track deleted")
             
-    if (message.channel.id == "446168661607186434"):
+    if (message.channel.id == "446168661607186434" and ("https://" in message.content or "soundcloud.com" in message.content)):
         if "🎧🎧🎧feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
              if "feedback" not in [y.name.lower() for y in message.author.roles]:
                     await bot.delete_message(message)
