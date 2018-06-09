@@ -59,7 +59,8 @@ async def on_message(message):
         #if (fb == message.author.id):
         #    return
         
-        feedbacker = bot.get_member(fb)
+        server = discord.Server()
+        feedbacker = server.get_member(fb)
         
         role = discord.utils.get(ctx.message.server.roles, name="Feedback")
         
