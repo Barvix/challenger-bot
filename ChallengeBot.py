@@ -24,6 +24,14 @@ async def on_ready():
     await bot.send_message(chn, "Reset complete 😄")
     mygame = "Making Music 🎹 🎼 🎧 🎤"
     await bot.change_presence(game=discord.Game(name=str(mygame)))
+    
+    serv = bot.get_server("446157087211520030")
+    
+    x = serv.members
+    
+    for member in x:
+        role = get(serv.roles, name='Feedback')
+        await bot.remove_roles(member, role)
 
 @bot.event
 async def on_message(message):
@@ -56,8 +64,8 @@ async def on_message(message):
         fb,other = kar.split(">")
         fb = fb.replace("!", "")
         
-        #if (fb == message.author.id):
-        #    return
+        if (fb == message.author.id):
+            return
         
         server = message.server
         feedbacker = server.get_member(fb)
