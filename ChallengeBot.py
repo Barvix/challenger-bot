@@ -62,7 +62,7 @@ async def on_message(message):
         server = message.server
         feedbacker = server.get_member(fb)
         
-        role = discord.utils.get(ctx.message.server.roles, name="Feedback")
+        role = discord.utils.get(message.server.roles, name="Feedback")
         
         await bot.add_roles(feedbacker, role)
            
