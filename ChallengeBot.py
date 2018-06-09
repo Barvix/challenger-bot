@@ -30,7 +30,7 @@ async def on_ready():
     x = serv.members
     
     for member in x:
-        role = get(serv.roles, name='Feedback')
+        role = discord.utils.get(serv.roles, name='Feedback')
         await bot.remove_roles(member, role)
 
 @bot.event
