@@ -52,15 +52,19 @@ async def on_message(message):
     if ("nigger" in message.content.lower() or "fag" in message.content.lower() or "queer" in message.content.lower()):
         await bot.delete_message(message)
             
-    if (message.channel.id == "446168661607186434" and ("https://" in message.content or "soundcloud.com" in message.content)):
-        if "🎧🎧🎧feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
-             if "feedback" not in [y.name.lower() for y in message.author.roles]:
-                    await bot.send_message(message.channel , "Hey now, you must first give feedback before asking for some. If you think you got this message in error, please contact a mod or admin.")
-                    await bot.delete_message(message)
-             if "feedback" in [y.name.lower() for y in message.author.roles]:
+    mod_feedback = false
+            
+    if (mod_feedback is True):
+        
+        if (message.channel.id == "446168661607186434" and ("https://" in message.content or "soundcloud.com" in message.content)):
+            if "🎧🎧🎧feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
+                 if "feedback" not in [y.name.lower() for y in message.author.roles]:
+                        await bot.send_message(message.channel , "Hey now, you must first give feedback before asking for some. If you think you got this message in error, please contact a mod or admin.")
+                        await bot.delete_message(message)
+                 if "feedback" in [y.name.lower() for y in message.author.roles]:
+                    return
+            if "🎧🎧🎧feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]:
                 return
-        if "🎧🎧🎧feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]:
-            return
         
     if ("thank" in message.content.lower() and "@" in message.content.lower()):
         old,kar = message.content.split("@")
