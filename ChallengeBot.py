@@ -52,7 +52,7 @@ async def on_message(message):
     if ("nigger" in message.content.lower() or "fag" in message.content.lower() or "queer" in message.content.lower()):
         await bot.delete_message(message)
             
-    mod_feedback = false
+    mod_feedback = False
             
     if (mod_feedback is True):
         
