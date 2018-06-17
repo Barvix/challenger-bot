@@ -42,11 +42,15 @@ async def on_message(message):
     if "feedback leech" in [y.name.lower() for y in message.author.roles]:
         if ("https://" in message.content or "soundcloud.com" in message.content):
             await bot.delete_message(message)
+            chn = bot.get_channel("376573686968221701")
+            await bot.send_message(chn, "Deleted track posted by <@"+str(message.author.id)+">")
             print("track deleted")
 
     if "leech" in [y.name.lower() for y in message.author.roles]:
         if ("https://" in message.content or "soundcloud.com" in message.content):
             await bot.delete_message(message)
+            chn = bot.get_channel("376573686968221701")
+            await bot.send_message(chn, "Deleted track posted by <@"+str(message.author.id)+">")
             print("track deleted")
             
     if ("nigger" in message.content.lower() or "fag" in message.content.lower() or "queer" in message.content.lower()):
