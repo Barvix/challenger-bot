@@ -140,32 +140,12 @@ async def rapper(ctx):
     role = discord.utils.get(ctx.message.server.roles, name="🎤🎤🎤Rapper🎤🎤🎤")
     await bot.add_roles(ctx.message.author, role)
     await bot.say("Role successfully added!")
-
+    
 @bot.command(pass_context = True)
 async def timer(ctx, month : str, date : str):
-    challenge_name = "UNDEF"
-    if (ctx.message.channel.name == "the-lofi-flip"):
-        challenge_name = "LFF"
-    if (ctx.message.channel.name == "game-of-hip-hop"):
-        challenge_name = "ghh"  
-    if (ctx.message.channel.name == "one-kit-contest"):
-        challenge_name = "OKC"    
-    if (ctx.message.channel.name == "flip-this-challenge"):
-        challenge_name = "ftc"   
-    if (ctx.message.channel.name == "roulette"):
-        challenge_name = "MHHR"   
-    if (ctx.message.channel.name == "the-score"):
-        challenge_name = "thescore"   
-    if (ctx.message.channel.name == "showdown"):
-        challenge_name = "showdown"   
-    if (ctx.message.channel.name == "the-copy-cat"):
-        challenge_name = "tcc"   
-    if (ctx.message.channel.name == "remix-challenge"):
-        challenge_name = "rc"   
-    if (ctx.message.channel.name == "whos-your-master"):
-        challenge_name = "wym"   
+    challenge_name = ctx.message.channel.id
 
-    if ("++" in [y.name.lower() for y in ctx.message.author.roles]) or ("+" in [y.name.lower() for y in ctx.message.author.roles]) or ("winners" in [y.name.lower() for y in ctx.message.author.roles]) or (ctx.message.author.id == "409223599757590538"):
+    if ("++" in [y.name.lower() for y in ctx.message.author.roles]) or ("+" in [y.name.lower() for y in ctx.message.author.roles]) or ("winners" in [y.name.lower() for y in ctx.message.author.roles]) or (ctx.message.author.id == "409223599757590538") or ("admin" in [y.name.lower() for y in ctx.message.author.roles]) or ("mod" in [y.name.lower() for ctx.message.author.roles]) or ("👑👑👑Challenge Winner👑👑👑" in [y.name.lower() for ctx.message.author.roles]):
         challenge_file = challenge_name + ".txt"
         c_file = open(challenge_file, "w+")
         c_file.write(month + "." + date)
@@ -177,27 +157,7 @@ async def timer(ctx, month : str, date : str):
 @bot.command(pass_context = True)
 async def timeleft(ctx):
 
-    challenge_name = "UNDEF"
-    if (ctx.message.channel.name == "the-lofi-flip"):
-        challenge_name = "LFF"
-    if (ctx.message.channel.name == "game-of-hip-hop"):
-        challenge_name = "ghh"  
-    if (ctx.message.channel.name == "one-kit-contest"):
-        challenge_name = "OKC"    
-    if (ctx.message.channel.name == "flip-this-challenge"):
-        challenge_name = "ftc"   
-    if (ctx.message.channel.name == "roulette"):
-        challenge_name = "MHHR"   
-    if (ctx.message.channel.name == "the-score"):
-        challenge_name = "thescore"   
-    if (ctx.message.channel.name == "showdown"):
-        challenge_name = "showdown"   
-    if (ctx.message.channel.name == "the-copy-cat"):
-        challenge_name = "tcc"   
-    if (ctx.message.channel.name == "remix-challenge"):
-        challenge_name = "rc"   
-    if (ctx.message.channel.name == "whos-your-master"):
-        challenge_name = "wym"   
+    challenge_name = ctx.message.channel.id  
     
     challenge_file = challenge_name + ".txt"
     if (os.path.exists(challenge_file)):
@@ -229,27 +189,7 @@ async def reset(ctx):
 @bot.command(pass_context = True)
 async def enter(ctx, link : str):
 
-    challenge_name = "UNDEF"
-    if (ctx.message.channel.name == "the-lofi-flip"):
-        challenge_name = "LFF"
-    if (ctx.message.channel.name == "game-of-hip-hop"):
-        challenge_name = "ghh"  
-    if (ctx.message.channel.name == "one-kit-contest"):
-        challenge_name = "OKC"    
-    if (ctx.message.channel.name == "flip-this-challenge"):
-        challenge_name = "ftc"   
-    if (ctx.message.channel.name == "roulette"):
-        challenge_name = "MHHR"   
-    if (ctx.message.channel.name == "the-score"):
-        challenge_name = "thescore"   
-    if (ctx.message.channel.name == "showdown"):
-        challenge_name = "showdown"   
-    if (ctx.message.channel.name == "the-copy-cat"):
-        challenge_name = "tcc"   
-    if (ctx.message.channel.name == "remix-challenge"):
-        challenge_name = "rc"   
-    if (ctx.message.channel.name == "whos-your-master"):
-        challenge_name = "wym"   
+    challenge_name = ctx.message.channel.id 
 
     challenge_file = "entries_"+challenge_name+".txt"
 
@@ -272,29 +212,9 @@ async def enter(ctx, link : str):
 @bot.command(pass_context = True)
 async def reset_votes(ctx):
 
-    challenge_name = "UNDEF"
-    if (ctx.message.channel.name == "the-lofi-flip"):
-        challenge_name = "LFF"
-    if (ctx.message.channel.name == "game-of-hip-hop"):
-        challenge_name = "ghh"  
-    if (ctx.message.channel.name == "one-kit-contest"):
-        challenge_name = "OKC"    
-    if (ctx.message.channel.name == "flip-this-challenge"):
-        challenge_name = "ftc"   
-    if (ctx.message.channel.name == "roulette"):
-        challenge_name = "MHHR"   
-    if (ctx.message.channel.name == "the-score"):
-        challenge_name = "thescore"   
-    if (ctx.message.channel.name == "showdown"):
-        challenge_name = "showdown"   
-    if (ctx.message.channel.name == "the-copy-cat"):
-        challenge_name = "tcc"   
-    if (ctx.message.channel.name == "remix-challenge"):
-        challenge_name = "rc"   
-    if (ctx.message.channel.name == "whos-your-master"):
-        challenge_name = "wym"   
+    challenge_name = ctx.message.channel.id
 
-    if ("++" in [y.name.lower() for y in ctx.message.author.roles]) or ("+" in [y.name.lower() for y in ctx.message.author.roles]) or ("winners" in [y.name.lower() for y in ctx.message.author.roles]) or (ctx.message.author.id == "409223599757590538"):
+    if ("++" in [y.name.lower() for y in ctx.message.author.roles]) or ("+" in [y.name.lower() for y in ctx.message.author.roles]) or ("winners" in [y.name.lower() for y in ctx.message.author.roles]) or (ctx.message.author.id == "409223599757590538") or ("admin" in [y.name.lower() for y in ctx.message.author.roles]) or ("mod" in [y.name.lower() for ctx.message.author.roles]) or ("👑👑👑Challenge Winner👑👑👑" in [y.name.lower() for ctx.message.author.roles]):
         challenge_file = "entries_"+challenge_name+".txt"
         c_file = open(challenge_file, "w+")
         c_file.close()
@@ -305,27 +225,7 @@ async def reset_votes(ctx):
 @bot.command(pass_context = True)
 async def voting(ctx):
 
-    challenge_name = "UNDEF"
-    if (ctx.message.channel.name == "the-lofi-flip"):
-        challenge_name = "LFF"
-    if (ctx.message.channel.name == "game-of-hip-hop"):
-        challenge_name = "ghh"  
-    if (ctx.message.channel.name == "one-kit-contest"):
-        challenge_name = "OKC"    
-    if (ctx.message.channel.name == "flip-this-challenge"):
-        challenge_name = "ftc"   
-    if (ctx.message.channel.name == "roulette"):
-        challenge_name = "MHHR"   
-    if (ctx.message.channel.name == "the-score"):
-        challenge_name = "thescore"   
-    if (ctx.message.channel.name == "showdown"):
-        challenge_name = "showdown"   
-    if (ctx.message.channel.name == "the-copy-cat"):
-        challenge_name = "tcc"   
-    if (ctx.message.channel.name == "remix-challenge"):
-        challenge_name = "rc"   
-    if (ctx.message.channel.name == "whos-your-master"):
-        challenge_name = "wym"   
+    challenge_name = ctx.message.channel.id
 
     challenge_file = "entries_"+challenge_name+".txt"
     if (os.path.exists(challenge_file)):
