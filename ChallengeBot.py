@@ -179,16 +179,17 @@ async def timeleft(ctx):
     challenge_file = challenge_name + ".txt"
     db = client.get_default_database()
     timer = db['timer']
-    date = timer.find_one({str(challenge_name)})
-    month, day = date.split(".")
-    td = datetime.datetime(2018, int(month), int(day)) - datetime.datetime.now()
-    date_to = int(td.days) + 1
-    if (date_to != 1):
-        await bot.say("You have " + str(date_to) + " days to complete " + challenge_name + ".")
-    if (date_to == 1):
-        await bot.say("You have " + str(date_to) + " day to complete " + challenge_name + ".")
-    if (not os.path.exists(challenge_file)):
-        await bot.say("I'm sorry, it appears this challenge hasn't been added to my timer.")
+    date = timer.find({str(challenge_name):1})
+    #month, day = date.split(".")
+    #td = datetime.datetime(2018, int(month), int(day)) - datetime.datetime.now()
+    #date_to = int(td.days) + 1
+    #if (date_to != 1):
+    #    await bot.say("You have " + str(date_to) + " days to complete " + challenge_name + ".")
+    #if (date_to == 1):
+    #    await bot.say("You have " + str(date_to) + " day to complete " + challenge_name + ".")
+    #if (not os.path.exists(challenge_file)):
+    #    await bot.say("I'm sorry, it appears this challenge hasn't been added to my timer.")
+    await bot.say(str(date))
 
 @bot.command(pass_context = True)
 async def reset(ctx):
