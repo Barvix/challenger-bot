@@ -157,6 +157,8 @@ async def rapper(ctx):
 async def timer(ctx, month : str, date : str):
     challenge_name = ctx.message.channel.id
 
+    global client
+    
     if ("++" in [y.name.lower() for y in ctx.message.author.roles]) or ("+" in [y.name.lower() for y in ctx.message.author.roles]) or ("winners" in [y.name.lower() for y in ctx.message.author.roles]) or (ctx.message.author.id == "409223599757590538") or ("admin" in [y.name.lower() for y in ctx.message.author.roles]) or ("mod" in [y.name.lower() for y in ctx.message.author.roles]) or ("👑👑👑Challenge Winner👑👑👑" in [y.name.lower() for y in ctx.message.author.roles]):
         challenge_file = challenge_name + ".txt"
         db = client.get_default_database()
@@ -172,17 +174,19 @@ async def timeleft(ctx):
 
     challenge_name = ctx.message.channel.id  
     
+    global client
+    
     challenge_file = challenge_name + ".txt"
-    if (os.path.exists(challenge_file)):
-        c_file = open(challenge_file, "r")
-        date = c_file.readline()
-        month, day = date.split(".")
-        td = datetime.datetime(2018, int(month), int(day)) - datetime.datetime.now()
-        date_to = int(td.days) + 1
-        if (date_to != 1):
-            await bot.say("You have " + str(date_to) + " days to complete " + challenge_name + ".")
-        if (date_to == 1):
-            await bot.say("You have " + str(date_to) + " day to complete " + challenge_name + ".")
+    db = client.get_default_database()
+    timer = db['timer']
+    date = timer.find_one({str(challenge_name)})
+    month, day = date.split(".")
+    td = datetime.datetime(2018, int(month), int(day)) - datetime.datetime.now()
+    date_to = int(td.days) + 1
+    if (date_to != 1):
+        await bot.say("You have " + str(date_to) + " days to complete " + challenge_name + ".")
+    if (date_to == 1):
+        await bot.say("You have " + str(date_to) + " day to complete " + challenge_name + ".")
     if (not os.path.exists(challenge_file)):
         await bot.say("I'm sorry, it appears this challenge hasn't been added to my timer.")
 
