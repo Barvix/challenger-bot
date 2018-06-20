@@ -7,8 +7,11 @@ import random
 #import dateutil
 from dateutil.relativedelta import relativedelta
 import datetime
+import pymongo
 
 #https://discordapp.com/oauth2/authorize?&client_id=428972162779578368&scope=bot&
+
+uri = os.environ(['MONGODB_URI'])
 
 description = '''Hi, I'm the Challenger!'''
 bot = commands.Bot(command_prefix='!', description=description)
@@ -21,6 +24,8 @@ async def on_ready():
     print(bot.user.id)
     print('------')
     chn = bot.get_channel("376573686968221701")
+    client = pymongo.MongoClient(uri)
+    db = client.get_default_database()
     await bot.send_message(chn, "Reset complete 😄")
     mygame = "Making Music 🎹 🎼 🎧 🎤"
     await bot.change_presence(game=discord.Game(name=str(mygame)))
@@ -155,9 +160,10 @@ async def timer(ctx, month : str, date : str):
 
     if ("++" in [y.name.lower() for y in ctx.message.author.roles]) or ("+" in [y.name.lower() for y in ctx.message.author.roles]) or ("winners" in [y.name.lower() for y in ctx.message.author.roles]) or (ctx.message.author.id == "409223599757590538") or ("admin" in [y.name.lower() for y in ctx.message.author.roles]) or ("mod" in [y.name.lower() for y in ctx.message.author.roles]) or ("👑👑👑Challenge Winner👑👑👑" in [y.name.lower() for y in ctx.message.author.roles]):
         challenge_file = challenge_name + ".txt"
-        c_file = open(challenge_file, "w+")
-        c_file.write(month + "." + date)
-        c_file.close()
+        db = client.get_default_database()
+        timer = db['timer']
+        dm = month + "." + date
+        db.test.insert_one({str(challenge_name): dm})
         await bot.say(challenge_name + " set for " + month + "/" + date + ".")
         return
     await bot.say("You don't have permission to use this command. If you think this is an error please let someone know.")
