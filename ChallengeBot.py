@@ -180,7 +180,7 @@ async def timeleft(ctx):
     db = client.get_default_database()
     timer = db['timer']
     date = timer.find({str(challenge_name):1})
-    for bla in a:
+    for bla in date:
         ladate = bla[0]
     #month, day = date.split(".")
     #td = datetime.datetime(2018, int(month), int(day)) - datetime.datetime.now()
