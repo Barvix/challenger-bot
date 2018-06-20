@@ -180,6 +180,8 @@ async def timeleft(ctx):
     db = client.get_default_database()
     timer = db['timer']
     date = timer.find({str(challenge_name):1})
+    for bla in a:
+        ladate = bla[0]
     #month, day = date.split(".")
     #td = datetime.datetime(2018, int(month), int(day)) - datetime.datetime.now()
     #date_to = int(td.days) + 1
@@ -189,7 +191,7 @@ async def timeleft(ctx):
     #    await bot.say("You have " + str(date_to) + " day to complete " + challenge_name + ".")
     #if (not os.path.exists(challenge_file)):
     #    await bot.say("I'm sorry, it appears this challenge hasn't been added to my timer.")
-    await bot.say(str(date))
+    await bot.say(str(ladate))
 
 @bot.command(pass_context = True)
 async def reset(ctx):
