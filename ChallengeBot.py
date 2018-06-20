@@ -176,12 +176,16 @@ async def timeleft(ctx):
     
     global client
     
+    ladate = []
+    i=0
+    
     challenge_file = challenge_name + ".txt"
     db = client.get_default_database()
     timer = db['timer']
     date = timer.find({str(challenge_name):1})
     for bla in date:
-        ladate = bla[0]
+        ladate[i] = bla[0]
+        i+=1
     #month, day = date.split(".")
     #td = datetime.datetime(2018, int(month), int(day)) - datetime.datetime.now()
     #date_to = int(td.days) + 1
