@@ -195,7 +195,7 @@ async def timeleft(ctx):
     #    await bot.say("You have " + str(date_to) + " day to complete " + challenge_name + ".")
     #if (not os.path.exists(challenge_file)):
     #    await bot.say("I'm sorry, it appears this challenge hasn't been added to my timer.")
-    await bot.say(str(ladate))
+    await bot.say(str(ladate[0]))
 
 @bot.command(pass_context = True)
 async def reset(ctx):
