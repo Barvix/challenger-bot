@@ -15,6 +15,9 @@ description = '''Hi, I'm the Challenger!'''
 bot = commands.Bot(command_prefix='!', description=description)
 bot.remove_command('help')
 
+client = pymongo.MongoClient(os.environ['MONGODB_URI'])
+db = client.get_default_database()
+
 @bot.event
 async def on_ready():
     print('Logged in as')
@@ -22,8 +25,6 @@ async def on_ready():
     print(bot.user.id)
     print('------')
     chn = bot.get_channel("376573686968221701")
-    client = pymongo.MongoClient(os.environ['MONGODB_URI'])
-    db = client.get_default_database()
     await bot.send_message(chn, "Reset complete 😄")
     mygame = "Making Music 🎹 🎼 🎧 🎤"
     await bot.change_presence(game=discord.Game(name=str(mygame)))
