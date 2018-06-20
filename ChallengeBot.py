@@ -11,8 +11,6 @@ import pymongo
 
 #https://discordapp.com/oauth2/authorize?&client_id=428972162779578368&scope=bot&
 
-uri = os.environ(['MONGODB_URI'])
-
 description = '''Hi, I'm the Challenger!'''
 bot = commands.Bot(command_prefix='!', description=description)
 bot.remove_command('help')
@@ -24,7 +22,7 @@ async def on_ready():
     print(bot.user.id)
     print('------')
     chn = bot.get_channel("376573686968221701")
-    client = pymongo.MongoClient(uri)
+    client = pymongo.MongoClient(os.environ(['MONGODB_URI']))
     db = client.get_default_database()
     await bot.send_message(chn, "Reset complete 😄")
     mygame = "Making Music 🎹 🎼 🎧 🎤"
