@@ -22,7 +22,7 @@ async def on_ready():
     print(bot.user.id)
     print('------')
     chn = bot.get_channel("376573686968221701")
-    client = pymongo.MongoClient(os.environ(['MONGODB_URI']))
+    client = pymongo.MongoClient(os.environ['MONGODB_URI'])
     db = client.get_default_database()
     await bot.send_message(chn, "Reset complete 😄")
     mygame = "Making Music 🎹 🎼 🎧 🎤"
