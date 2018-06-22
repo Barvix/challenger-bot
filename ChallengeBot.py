@@ -178,7 +178,7 @@ async def timer(ctx, month : str, date : str):
         f.write(month + "." + date)
         f.close()
         
-        bucket_name = 'public'
+        bucket_name = 'cloud-cube'
 
         # Uploads the given file using a managed uploader, which will split up large
         # files automatically and upload parts in parallel.
@@ -197,7 +197,7 @@ async def timeleft(ctx):
     
     challenge_file = challenge_name + ".txt"
     
-    BUCKET_NAME = 'public' # replace with your bucket name
+    BUCKET_NAME = 'cloud-cube' # replace with your bucket name
     KEY = challenge_file # replace with your object key
 
     s3 = boto3.resource('s3')
