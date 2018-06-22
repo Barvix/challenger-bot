@@ -8,6 +8,7 @@ import random
 from dateutil.relativedelta import relativedelta
 import datetime
 import boto3
+import botocore
 
 #https://discordapp.com/oauth2/authorize?&client_id=428972162779578368&scope=bot&
 
@@ -195,12 +196,33 @@ async def timeleft(ctx):
     global s3
     
     challenge_file = challenge_name + ".txt"
-    db = client.get_default_database()
-    timer = db['timer']
-    date = timer.find({str(challenge_name):1})
-    for bla in date:
-        ladate[i] = bla[0]
-        i+=1
+    
+    BUCKET_NAME = 'my-challenge_timers' # replace with your bucket name
+    KEY = challenge_file # replace with your object key
+
+    s3 = boto3.resource('s3')
+
+    try:
+        s3.Bucket(BUCKET_NAME).download_file(KEY, challenge_file)
+    except botocore.exceptions.ClientError as e:
+        if e.response['Error']['Code'] == "404":
+            print("The object does not exist.")
+            await bot.say("I'm sorry, it appears this challenge hasn't been added to my timer.")
+            return
+        else:
+            raise
+            f = open(challenge_file, "r")
+            date = f.readline()
+            month, day = date.split(".")
+            td = datetime.datetime(2018, int(month), int(day)) - datetime.datetime.now()
+            date_to = int(td.days) + 1
+            if (date_to != 1):
+                await bot.say("You have " + str(date_to) + " days to complete " + challenge_name + ".")
+            if (date_to == 1):
+                await bot.say("You have " + str(date_to) + " day to complete " + challenge_name + ".")
+            
+            
+    
     #month, day = date.split(".")
     #td = datetime.datetime(2018, int(month), int(day)) - datetime.datetime.now()
     #date_to = int(td.days) + 1
@@ -210,7 +232,7 @@ async def timeleft(ctx):
     #    await bot.say("You have " + str(date_to) + " day to complete " + challenge_name + ".")
     #if (not os.path.exists(challenge_file)):
     #    await bot.say("I'm sorry, it appears this challenge hasn't been added to my timer.")
-    await bot.say(str(ladate[0]))
+    #await bot.say(str(ladate[0]))
 
 @bot.command(pass_context = True)
 async def reset(ctx):
