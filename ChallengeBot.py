@@ -7,7 +7,7 @@ import random
 #import dateutil
 from dateutil.relativedelta import relativedelta
 import datetime
-import pymongo
+import boto3
 
 #https://discordapp.com/oauth2/authorize?&client_id=428972162779578368&scope=bot&
 
@@ -15,8 +15,14 @@ description = '''Hi, I'm the Challenger!'''
 bot = commands.Bot(command_prefix='!', description=description)
 bot.remove_command('help')
 
-client = pymongo.MongoClient(os.environ['MONGODB_URI'])
-db = client.get_default_database()
+session = boto3.Session(
+    #aws_access_key_id=settings.AWS_SERVER_PUBLIC_KEY,
+    #aws_secret_access_key=settings.AWS_SERVER_SECRET_KEY,
+    aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
+    aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
+)
+
+s3 = session.resource('s3')
 
 @bot.event
 async def on_ready():
