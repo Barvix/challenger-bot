@@ -1,3 +1,4 @@
 discord.py
 python-dateutil
 boto3
+botocore
