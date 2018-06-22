@@ -22,7 +22,11 @@ session = boto3.Session(
     aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
 )
 
-s3 = session.resource('s3')
+s3 = boto3.client('s3', 
+    aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
+    aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
+    region_name=REGION_NAME
+    )
 
 @bot.event
 async def on_ready():
@@ -163,14 +167,22 @@ async def rapper(ctx):
 async def timer(ctx, month : str, date : str):
     challenge_name = ctx.message.channel.id
 
-    global client
+    global s3
     
     if ("++" in [y.name.lower() for y in ctx.message.author.roles]) or ("+" in [y.name.lower() for y in ctx.message.author.roles]) or ("winners" in [y.name.lower() for y in ctx.message.author.roles]) or (ctx.message.author.id == "409223599757590538") or ("admin" in [y.name.lower() for y in ctx.message.author.roles]) or ("mod" in [y.name.lower() for y in ctx.message.author.roles]) or ("👑👑👑Challenge Winner👑👑👑" in [y.name.lower() for y in ctx.message.author.roles]):
         challenge_file = challenge_name + ".txt"
-        db = client.get_default_database()
-        timer = db['timer']
-        dm = month + "." + date
-        db.test.insert_one({str(challenge_name): dm})
+        filename = challenge_name+".txt"
+        
+        f = open(filename,"w+")
+        f.write(month + "." + date)
+        f.close()
+        
+        bucket_name = 'challenge_timers'
+
+        # Uploads the given file using a managed uploader, which will split up large
+        # files automatically and upload parts in parallel.
+        s3.upload_file(filename, bucket_name, filename)
+
         await bot.say(challenge_name + " set for " + month + "/" + date + ".")
         return
     await bot.say("You don't have permission to use this command. If you think this is an error please let someone know.")
@@ -180,10 +192,7 @@ async def timeleft(ctx):
 
     challenge_name = ctx.message.channel.id  
     
-    global client
-    
-    ladate = []
-    i=0
+    global s3
     
     challenge_file = challenge_name + ".txt"
     db = client.get_default_database()
