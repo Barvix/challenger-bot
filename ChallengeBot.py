@@ -26,7 +26,7 @@ session = boto3.Session(
 s3 = boto3.client('s3', 
     aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
     aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
-    region_name='cvxsngshjp1h'
+    region_name='cloud-cube'
     )
 
 @bot.event
