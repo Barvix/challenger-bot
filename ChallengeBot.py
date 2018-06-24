@@ -315,19 +315,33 @@ async def voting(ctx):
     cname = ctx.message.channel.name
     cname = cname.replace('-',' ')
 
-    challenge_file = "entries_"+challenge_name+".txt"
-    if (os.path.exists(challenge_file)):
-        await bot.say("@everyone Come on out and vote for this challenge's entries!\nPlease vote with <:upvote:423630753272823818> for the entry you wish to vote for, and please do not vote for yourself. If you entered in the challenge you must vote.")
-        c_file = open(challenge_file, "r")
-        with open(challenge_file) as cf:  
-            for cnt, line in enumerate(cf):
-                #print("Line {}: {}".format(cnt, line))
-                name, entry = line.split(" --- ")
-                #entry = "<"+entry+">"
-                await bot.say("Entry " + str(cnt+1) + " by " + name + "\n" + entry)
-        c_file.close()
-    if (not os.path.exists(challenge_file)):
-        await bot.say("I'm sorry, this challenge doesn't appear to have been found.")
+    BUCKET_NAME = 'cloud-cube' # replace with your bucket name
+    KEY = "cvxsngshjp1h/"+challenge_file # replace with your object key
+
+    xs3 = boto3.resource('s3', 
+    aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
+    aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
+    region_name='us-west-1'
+    )
+    
+    try:
+        xs3.Bucket(BUCKET_NAME).download_file(KEY, challenge_file)
+    except botocore.exceptions.ClientError as e:
+        if e.response['Error']['Code'] == "404":
+            await bot.say("I'm sorry, this challenge doesn't appear to have been found.")
+            return
+        else:
+            raise
+    
+    await bot.say("@everyone Come on out and vote for " + cname+"'s entries!\nPlease vote with <:upvote:423630753272823818> for the entry you wish to vote for, and please do not vote for yourself. If you entered in the challenge you must vote.")
+    c_file = open(challenge_file, "r")
+    with open(challenge_file) as cf:  
+        for cnt, line in enumerate(cf):
+            #print("Line {}: {}".format(cnt, line))
+            name, entry = line.split(" --- ")
+            #entry = "<"+entry+">"
+            await bot.say("Entry " + str(cnt+1) + " by " + name + "\n" + entry)
+    c_file.close()
 
 @bot.command(pass_context = True)
 async def sayinchannel(ctx, roomid: str, *, msg_str: str):
