@@ -178,7 +178,7 @@ async def timer(ctx, month : str, date : str):
         f.write(month + "." + date)
         f.close()
         
-        bucket_name = '^[a-zA-Z0-9.\-_]{1,255}$'
+        bucket_name = ''
 
         # Uploads the given file using a managed uploader, which will split up large
         # files automatically and upload parts in parallel.
