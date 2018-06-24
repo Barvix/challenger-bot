@@ -339,7 +339,7 @@ async def voting(ctx):
     c_file = open(challenge_file, "r")
     with open(challenge_file) as cf:  
         for cnt, line in enumerate(cf):
-            #print("Line {}: {}".format(cnt, line))
+            print("Line {}: {}".format(cnt, line))
             name, entry = line.split(" --- ")
             #entry = "<"+entry+">"
             await bot.say("Entry " + str(cnt+1) + " by " + name + "\n" + entry)
