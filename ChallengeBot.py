@@ -26,7 +26,7 @@ session = boto3.Session(
 s3 = boto3.client('s3', 
     aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
     aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
-    region_name='cloud-cube'
+    region_name='cvxsngshjp1h'
     )
 
 @bot.event
@@ -178,7 +178,7 @@ async def timer(ctx, month : str, date : str):
         f.write(month + "." + date)
         f.close()
         
-        bucket_name = 'cvxsngshjp1h'
+        bucket_name = 'cloud-cube'
 
         # Uploads the given file using a managed uploader, which will split up large
         # files automatically and upload parts in parallel.
