@@ -26,7 +26,7 @@ session = boto3.Session(
 s3 = boto3.client('s3', 
     aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
     aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
-    region_name='cloud-cube'
+    region_name='us-west-1'
     )
 
 @bot.event
@@ -197,7 +197,7 @@ async def timeleft(ctx):
     
     challenge_file = challenge_name + ".txt"
     
-    BUCKET_NAME = 'cvxsngshjp1h' # replace with your bucket name
+    BUCKET_NAME = 'cloud-cube' # replace with your bucket name
     KEY = challenge_file # replace with your object key
 
     s3 = boto3.resource('s3')
