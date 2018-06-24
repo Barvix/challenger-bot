@@ -182,7 +182,7 @@ async def timer(ctx, month : str, date : str):
 
         # Uploads the given file using a managed uploader, which will split up large
         # files automatically and upload parts in parallel.
-        s3.upload_file("cvxsngshjp1h", bucket_name, filename)
+        s3.upload_file(filename, bucket_name, "cvxsngshjp1h/"+filename)
 
         await bot.say(challenge_name + " set for " + month + "/" + date + ".")
         return
