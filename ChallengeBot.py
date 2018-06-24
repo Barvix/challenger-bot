@@ -293,6 +293,8 @@ async def reset_votes(ctx):
 
     challenge_name = ctx.message.channel.id
 
+    BUCKET_NAME = 'cloud-cube' # replace with your bucket name
+    
     global s3
     
     cname = ctx.message.channel.name
