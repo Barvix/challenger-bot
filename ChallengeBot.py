@@ -230,27 +230,12 @@ async def timeleft(ctx):
         await bot.say("You have " + str(date_to) + " days to complete " + cname + ".")
     if (date_to == 1):
         await bot.say("You have " + str(date_to) + " day to complete " + cname + ".")
-            
-            
-    
-    #month, day = date.split(".")
-    #td = datetime.datetime(2018, int(month), int(day)) - datetime.datetime.now()
-    #date_to = int(td.days) + 1
-    #if (date_to != 1):
-    #    await bot.say("You have " + str(date_to) + " days to complete " + challenge_name + ".")
-    #if (date_to == 1):
-    #    await bot.say("You have " + str(date_to) + " day to complete " + challenge_name + ".")
-    #if (not os.path.exists(challenge_file)):
-    #    await bot.say("I'm sorry, it appears this challenge hasn't been added to my timer.")
-    #await bot.say(str(ladate[0]))
 
 @bot.command(pass_context = True)
 async def reset(ctx):
     id = str(ctx.message.author.id)
     
     if (id == "173850040568119296"):
-
-        #await bot.delete_message(ctx.message)
         await bot.say("Resetting :D")
         exit()
         
@@ -263,30 +248,53 @@ async def enter(ctx, link : str):
     challenge_name = ctx.message.channel.id 
     cname = ctx.message.channel.name
     cname = cname.replace('-',' ')
+    
+    global s3
 
     challenge_file = "entries_"+challenge_name+".txt"
+    
+    BUCKET_NAME = 'cloud-cube' # replace with your bucket name
+    KEY = "cvxsngshjp1h/"+challenge_file # replace with your object key
 
+    xs3 = boto3.resource('s3', 
+    aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
+    aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
+    region_name='us-west-1'
+    )
+    
     name = str(ctx.message.author.nick)
 
     if (name=="None"):
         name = '{0.name}'.format(ctx.message.author)
 
-    if (os.path.exists(challenge_file)):
-        c_file = open(challenge_file, "a")
-        c_file.write(""+name + " --- " + "<" + link + ">\n")
-        c_file.close()
-        await bot.say("Entry added!")
-    if (not os.path.exists(challenge_file)):
-        c_file = open(challenge_file, "w+")
-        c_file.write(name + " --- " + link)
-        c_file.close()
-        await bot.say("Entry added!")
+    try:
+        xs3.Bucket(BUCKET_NAME).download_file(KEY, challenge_file)
+    except botocore.exceptions.ClientError as e:
+        if e.response['Error']['Code'] == "404":
+            
+            c_file = open(challenge_file, "w+")
+            c_file.write(name + " --- " + link)
+            c_file.close()
+            s3.upload_file(challenge_file, BUCKET_NAME, "cvxsngshjp1h/"+challenge_file)
+            await bot.say("Entry added!")
+            
+            return
+        else:
+            raise
+
+    c_file = open(challenge_file, "a")
+    c_file.write(""+name + " --- " + "<" + link + ">\n")
+    c_file.close()
+    s3.upload_file(challenge_file, BUCKET_NAME, "cvxsngshjp1h/"+challenge_file)
+    await bot.say("Entry added!")
 
 @bot.command(pass_context = True)
 async def reset_votes(ctx):
 
     challenge_name = ctx.message.channel.id
 
+    global s3
+    
     cname = ctx.message.channel.name
     cname = cname.replace('-',' ')
     
@@ -294,6 +302,7 @@ async def reset_votes(ctx):
         challenge_file = "entries_"+challenge_name+".txt"
         c_file = open(challenge_file, "w+")
         c_file.close()
+        s3.upload_file(challenge_file, BUCKET_NAME, "cvxsngshjp1h/"+challenge_file)
         await bot.say("Votes reset!")
         return
     await bot.say("You don't have permission to use this command. If you think this is an error please let someone know.")
