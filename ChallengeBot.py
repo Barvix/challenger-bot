@@ -198,12 +198,12 @@ async def timeleft(ctx):
     challenge_file = challenge_name + ".txt"
     
     BUCKET_NAME = 'cloud-cube' # replace with your bucket name
-    KEY = challenge_file # replace with your object key
+    KEY = "cvxsngshjp1h/"+challenge_file # replace with your object key
 
     s3 = boto3.resource('s3')
 
     try:
-        s3.Bucket(BUCKET_NAME).download_file(KEY, "cvxsngshjp1h/"+challenge_file)
+        s3.Bucket(BUCKET_NAME).download_file(KEY, challenge_file)
     except botocore.exceptions.ClientError as e:
         if e.response['Error']['Code'] == "404":
             print("The object does not exist.")
