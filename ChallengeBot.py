@@ -200,7 +200,11 @@ async def timeleft(ctx):
     BUCKET_NAME = 'cloud-cube' # replace with your bucket name
     KEY = "cvxsngshjp1h/"+challenge_file # replace with your object key
 
-    xs3 = boto3.resource('s3')
+    xs3 = boto3.resource('s3', 
+    aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
+    aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
+    region_name='us-west-1'
+    )
 
     try:
         xs3.Bucket(BUCKET_NAME).download_file(KEY, challenge_file)
