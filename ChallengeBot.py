@@ -200,7 +200,7 @@ async def timeleft(ctx):
     BUCKET_NAME = 'cloud-cube' # replace with your bucket name
     KEY = "cvxsngshjp1h/"+challenge_file # replace with your object key
 
-    s3 = boto3.resource('s3')
+    #s3 = boto3.resource('s3')
 
     try:
         s3.Bucket(BUCKET_NAME).download_file(KEY, challenge_file)
@@ -211,15 +211,15 @@ async def timeleft(ctx):
             return
         else:
             raise
-            f = open(challenge_file, "r")
-            date = f.readline()
-            month, day = date.split(".")
-            td = datetime.datetime(2018, int(month), int(day)) - datetime.datetime.now()
-            date_to = int(td.days) + 1
-            if (date_to != 1):
-                await bot.say("You have " + str(date_to) + " days to complete " + challenge_name + ".")
-            if (date_to == 1):
-                await bot.say("You have " + str(date_to) + " day to complete " + challenge_name + ".")
+    f = open(challenge_file, "r")
+    date = f.readline()
+    month, day = date.split(".")
+    td = datetime.datetime(2018, int(month), int(day)) - datetime.datetime.now()
+    date_to = int(td.days) + 1
+    if (date_to != 1):
+        await bot.say("You have " + str(date_to) + " days to complete " + challenge_name + ".")
+    if (date_to == 1):
+        await bot.say("You have " + str(date_to) + " day to complete " + challenge_name + ".")
             
             
     
