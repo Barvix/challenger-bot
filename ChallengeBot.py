@@ -273,7 +273,7 @@ async def enter(ctx, link : str):
         if e.response['Error']['Code'] == "404":
             
             c_file = open(challenge_file, "w+")
-            c_file.write(name + " --- " + link)
+            c_file.write(""+name + " --- " + "<" + link + ">\n")
             c_file.close()
             s3.upload_file(challenge_file, BUCKET_NAME, "cvxsngshjp1h/"+challenge_file)
             await bot.say("Entry added!")
