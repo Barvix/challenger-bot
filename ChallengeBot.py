@@ -170,6 +170,8 @@ async def timer(ctx, month : str, date : str):
 
     global s3
     
+    cname = ctx.message.channel.name
+    
     if ("++" in [y.name.lower() for y in ctx.message.author.roles]) or ("+" in [y.name.lower() for y in ctx.message.author.roles]) or ("winners" in [y.name.lower() for y in ctx.message.author.roles]) or (ctx.message.author.id == "409223599757590538") or ("admin" in [y.name.lower() for y in ctx.message.author.roles]) or ("mod" in [y.name.lower() for y in ctx.message.author.roles]) or ("👑👑👑Challenge Winner👑👑👑" in [y.name.lower() for y in ctx.message.author.roles]):
         challenge_file = challenge_name + ".txt"
         filename = challenge_name+".txt"
@@ -184,7 +186,7 @@ async def timer(ctx, month : str, date : str):
         # files automatically and upload parts in parallel.
         s3.upload_file(filename, bucket_name, "cvxsngshjp1h/"+filename)
 
-        await bot.say(challenge_name + " set for " + month + "/" + date + ".")
+        await bot.say(cname + " set for " + month + "/" + date + ".")
         return
     await bot.say("You don't have permission to use this command. If you think this is an error please let someone know.")
 
