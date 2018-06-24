@@ -312,6 +312,8 @@ async def voting(ctx):
 
     challenge_name = ctx.message.channel.id
     
+    challenge_file = "entries_"+challenge_name+".txt"
+    
     cname = ctx.message.channel.name
     cname = cname.replace('-',' ')
 
