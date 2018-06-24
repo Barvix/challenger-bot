@@ -171,6 +171,7 @@ async def timer(ctx, month : str, date : str):
     global s3
     
     cname = ctx.message.channel.name
+    cname = cname.replace('-',' ')
     
     if ("++" in [y.name.lower() for y in ctx.message.author.roles]) or ("+" in [y.name.lower() for y in ctx.message.author.roles]) or ("winners" in [y.name.lower() for y in ctx.message.author.roles]) or (ctx.message.author.id == "409223599757590538") or ("admin" in [y.name.lower() for y in ctx.message.author.roles]) or ("mod" in [y.name.lower() for y in ctx.message.author.roles]) or ("👑👑👑Challenge Winner👑👑👑" in [y.name.lower() for y in ctx.message.author.roles]):
         challenge_file = challenge_name + ".txt"
@@ -196,6 +197,9 @@ async def timeleft(ctx):
     challenge_name = ctx.message.channel.id  
     
     global s3
+    
+    cname = ctx.message.channel.name
+    cname = cname.replace('-',' ')
     
     challenge_file = challenge_name + ".txt"
     
@@ -223,9 +227,9 @@ async def timeleft(ctx):
     td = datetime.datetime(2018, int(month), int(day)) - datetime.datetime.now()
     date_to = int(td.days) + 1
     if (date_to != 1):
-        await bot.say("You have " + str(date_to) + " days to complete " + challenge_name + ".")
+        await bot.say("You have " + str(date_to) + " days to complete " + cname + ".")
     if (date_to == 1):
-        await bot.say("You have " + str(date_to) + " day to complete " + challenge_name + ".")
+        await bot.say("You have " + str(date_to) + " day to complete " + cname + ".")
             
             
     
@@ -257,6 +261,8 @@ async def reset(ctx):
 async def enter(ctx, link : str):
 
     challenge_name = ctx.message.channel.id 
+    cname = ctx.message.channel.name
+    cname = cname.replace('-',' ')
 
     challenge_file = "entries_"+challenge_name+".txt"
 
@@ -281,6 +287,9 @@ async def reset_votes(ctx):
 
     challenge_name = ctx.message.channel.id
 
+    cname = ctx.message.channel.name
+    cname = cname.replace('-',' ')
+    
     if ("++" in [y.name.lower() for y in ctx.message.author.roles]) or ("+" in [y.name.lower() for y in ctx.message.author.roles]) or ("winners" in [y.name.lower() for y in ctx.message.author.roles]) or (ctx.message.author.id == "409223599757590538") or ("admin" in [y.name.lower() for y in ctx.message.author.roles]) or ("mod" in [y.name.lower() for y in ctx.message.author.roles]) or ("👑👑👑Challenge Winner👑👑👑" in [y.name.lower() for y in ctx.message.author.roles]):
         challenge_file = "entries_"+challenge_name+".txt"
         c_file = open(challenge_file, "w+")
@@ -293,6 +302,9 @@ async def reset_votes(ctx):
 async def voting(ctx):
 
     challenge_name = ctx.message.channel.id
+    
+    cname = ctx.message.channel.name
+    cname = cname.replace('-',' ')
 
     challenge_file = "entries_"+challenge_name+".txt"
     if (os.path.exists(challenge_file)):
