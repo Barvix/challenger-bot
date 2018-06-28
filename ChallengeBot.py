@@ -41,7 +41,7 @@ async def on_ready():
     await bot.change_presence(game=discord.Game(name=str(mygame)))
     
     thedate = datetime.datetime.today()
-    thedate = thedate.weekday
+    thedate = thedate.weekday()
     print(str(thedate))
     if (thedate is 5):
         print("It is not Wedn my dudes")
