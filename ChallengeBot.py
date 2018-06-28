@@ -44,6 +44,7 @@ async def on_ready():
     thedate = thedate.strftime('%A')
     print(str(thedate))
     if (str(thedate) is "Thursday"):
+        print("It is not Wedn my dudes")
         await bot.send_message(chn, "Testing")
     
     serv = bot.get_server("446157087211520030")
