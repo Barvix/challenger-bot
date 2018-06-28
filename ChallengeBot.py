@@ -42,6 +42,7 @@ async def on_ready():
     
     thedate = datetime.datetime.today()
     thedate = thedate.strftime('%A')
+    print(str(thedate))
     if (thedate is "Thursday"):
         await bot.send_message(chn, "Testing")
     
