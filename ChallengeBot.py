@@ -41,8 +41,8 @@ async def on_ready():
     mygame = "Making Music 🎹 🎼 🎧 🎤"
     await bot.change_presence(game=discord.Game(name=str(mygame)))
     
-    thedate = date.today().strftime("%A")
-    if (thedate is "Thursday"):
+    thedate = datetime.datetime.today().weekday()
+    if (thedate is 5):
         await bot.send_message(chn, "Testing")
     
     serv = bot.get_server("446157087211520030")
