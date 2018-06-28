@@ -7,7 +7,6 @@ import random
 #import dateutil
 from dateutil.relativedelta import relativedelta
 import datetime
-from datetime import datetime
 import boto3
 import botocore
 
@@ -43,7 +42,7 @@ async def on_ready():
     
     thedate = datetime.datetime.today()
     thedate = thedate.strftime('%A')
-    if (thedate is 5):
+    if (thedate is "Thursday"):
         await bot.send_message(chn, "Testing")
     
     serv = bot.get_server("446157087211520030")
