@@ -43,7 +43,7 @@ async def on_ready():
     thedate = datetime.datetime.today()
     thedate = thedate.strftime('%A')
     print(str(thedate))
-    if (thedate is "Thursday"):
+    if (str(thedate) is "Thursday"):
         await bot.send_message(chn, "Testing")
     
     serv = bot.get_server("446157087211520030")
