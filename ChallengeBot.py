@@ -41,9 +41,9 @@ async def on_ready():
     await bot.change_presence(game=discord.Game(name=str(mygame)))
     
     thedate = datetime.datetime.today()
-    thedate = thedate.strftime('%A')
+    thedate = thedate.weekday
     print(str(thedate))
-    if (str(thedate) is "Thursday"):
+    if (thedate is 5):
         print("It is not Wedn my dudes")
         await bot.send_message(chn, "Testing")
     
