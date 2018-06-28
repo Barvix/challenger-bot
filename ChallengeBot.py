@@ -43,7 +43,7 @@ async def on_ready():
     thedate = datetime.datetime.today()
     thedate = thedate.weekday()
     print(str(thedate))
-    if (thedate is 5):
+    if (thedate is 3):
         print("It is not Wedn my dudes")
         await bot.send_message(chn, "Testing")
     
