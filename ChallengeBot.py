@@ -44,8 +44,12 @@ async def on_ready():
     thedate = thedate.weekday()
     print(str(thedate))
     if (thedate is 3):
-        print("It is not Wedn my dudes")
-        await bot.send_message(chn, "Testing")
+        f = open("BotSampleList.txt", 'r')
+        x = f.readlines()
+        f.close()
+        urls = str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)])
+        #await bot.say(urls)
+        await bot.send_message(chn, urls)
     
     serv = bot.get_server("446157087211520030")
     
