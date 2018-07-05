@@ -124,9 +124,13 @@ async def on_message(message):
         fb = fb.replace("!", "")
         
         if (fb == message.author.id):
+            print("Same ID error")
             return
         
+        print("It knows the message exists")
+        
         if any(fbr in message.content.lower() for fbr in fb_list):
+            print("it knows the role should be added")
             role = discord.utils.get(message.server.roles, name="Feedback")
         
             await bot.add_roles(message.author, role)
