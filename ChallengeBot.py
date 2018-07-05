@@ -116,6 +116,14 @@ async def on_message(message):
         await bot.add_roles(feedbacker, role)
         
     if ("@" in message.content.lower() and "thank" not in message.content.lower()):
+        
+        old,kar = message.content.split("@")
+        fb,other = kar.split(">")
+        fb = fb.replace("!", "")
+        
+        if (fb == message.author.id):
+            return
+        
         if any(fbr in message.content.lower for fbr in fb_list):
             role = discord.utils.get(message.server.roles, name="Feedback")
         
