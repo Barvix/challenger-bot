@@ -124,7 +124,7 @@ async def on_message(message):
         if (fb == message.author.id):
             return
         
-        if any(fbr in message.content.lower for fbr in fb_list):
+        if any(fbr in message.content.lower() for fbr in fb_list):
             role = discord.utils.get(message.server.roles, name="Feedback")
         
             await bot.add_roles(message.author, role)
