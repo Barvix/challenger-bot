@@ -83,7 +83,7 @@ async def on_message(message):
     if ("nigger" in message.content.lower() or "fag" in message.content.lower() or "queer" in message.content.lower()):
         await bot.delete_message(message)
             
-    mod_feedback = False
+    mod_feedback = True
             
     if (mod_feedback is True):
         
@@ -111,6 +111,9 @@ async def on_message(message):
         role = discord.utils.get(message.server.roles, name="Feedback")
         
         await bot.add_roles(feedbacker, role)
+        
+    #if ("@" in message.content.lower()):
+    #    if ("liked" in message.content.lower() or "mix" in message.content.lower() or "drums" in message.content.lower() or )
            
     await bot.process_commands(message)
 
