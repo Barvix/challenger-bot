@@ -29,8 +29,7 @@ s3 = boto3.client('s3',
     region_name='us-west-1'
     )
 
-with open('list.txt') as f:
-    fb_list = f.readlines()
+fb_list = [line.rstrip('\n') for line in open('list.txt')]
 
 @bot.event
 async def on_ready():
