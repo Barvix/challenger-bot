@@ -29,6 +29,9 @@ s3 = boto3.client('s3',
     region_name='us-west-1'
     )
 
+with open('list.txt') as f:
+    fb_list = f.readlines()
+
 @bot.event
 async def on_ready():
     print('Logged in as')
@@ -112,8 +115,12 @@ async def on_message(message):
         
         await bot.add_roles(feedbacker, role)
         
-    #if ("@" in message.content.lower()):
-    #    if ("liked" in message.content.lower() or "mix" in message.content.lower() or "drums" in message.content.lower() or )
+    if ("@" in message.content.lower() and "thank" not in message.content.lower()):
+        if any(fbr in message.content.lower for fbr in fb_list):
+            role = discord.utils.get(message.server.roles, name="Feedback")
+        
+            await bot.add_roles(message.author, role)
+    #print(url_string)
            
     await bot.process_commands(message)
 
