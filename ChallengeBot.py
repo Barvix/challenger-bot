@@ -66,6 +66,8 @@ async def on_ready():
 @bot.event
 async def on_message(message):
 
+    global fb_list
+    
     if (message.author == bot.user):
         return
     
