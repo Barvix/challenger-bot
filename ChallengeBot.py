@@ -166,11 +166,22 @@ async def heroku(ctx):
   
 @bot.command(pass_context = True)
 async def roulette(ctx):
-    f = open("BotSampleList.txt", 'r')
-    x = f.readlines()
-    f.close()
-    urls = str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)])
-    await bot.say(urls)
+    
+    id = str(ctx.message.author.id)
+    
+    if (id == "173850040568119296"):
+
+        #await bot.delete_message(ctx.message)
+        await bot.send_message(chn, msg_str)
+    
+        f = open("BotSampleList.txt", 'r')
+        x = f.readlines()
+        f.close()
+        urls = str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)])
+        await bot.say(urls)
+    
+    if (id != "173850040568119296"):
+        await bot.say("Hey now, you can't use that")
 
 @bot.command(pass_context = True)
 async def producer(ctx):
