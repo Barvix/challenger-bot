@@ -62,12 +62,12 @@ async def on_ready():
         role = discord.utils.get(serv.roles, name='Feedback')
         await bot.remove_roles(member, role)
         
-    serv = bot.get_server("417672084857159680")
+    serv2 = bot.get_server("417672084857159680")
     
-    x = serv.members
+    y = serv2.members
     
-    for member in x:
-        role = discord.utils.get(serv.roles, name='Feedback')
+    for member in y:
+        role = discord.utils.get(serv2.roles, name='Feedback')
         await bot.remove_roles(member, role)
 
 @bot.event
