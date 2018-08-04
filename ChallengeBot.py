@@ -69,7 +69,7 @@ async def on_ready():
     for member in y:
         role = discord.utils.get(serv2.roles, name='Feedback')
         await bot.remove_roles(member, role)
-
+        
 @bot.event
 async def on_message(message):
 
@@ -168,6 +168,16 @@ async def help(ctx):
     embed.add_field(name="daw <daw name>", value="        Gives you a role for a specified daw. <fl studio> <ableton> <reason> <pro tools> <logic>", inline=False)
     await bot.send_message(ctx.message.channel, embed=embed)
 
+@bot.command(pass_context = True)
+async def reset_feedback(ctx):
+    serv = bot.get_server(ctx.message.server)
+    
+    y = serv.members
+    
+    for member in y:
+        role = discord.utils.get(serv.roles, name='Feedback')
+        await bot.remove_roles(member, role)
+    
 @bot.command(pass_context = True)
 async def heroku(ctx):
     await bot.say("We on live 24/7 now :D")
