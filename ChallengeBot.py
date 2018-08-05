@@ -190,7 +190,7 @@ async def roulette(ctx):
     if (id == "173850040568119296"):
 
         #await bot.delete_message(ctx.message)
-        await bot.send_message(chn, msg_str)
+        #await bot.send_message(chn, msg_str)
     
         f = open("BotSampleList.txt", 'r')
         x = f.readlines()
