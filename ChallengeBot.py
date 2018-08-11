@@ -10,7 +10,7 @@ import datetime
 import boto3
 import botocore
 
-#https://discordapp.com/oauth2/authorize?&client_id=428972162779578368&scope=bot&
+#https://discordapp.com/oauth2/authorize?&client_id=428972162779578368&scope=bot&permissions=336063568
 
 description = '''Hi, I'm the Challenger!'''
 bot = commands.Bot(command_prefix='!', description=description)
