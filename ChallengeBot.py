@@ -94,7 +94,8 @@ async def on_message(message):
             print("track deleted")
             
     if ("nigger" in message.content.lower() or "fag" in message.content.lower() or "queer" in message.content.lower()):
-        await bot.delete_message(message)
+        if (message.server is "446157087211520030" or message.server is "417672084857159680"):
+            await bot.delete_message(message)
             
     mod_feedback = True
             
