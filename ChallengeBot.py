@@ -188,7 +188,7 @@ async def roulette(ctx):
     
     id = str(ctx.message.author.id)
     
-    if (id == "173850040568119296"):
+    if (id == "173850040568119296" or ctx.message.server == "468434155525505055"):
 
         #await bot.delete_message(ctx.message)
         #await bot.send_message(chn, msg_str)
