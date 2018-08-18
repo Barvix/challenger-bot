@@ -189,7 +189,7 @@ async def roulette(ctx):
     
     id = str(ctx.message.author.id)
     
-    if (id == "173850040568119296" or ctx.message.server == "468434155525505055"):
+    if (id is "173850040568119296" or ctx.message.server is "468434155525505055"):
 
         #await bot.delete_message(ctx.message)
         #await bot.send_message(chn, msg_str)
@@ -199,8 +199,9 @@ async def roulette(ctx):
         f.close()
         urls = str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)])
         await bot.say(urls)
+        return
     
-    if (id != "173850040568119296"):
+    if (id != "173850040568119296" and ctx.message.server != "468434155525505055"):
         await bot.say("Hey now, you can't use that")
 
 @bot.command(pass_context = True)
