@@ -123,9 +123,9 @@ async def on_message(message):
         server = message.server
         feedbacker = server.get_member(fb)
         
-        role = discord.utils.get(message.server.roles, name="Feedback")
+        #role = discord.utils.get(message.server.roles, name="Feedback")
         
-        await bot.add_roles(feedbacker, role)
+        #await bot.add_roles(feedbacker, role)
         
     if ("@" in message.content.lower() and "thank" not in message.content.lower()):
         
