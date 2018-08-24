@@ -212,7 +212,7 @@ async def daw(ctx, *, dawname : str):
         role = discord.utils.get(ctx.message.server.roles, name="PRO TOOLS")
     if (dawname.lower() == "logic pro x" or dawname.lower() == "logic pro" or dawname.lower() == "logic"):
         role = discord.utils.get(ctx.message.server.roles, name="LOGIC PRO X")
-    if (role is not discord.utils.get(ctx.message.server.roles, name="NONE"):
+    if (role is not discord.utils.get(ctx.message.server.roles, name="NONE")):
         await bot.add_roles(ctx.message.author, role)
         await bot.say("Role successfully added!")
     if (role is discord.utils.get(ctx.message.server.roles, name="NONE")):
