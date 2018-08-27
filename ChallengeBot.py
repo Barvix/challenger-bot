@@ -44,7 +44,7 @@ async def on_ready():
     
     for server in bot.servers:
         print(server.id+"\n")
-        if server != "446157087211520030":
+        if server.id != "446157087211520030" or server.id != "376573686968221699":
             await bot.leave_server(server) 
     
     thedate = datetime.datetime.today()
