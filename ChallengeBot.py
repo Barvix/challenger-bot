@@ -44,7 +44,7 @@ async def on_ready():
     
     for server in bot.servers:
         if server != "446157087211520030":
-            await client.leave_server(server) 
+            await bot.leave_server(server) 
     
     thedate = datetime.datetime.today()
     thedate = thedate.weekday()
