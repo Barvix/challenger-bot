@@ -42,6 +42,10 @@ async def on_ready():
     mygame = "Making Music 🎹 🎼 🎧 🎤"
     await bot.change_presence(game=discord.Game(name=str(mygame)))
     
+    for server in bot.servers:
+        if server != "446157087211520030":
+            await client.leave_server(server) 
+    
     thedate = datetime.datetime.today()
     thedate = thedate.weekday()
     print(str(thedate))
@@ -148,6 +152,9 @@ async def on_message(message):
            
     await bot.process_commands(message)
 
+client = discord.Client()
+my_server = client.get_server('server id')
+    
 @bot.event
 async def on_member_join(member):
     server = member.server.id
