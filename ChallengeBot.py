@@ -42,10 +42,10 @@ async def on_ready():
     mygame = "Making Music 🎹 🎼 🎧 🎤"
     await bot.change_presence(game=discord.Game(name=str(mygame)))
     
-    for server in bot.servers:
-        print(server.id+"\n")
-        if server.id != "446157087211520030":
-            await bot.leave_server(server) 
+    #for server in bot.servers:
+    #    print(server.id+"\n")
+    #    if server.id != "446157087211520030":
+    #        await bot.leave_server(server) 
     
     thedate = datetime.datetime.today()
     thedate = thedate.weekday()
