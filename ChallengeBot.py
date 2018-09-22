@@ -192,6 +192,15 @@ async def heroku(ctx):
     await bot.say("We on live 24/7 now :D")
   
 @bot.command(pass_context = True)
+async def sample(ctx):
+    
+    f = open("BotSampleList.txt", 'r')
+    x = f.readlines()
+    f.close()
+    urls = str(x[random.randrange(0, len(x)-1)])
+    await bot.say(urls)
+
+@bot.command(pass_context = True)
 async def roulette(ctx):
     
     f = open("BotSampleList.txt", 'r')
