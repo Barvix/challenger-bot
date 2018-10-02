@@ -88,16 +88,15 @@ async def on_message(message):
         user_join_day = message.author.joined_at.strftime("%w, %m, %y")
         message_day = datetime.datetime.now().strftime("%w, %m, %y")
         
-        user_join_hour = message.author.joined_at.strftime("%H, %m")
-        message_hour = datetime.datetime.now().strftime("%H, %m")
+        user_join_hour = int(message.author.joined_at.strftime("%H")) * 60 + int(message.author.joined_at.strftime("%m"))
+        message_hour = int(datetime.datetime.now().strftime("%H")) * 60 + int(datetime.datetime.now().strftime("%m"))
         
         if (user_join_day == message_day):
             print("Same day delivery")
-            sub_time = datetime.datetime.now().strftime("%H, %m") - datetime.timedelta(minutes = message.author.joined_at.strftime("%m"), hours = "%H")
-            print(str(sub_time))
-            if sub_time.hour >= 1:
+            sub_time = message_hour - user_join_hour
+            if sub_time.hour >= 60:
                 print("They may now post")
-            if sub_time.hour < 1:
+            if sub_time.hour < 60:
                 await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because your account here is still new. To avoid leech behavior here this track is being deleted. In the meantime, please try and engage with the community here a bit, and later you can post your tracks. If you feel this is an error, please let someone know.")
                 await bot.delete_message(message)
                 chn = bot.get_channel("472838612119978034")
