@@ -83,6 +83,23 @@ async def on_message(message):
     if (message.author == bot.user):
         return
     
+    if ("htpps://" in message.content):
+        user_join_day = message.author.joined_at.strftime("%w, %m, %y")
+        message_day = datetime.datetime.now().strftime("%w, %m, %y")
+        
+        user_join_hour = message.author.joined_at.strftime("%H, %m")
+        message_hour = datetime.datetime.now().strftime("%H, %m")
+        
+        if (user_join_day == message_day):
+            sub_time = message_hour - user_join_hour
+            if sub_time.hour >= 1:
+                do_nothing = 0
+            if sub_time.hour < 1:
+                await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because your account here is still new. To avoid leech behavior here this track is being deleted. In the meantime, please try and engage with the community here a bit, and later you can post your tracks. If you feel this is an error, please let someone know.")
+                await bot.delete_message(message)
+                chn = bot.get_channel("472838612119978034")
+                await bot.send_message(chn, "Deleted track posted by <@"+str(message.author.id)+">")
+    
     if "feedback leech" in [y.name.lower() for y in message.author.roles]:
         if ("https://" in message.content or "soundcloud.com" in message.content):
             await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because you have the role Feedback Leech, which means you've been leaching off the community or the feedback channel. If you feel this is an error, please let someone know.")
