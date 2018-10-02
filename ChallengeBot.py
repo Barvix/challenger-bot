@@ -84,6 +84,7 @@ async def on_message(message):
         return
     
     if ("htpps://" in message.content):
+        print("Message: Read\n")
         user_join_day = message.author.joined_at.strftime("%w, %m, %y")
         message_day = datetime.datetime.now().strftime("%w, %m, %y")
         
@@ -92,6 +93,7 @@ async def on_message(message):
         
         if (user_join_day == message_day):
             sub_time = message_hour - user_join_hour
+            print(str(sub_time))
             if sub_time.hour >= 1:
                 do_nothing = 0
             if sub_time.hour < 1:
