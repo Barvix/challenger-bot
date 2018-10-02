@@ -83,7 +83,7 @@ async def on_message(message):
     if (message.author == bot.user):
         return
     
-    if ("htpps://" in message.content):
+    if ("https://" in message.content):
         print("Message: Read\n")
         user_join_day = message.author.joined_at.strftime("%w, %m, %y")
         message_day = datetime.datetime.now().strftime("%w, %m, %y")
