@@ -97,7 +97,7 @@ async def on_message(message):
             if sub_time >= 60:
                 print("They may now post")
             if sub_time < 60:
-                await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because your account here is still new. To avoid leech behavior here this track is being deleted. In the meantime, please try and engage with the community here a bit, and later you can post your tracks. If you feel this is an error, please let someone know.")
+                await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because your account here is still new. To avoid leech behavior here this track is being deleted. In the meantime, please try and engage with the community here a bit, and in up to an hour you can post your tracks. If you feel this is an error, please let someone know.")
                 await bot.delete_message(message)
                 chn = bot.get_channel("472838612119978034")
                 await bot.send_message(chn, "Deleted track posted by <@"+str(message.author.id)+">")
