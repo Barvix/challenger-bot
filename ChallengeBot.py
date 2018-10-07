@@ -248,6 +248,8 @@ async def daw(ctx, *, dawname : str):
         role = discord.utils.get(ctx.message.server.roles, name="REASON")
     if (dawname.lower() == "pro tools"):
         role = discord.utils.get(ctx.message.server.roles, name="PRO TOOLS")
+    if (dawname.lower() == "garage band" or dawname.lower() == "garageband"):
+        role = discord.utils.get(ctx.message.server.roles, name="GARAGE BAND")
     if (dawname.lower() == "logic pro x" or dawname.lower() == "logic pro" or dawname.lower() == "logic"):
         role = discord.utils.get(ctx.message.server.roles, name="LOGIC PRO X")
     if (role is not discord.utils.get(ctx.message.server.roles, name="NONE")):
