@@ -120,7 +120,7 @@ async def on_message(message):
             await bot.send_message(chn, "Deleted track posted by <@"+str(message.author.id)+">")
             print("track deleted")
             
-    if ("nigger" in message.content.lower() or "fag" in message.content.lower()):
+    if ("nigger" in message.content.lower() or "fag" in message.content.lower() or "aggot" in message.content.lower()):
         await bot.delete_message(message)
             
     mod_feedback = True
