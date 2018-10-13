@@ -85,8 +85,8 @@ async def on_message(message):
     
     if ("https://" in message.content):
         print("Message: Read\n")
-        user_join_day = message.author.joined_at.strftime("%w, %m, %y")
-        message_day = datetime.datetime.now().strftime("%w, %m, %y")
+        user_join_day = message.author.joined_at.strftime("%d, %m, %y")
+        message_day = datetime.datetime.now().strftime("%d, %m, %y")
         
         user_join_hour = int(message.author.joined_at.strftime("%H")) * 60 + int(message.author.joined_at.strftime("%m"))
         message_hour = int(datetime.datetime.now().strftime("%H")) * 60 + int(datetime.datetime.now().strftime("%m"))
