@@ -242,13 +242,13 @@ async def producer(ctx):
     
 @bot.command(pass_context = True)
 async def singer(ctx):
-    role = discord.utils.get(ctx.message.server.roles, name="🎹🎹🎹Singer🎹🎹🎹")
+    role = discord.utils.get(ctx.message.server.roles, name="🎤🎤🎤Singer🎤🎤🎤")
     await bot.add_roles(ctx.message.author, role)
     await bot.say("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def artist(ctx):
-    role = discord.utils.get(ctx.message.server.roles, name="🎹🎹🎹Singer🎹🎹🎹")
+    role = discord.utils.get(ctx.message.server.roles, name="🎤🎤🎤Singer🎤🎤🎤")
     await bot.add_roles(ctx.message.author, role)
     await bot.say("Role successfully added!")
 
