@@ -197,6 +197,8 @@ async def help(ctx):
     embed.add_field(name="reset_votes ", value="        Resets the votes to be blank for the next challenge", inline=False)
     embed.add_field(name="producer ", value="        Gives you the Producer role", inline=False)
     embed.add_field(name="rapper ", value="        Gives you the Rapper role", inline=False)
+    embed.add_field(name="singer ", value="        Gives you the Singer role", inline=False)
+    embed.add_field(name="artist ", value="        Gives you the Singer role", inline=False)
     embed.add_field(name="daw <daw name>", value="        Gives you a role for a specified daw. <fl studio> <ableton> <reason> <pro tools> <logic>", inline=False)
     await bot.send_message(ctx.message.channel, embed=embed)
 
@@ -235,6 +237,18 @@ async def roulette(ctx):
 @bot.command(pass_context = True)
 async def producer(ctx):
     role = discord.utils.get(ctx.message.server.roles, name="🎹🎹🎹Producer🎹🎹🎹")
+    await bot.add_roles(ctx.message.author, role)
+    await bot.say("Role successfully added!")
+    
+@bot.command(pass_context = True)
+async def singer(ctx):
+    role = discord.utils.get(ctx.message.server.roles, name="🎹🎹🎹Singer🎹🎹🎹")
+    await bot.add_roles(ctx.message.author, role)
+    await bot.say("Role successfully added!")
+    
+@bot.command(pass_context = True)
+async def artist(ctx):
+    role = discord.utils.get(ctx.message.server.roles, name="🎹🎹🎹Singer🎹🎹🎹")
     await bot.add_roles(ctx.message.author, role)
     await bot.say("Role successfully added!")
 
