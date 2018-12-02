@@ -264,7 +264,7 @@ async def daw(ctx, *, dawname : str):
     if (dawname.lower() == "pro tools"):
         role = discord.utils.get(ctx.message.server.roles, name="PRO TOOLS")
     if (dawname.lower() == "reaper"):
-        role = discord.utils.get(ctx.message.server.roles, name="reaper")
+        role = discord.utils.get(ctx.message.server.roles, name="REAPER")
     if (dawname.lower() == "lmms"):
         role = discord.utils.get(ctx.message.server.roles, name="LMMS")
     if (dawname.lower() == "garage band" or dawname.lower() == "garageband"):
