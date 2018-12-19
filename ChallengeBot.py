@@ -97,13 +97,22 @@ async def on_message(message):
             if sub_time >= 60:
                 print("They may now post")
             if sub_time < 60:
-                if "feedback" not in [y.name.lower() for y in message.author.roles]:
-                    await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because your account here is still new. To avoid leech behavior here this track is being deleted. In the meantime, please try and engage with the community here a bit, and in up to an hour you can post your tracks. If you feel this is an error, please let someone know.")
-                    await bot.delete_message(message)
-                    chn = bot.get_channel("472838612119978034")
-                    await bot.send_message(chn, "Deleted track posted by <@"+str(message.author.id)+">")
-                if "feedback" in [y.name.lower() for y in message.author.roles]:
-                    print("They have feedback")
+                if (message.channel.id == "446168661607186434"):
+                    if "feedback" not in [y.name.lower() for y in message.author.roles]:
+                        await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because your account here is still new, and to avoid leech behavior this track is being deleted. In addition, this channel is for feedbacks - which requires users to give a feedback before asking for one/posting a song. If you feel this is an error please let someone know.")
+                        await bot.delete_message(message)
+                        chn = bot.get_channel("472838612119978034")
+                        await bot.send_message(chn, "Deleted track posted by <@"+str(message.author.id)+">")
+                    if "feedback" in [y.name.lower() for y in message.author.roles]:
+                        print("They have feedback")
+                if (message.channel.id != "446168661607186434"):
+                    if "feedback" not in [y.name.lower() for y in message.author.roles]:
+                        await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because your account here is still new. To avoid leech behavior here this track is being deleted. In the meantime, please try and engage with the community here a bit, and in up to an hour you can post your tracks. If you feel this is an error, please let someone know.")
+                        await bot.delete_message(message)
+                        chn = bot.get_channel("472838612119978034")
+                        await bot.send_message(chn, "Deleted track posted by <@"+str(message.author.id)+">")
+                    if "feedback" in [y.name.lower() for y in message.author.roles]:
+                        print("They have feedback")
     
     if "feedback leech" in [y.name.lower() for y in message.author.roles]:
         if ("https://" in message.content or "soundcloud.com" in message.content):
