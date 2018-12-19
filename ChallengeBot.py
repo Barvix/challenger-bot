@@ -137,7 +137,7 @@ async def on_message(message):
             
     if (mod_feedback is True):
         
-        if ( (message.channel.id == "446168661607186434" or message.channel.id == "420405162071293952") and ("https://" in message.content or "soundcloud.com" in message.content)):
+        if ( (message.channel.id == "446168661607186434") and ("https://" in message.content or "soundcloud.com" in message.content)):
             if "🎧🎧🎧feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
                  if "feedback" not in [y.name.lower() for y in message.author.roles]:
                         #await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you must first give **QUALITY** feedback before asking for some. If you think you got this message in error, please contact a mod or admin. If you're not sure what quality feedback looks like, look here: <https://i.imgur.com/ZXAHtQw.jpg>")
@@ -148,7 +148,7 @@ async def on_message(message):
             if "🎧🎧🎧feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]:
                 return
         
-    if ("thank" in message.content.lower() and "@" in message.content.lower()):
+    if ("thank" in message.content.lower() and "@" in message.content.lower() and message.channel.id == "446168661607186434"):
         old,kar = message.content.split("@")
         fb,other = kar.split(">")
         fb = fb.replace("!", "")
@@ -159,9 +159,9 @@ async def on_message(message):
         server = message.server
         feedbacker = server.get_member(fb)
         
-        #role = discord.utils.get(message.server.roles, name="Feedback")
+        role = discord.utils.get(message.server.roles, name="Feedback")
         
-        #await bot.add_roles(feedbacker, role)
+        await bot.add_roles(feedbacker, role)
         
     if (message.channel.id == "446168661607186434"):
         
