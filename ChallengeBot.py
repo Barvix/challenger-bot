@@ -65,7 +65,7 @@ async def on_ready():
     
     for member in x:
         role = discord.utils.get(serv.roles, name='Feedback')
-        await bot.remove_roles(member, role)
+        #await bot.remove_roles(member, role)
         
     serv2 = bot.get_server("417672084857159680")
     
