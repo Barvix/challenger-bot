@@ -140,7 +140,7 @@ async def on_message(message):
         if ( (message.channel.id == "446168661607186434") and ("https://" in message.content or "soundcloud.com" in message.content)):
             if "🎧🎧🎧feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
                  if "feedback" not in [y.name.lower() for y in message.author.roles]:
-                        await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it - which means you have never given feedback yet. If you think this is an error please let someone know.")
+                        await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it - which means you have never given feedback yet. If you want the feedback role, *YOU HAVE TO GIVE SOMEBODY FEEDBACK IN THIS CHANNEL* If you think this is an error please let someone know.")
                         await bot.delete_message(message)
                         #donothin = message.channel
                  if "feedback" in [y.name.lower() for y in message.author.roles]:
@@ -254,7 +254,13 @@ async def engineer(ctx):
     role = discord.utils.get(ctx.message.server.roles, name="🎧🎧🎧Engineer🎧🎧🎧")
     await bot.add_roles(ctx.message.author, role)
     await bot.say("Role successfully added!")
-    
+  
+@bot.command(pass_context = True)
+async def feedback(ctx):
+    #role = discord.utils.get(ctx.message.server.roles, name="🎧🎧🎧Engineer🎧🎧🎧")
+    #await bot.add_roles(ctx.message.author, role)
+    await bot.say("I probably just said you need to give somebody feedback in the feedback channel to get this role. It is not difficult to give somebody feedback. c'mon. don't be that guy.")
+
 @bot.command(pass_context = True)
 async def singer(ctx):
     role = discord.utils.get(ctx.message.server.roles, name="🎤🎤🎤Singer🎤🎤🎤")
