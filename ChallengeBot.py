@@ -140,7 +140,7 @@ async def on_message(message):
         if ( (message.channel.id == "446168661607186434") and ("https://" in message.content or "soundcloud.com" in message.content)):
             if "🎧🎧🎧feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
                  if "feedback" not in [y.name.lower() for y in message.author.roles]:
-                        await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it - which means you have never given feedback yet. If you want the feedback role, *YOU HAVE TO GIVE SOMEBODY FEEDBACK IN THIS CHANNEL* If you think this is an error please let someone know.")
+                        await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it - which means you have never given **quality** feedback yet. If you want the feedback role, *YOU HAVE TO GIVE SOMEBODY QUALITY FEEDBACK IN THIS CHANNEL* If you think this is an error please let someone know.")
                         await bot.delete_message(message)
                         #donothin = message.channel
                  if "feedback" in [y.name.lower() for y in message.author.roles]:
