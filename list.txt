@@ -8,7 +8,6 @@ piano
 loop
 sample
 guitar
-hat
 high
 low
 bass
