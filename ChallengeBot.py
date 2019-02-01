@@ -306,8 +306,8 @@ async def rapper(ctx):
     await bot.say("Role successfully added!")
     
 @bot.command(pass_context = True)
-async def tagme(ctx):
-    role = discord.utils.get(ctx.message.server.roles, name="Tag me!")
+async def lotto(ctx):
+    role = discord.utils.get(ctx.message.server.roles, name="Lotto")
     await bot.add_roles(ctx.message.author, role)
     await bot.say("Role successfully added!")
     
