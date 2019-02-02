@@ -250,6 +250,12 @@ async def producer(ctx):
     await bot.say("Role successfully added!")
     
 @bot.command(pass_context = True)
+async def freestyler(ctx):
+    role = discord.utils.get(ctx.message.server.roles, name="FREESTYLER")
+    await bot.add_roles(ctx.message.author, role)
+    await bot.say("Role successfully added!")
+    
+@bot.command(pass_context = True)
 async def engineer(ctx):
     role = discord.utils.get(ctx.message.server.roles, name="🎧🎧🎧Engineer🎧🎧🎧")
     await bot.add_roles(ctx.message.author, role)
