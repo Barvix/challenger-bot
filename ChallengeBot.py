@@ -315,10 +315,10 @@ async def rapper(ctx):
 async def lotto(ctx):
     if "Lotto Ban" in [y.name.lower() for y in message.author.roles]:
         await bot.say("Whoa buddy, it appears as if you have been banned from the lotto. If you have any questions about this please talk to a mod.")
-        return
-    role = discord.utils.get(ctx.message.server.roles, name="Lotto")
-    await bot.add_roles(ctx.message.author, role)
-    await bot.say("Role successfully added!")
+    if "Lotto Ban" not in [y.name.lower() for y in message.author.roles]:
+        role = discord.utils.get(ctx.message.server.roles, name="Lotto")
+        await bot.add_roles(ctx.message.author, role)
+        await bot.say("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def timer(ctx, month : str, date : str):
