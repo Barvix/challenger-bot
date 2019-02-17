@@ -244,6 +244,12 @@ async def roulette(ctx):
     await bot.say(urls)
 
 @bot.command(pass_context = True)
+async def yeet(ctx):
+    role = discord.utils.get(ctx.message.server.roles, name="Extremely politically correct")
+    await bot.add_roles(ctx.message.author, role)
+    await bot.say("Role successfully added!")
+    
+@bot.command(pass_context = True)
 async def producer(ctx):
     role = discord.utils.get(ctx.message.server.roles, name="🎹🎹🎹Producer🎹🎹🎹")
     await bot.add_roles(ctx.message.author, role)
