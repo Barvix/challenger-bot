@@ -227,7 +227,7 @@ async def heroku(ctx):
   
 @bot.command(pass_context = True)
 async def vox23(ctx):
-    await bot.say("https://discordapp.com/channels/446157087211520030/446169554197151744/548588579329146891");
+    await bot.say("https://cdn.discordapp.com/attachments/446169554197151744/548588579329146890/VOX_23.wav");
 
 @bot.command(pass_context = True)
 async def sample(ctx):
