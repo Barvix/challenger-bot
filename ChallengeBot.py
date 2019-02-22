@@ -226,6 +226,10 @@ async def heroku(ctx):
     await bot.say("We on live 24/7 now :D")
   
 @bot.command(pass_context = True)
+async def vox23(ctx):
+    await bot.say("https://discordapp.com/channels/446157087211520030/446169554197151744/548588579329146891");
+
+@bot.command(pass_context = True)
 async def sample(ctx):
     
     f = open("BotSampleList.txt", 'r')
