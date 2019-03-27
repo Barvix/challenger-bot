@@ -254,6 +254,12 @@ async def yeet(ctx):
     await bot.say("Role successfully added!")
     
 @bot.command(pass_context = True)
+async def twitch(ctx):
+    role = discord.utils.get(ctx.message.server.roles, name="TwitchFeedback")
+    await bot.add_roles(ctx.message.author, role)
+    await bot.say("Role successfully added!")
+    
+@bot.command(pass_context = True)
 async def edgy(ctx):
     role = discord.utils.get(ctx.message.server.roles, name="Extremely politically correct")
     await bot.add_roles(ctx.message.author, role)
