@@ -56,7 +56,7 @@ async def on_ready():
         f.close()
         urls = str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)])
         #await bot.say(urls)
-        rhythmchannel = bot.get_channel('458846373165662208')
+        rhythmchannel = bot.get_channel('560556421733810187')
         await bot.send_message(rhythmchannel, urls)
     
     serv = bot.get_server("446157087211520030")
