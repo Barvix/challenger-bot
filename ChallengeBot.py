@@ -97,19 +97,19 @@ async def on_message(message):
             if sub_time >= 60:
                 print("They may now post")
             if sub_time < 60:
-                if (message.channel.id == "446168661607186434"):
+                if (message.channel.id == "560511832322736138"):
                     if "feedback" not in [y.name.lower() for y in message.author.roles]:
                         await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because your account here is still new, and to avoid leech behavior this track is being deleted. In addition, this channel is for feedbacks - which requires users to give a feedback before asking for one/posting a song. If you feel this is an error please let someone know.")
                         await bot.delete_message(message)
-                        chn = bot.get_channel("472838612119978034")
+                        chn = bot.get_channel("560534679229431808")
                         await bot.send_message(chn, "Deleted track posted by <@"+str(message.author.id)+">")
                     if "feedback" in [y.name.lower() for y in message.author.roles]:
                         print("They have feedback")
-                if (message.channel.id != "446168661607186434"):
+                if (message.channel.id != "560511832322736138"):
                     if "feedback" not in [y.name.lower() for y in message.author.roles]:
                         await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because your account here is still new. To avoid leech behavior here this track is being deleted. In the meantime, please try and engage with the community here a bit, and in up to an hour you can post your tracks. If you feel this is an error, please let someone know.")
                         await bot.delete_message(message)
-                        chn = bot.get_channel("472838612119978034")
+                        chn = bot.get_channel("560534679229431808")
                         await bot.send_message(chn, "Deleted track posted by <@"+str(message.author.id)+">")
                     if "feedback" in [y.name.lower() for y in message.author.roles]:
                         print("They have feedback")
@@ -118,7 +118,7 @@ async def on_message(message):
         if ("https://" in message.content or "soundcloud.com" in message.content):
             await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because you have the role Feedback Leech, which means you've been leaching off the community or the feedback channel. If you feel this is an error, please let someone know.")
             await bot.delete_message(message)
-            chn = bot.get_channel("472838612119978034")
+            chn = bot.get_channel("560534679229431808")
             await bot.send_message(chn, "Deleted track posted by <@"+str(message.author.id)+">")
             print("track deleted")
 
@@ -126,7 +126,7 @@ async def on_message(message):
         if ("https://" in message.content or "soundcloud.com" in message.content):
             await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because you have the role Feedback Leech, which means you've been leaching off the community or the feedback channel. If you feel this is an error, please let someone know.")
             await bot.delete_message(message)
-            chn = bot.get_channel("472838612119978034")
+            chn = bot.get_channel("560534679229431808")
             await bot.send_message(chn, "Deleted track posted by <@"+str(message.author.id)+">")
             print("track deleted")
             
@@ -137,7 +137,7 @@ async def on_message(message):
             
     if (mod_feedback is True):
         
-        if ( (message.channel.id == "446168661607186434") and ("https://" in message.content or "soundcloud.com" in message.content)):
+        if ( (message.channel.id == "560511832322736138") and ("https://" in message.content or "soundcloud.com" in message.content)):
             if "🎧🎧🎧feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
                  if "feedback" not in [y.name.lower() for y in message.author.roles]:
                         await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it - which means you have never given **quality** feedback yet. If you want the feedback role, *YOU HAVE TO GIVE SOMEBODY QUALITY FEEDBACK IN THIS CHANNEL* If you think this is an error please let someone know.")
@@ -148,7 +148,7 @@ async def on_message(message):
             if "🎧🎧🎧feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]:
                 return
         
-    if ("thank" in message.content.lower() and "@" in message.content.lower() and message.channel.id == "446168661607186434"):
+    if ("thank" in message.content.lower() and "@" in message.content.lower() and message.channel.id == "560511832322736138"):
         old,kar = message.content.split("@")
         fb,other = kar.split(">")
         fb = fb.replace("!", "")
@@ -163,7 +163,7 @@ async def on_message(message):
         
         await bot.add_roles(feedbacker, role)
         
-    if (message.channel.id == "446168661607186434"):
+    if (message.channel.id == "560511832322736138"):
         
         old,kar = message.content.split("@")
         fb,other = kar.split(">")
@@ -192,8 +192,8 @@ async def on_member_join(member):
     server = member.server.id
     #print(str(server))
     if (server == "446157087211520030"):
-        message = 'Welcome {} to HipHop Challenges Central! Please be sure to read the #rules! If you need help using me head to #bot-commands and type !help'.format(member.mention)
-        chn = bot.get_channel("446171284142030858")
+        message = 'Welcome {} to HipHop Creation Central! Please be sure to read the #rules! If you need help using me head to #bot-commands and type !help'.format(member.mention)
+        chn = bot.get_channel("560542321490264076")
         await bot.send_message(chn, message)
     
 @bot.command(pass_context = True)
