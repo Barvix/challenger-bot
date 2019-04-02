@@ -195,7 +195,7 @@ async def on_member_join(member):
     server = member.server.id
     #print(str(server))
     if (server == "446157087211520030"):
-        message = 'Welcome {} to Country Music Creation Central! Please be sure to read the #rules! If you need help using me head to #bot-commands and type !help'.format(member.mention)
+        message = 'Welcome {} to HipHop Creation Central! Please be sure to read the #rules! If you need help using me head to #bot-commands and type !help'.format(member.mention)
         chn = bot.get_channel("560542321490264076")
         await bot.send_message(chn, message)
     
