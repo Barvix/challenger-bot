@@ -59,8 +59,8 @@ async def on_ready():
         rhythmchannel = bot.get_channel('560556421733810187')
         await bot.send_message(rhythmchannel, urls)
     
-    dayofmonth = datetime.datetime.today()
-    dayofmonth = dayofmonth.day
+    dayofthemonth = datetime.datetime.today()
+    dayofthemonth = dayofthemonth.day
     print(str(dayofthemonth))
     
     serv = bot.get_server("446157087211520030")
