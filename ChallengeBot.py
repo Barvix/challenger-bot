@@ -59,6 +59,10 @@ async def on_ready():
         rhythmchannel = bot.get_channel('560556421733810187')
         await bot.send_message(rhythmchannel, urls)
     
+    dayofmonth = datetime.datetime.today()
+    dayofmonth = dayofmonth.day
+    print(str(dayofthemonth))
+    
     serv = bot.get_server("446157087211520030")
     
     x = serv.members
@@ -66,14 +70,6 @@ async def on_ready():
     for member in x:
         role = discord.utils.get(serv.roles, name='Feedback')
         #await bot.remove_roles(member, role)
-        
-    serv2 = bot.get_server("417672084857159680")
-    
-    y = serv2.members
-    
-    for member in y:
-        role = discord.utils.get(serv2.roles, name='Feedback')
-        await bot.remove_roles(member, role)
         
 @bot.event
 async def on_message(message):
