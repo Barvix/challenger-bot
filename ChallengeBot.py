@@ -62,14 +62,14 @@ async def on_ready():
     dayofthemonth = datetime.datetime.today()
     dayofthemonth = dayofthemonth.day
     print(str(dayofthemonth))
-    
-    serv = bot.get_server("446157087211520030")
-    
-    x = serv.members
-    
-    for member in x:
-        role = discord.utils.get(serv.roles, name='Feedback')
-        #await bot.remove_roles(member, role)
+    if ( (dayofthemonth is 1) or (dayofthemonth is 7) or (dayofthemonth is 14) or (dayofthemonth is 21) or (dayofthemonth is 28) ):
+        serv = bot.get_server("446157087211520030")
+
+        x = serv.members
+
+        for member in x:
+            role = discord.utils.get(serv.roles, name='Feedback')
+            await bot.remove_roles(member, role)
         
 @bot.event
 async def on_message(message):
