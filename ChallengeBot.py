@@ -190,6 +190,8 @@ async def on_message(message):
                 if (rand_feedback == 11): feedback_message = "I played this to Drake, and he likes the beat because of how young it is."
                 if (rand_feedback == 12): feedback_message = "Yo i spit out my Arizona tea as soon as that bass dropped man. Kinda came a little, too. Now that last part might have to do with the hentai I was watching, but I don't think so because I don't even like hentai."
                 if (rand_feedback == 13): feedback_message = "Can i have sex with this beat? Cus this beat, especially the low ends of it man, are fine as hellllllll"
+                chn = bot.get_channel("560511832322736138")
+                await bot.send_message(chn, feedback_message)
         
         print("It knows the message exists")
         
