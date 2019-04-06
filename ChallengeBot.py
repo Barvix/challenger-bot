@@ -172,6 +172,25 @@ async def on_message(message):
             print("Same ID error")
             return
         
+        if (fb == "428972162779578368"):
+            if ("feedback" in message.content.lower()):
+                rand_feedback = random.randint(0, 13)
+                feedback_message = "test text"
+                if (rand_feedback == 0): feedback_message = "Yo fam, this shit bangs in the whip. Like as soon as I play this in my Honda Pilot, the whip bangs bro, and not like the porn studios. I fuck with it."
+                if (rand_feedback == 1): feedback_message = "Not gonna lie fam, this shit weak. The fuck is going on with that bass? Is it outta tune? Just a weak melody? A lame ass bass I banged in my whip 500000000 times? fuck outta here with this lame shit"
+                if (rand_feedback == 2): feedback_message = "Ayy, this is pretty hot. Like I could just right now spread some oil on this, and fry some chicken on this song it's so hot. brb finna fry some chicken"
+                if (rand_feedback == 3): feedback_message = "brrr bruh. beat's so cold i gotta wear a thicc ass hoodie man. i mean im already wearing one, but now I gotta wear another. It's a struggle man."
+                if (rand_feedback == 4): feedback_message = "First of all the fuck are you doing with this EQ nonsense? You don't know - exactly. Secondly, who the fuck taught you how to compress? Some bitch on Youtube? Bitch I roast the fuck out of those little shits for a living, so don't tell me you actually know how to mix. Cus listen here bitch, you don't know shit about music. I am music, and you don't know shit about me or my story. Thank you for coming to my TED talk, bitch."
+                if (rand_feedback == 5): feedback_message = "Okay, honey, stop. Just fucking stop. Are you even producing, or are you just mashing random buttons on your shitty keyboard hoping they can make you the next Metro Boomin? Cus mmmm honey listen here - nobody can be Metro Boomin. Metro Boomin is a sexy god who I worship every night - so when I say no one can be him or be like him, I know what the fuck I am talking about. So just stop."
+                if (rand_feedback == 6): feedback_message = "Okay so I just played this to my friends and they melted. On the good side, I fucking hated them. On the bad side, now I have to find friends again. Wanna be my friend?"
+                if (rand_feedback == 7): feedback_message = "So uh, this is pretty terrible chief. So terrible I am going to steal this and sell it to some high-up artist and take all the credit for it. Skrrt"
+                if (rand_feedback == 8): feedback_message = "Listened to this shit while meditating around my stacks of cash and my diamonds. Very good for the mood, I felt like Future."
+                if (rand_feedback == 9): feedback_message = "I played this to a good friend of mine, Mr. Travis Scottington, you wouldn't know him. He liked it so much he kept saying something about something being straight up? I think he might have a weird fascination with his dick. Tbf, so do I."
+                if (rand_feedback == 10): feedback_message = "I came back from a hot tub in the back of my F150 with my hot cousins to listen to this? Chief if you tag me again, I will have Mr. Boomin officially not trust you."
+                if (rand_feedback == 11): feedback_message = "I played this to Drake, and he likes the beat because of how young it is."
+                if (rand_feedback == 12): feedback_message = "Yo i spit out my Arizona tea as soon as that bass dropped man. Kinda came a little, too. Now that last part might have to do with the hentai I was watching, but I don't think so because I don't even like hentai."
+                if (rand_feedback == 13): feedback_message = "Can i have sex with this beat? Cus this beat, especially the low ends of it man, are fine as hellllllll"
+        
         print("It knows the message exists")
         
         if any(fbr in message.content.lower() for fbr in fb_list):
