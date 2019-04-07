@@ -162,7 +162,7 @@ async def on_message(message):
         
         await bot.add_roles(feedbacker, role)
         
-    if (message.channel.id == "560511832322736138"):
+    if ("@" in message.content.lower()):
         
         old,kar = message.content.split("@")
         fb,other = kar.split(">")
