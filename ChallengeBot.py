@@ -93,7 +93,7 @@ async def on_message(message):
             if sub_time >= 60:
                 print("They may now post")
             if sub_time < 60:
-                if (message.channel.id == "560511832322736138"):
+                if (message.channel.id is "560511832322736138"):
                     if "feedback" not in [y.name.lower() for y in message.author.roles]:
                         await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because your account here is still new, and to avoid leech behavior this track is being deleted. In addition, this channel is for feedbacks - which requires users to give a feedback before asking for one/posting a song. If you feel this is an error please let someone know.")
                         await bot.delete_message(message)
@@ -101,7 +101,7 @@ async def on_message(message):
                         await bot.send_message(chn, "Deleted track posted by <@"+str(message.author.id)+">")
                     if "feedback" in [y.name.lower() for y in message.author.roles]:
                         print("They have feedback")
-                if (message.channel.id != "560511832322736138"):
+                if (message.channel.id is not "560511832322736138"):
                     if "feedback" not in [y.name.lower() for y in message.author.roles]:
                         await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because your account here is still new. To avoid leech behavior here this track is being deleted. In the meantime, please try and engage with the community here a bit, and in up to an hour you can post your tracks. If you feel this is an error, please let someone know.")
                         await bot.delete_message(message)
@@ -134,6 +134,8 @@ async def on_message(message):
             
     mod_feedback = True
             
+    mod_feedback = True
+            
     if (mod_feedback is True):
         
         if ( (message.channel.id == "560511832322736138") and ("https://" in message.content or "soundcloud.com" in message.content)):
@@ -146,7 +148,13 @@ async def on_message(message):
                     return
             if "🎧🎧🎧feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]:
                 return
-        
+    if (message.channel.id == "560511832322736138"):    
+        if any(fbr in message.content.lower() for fbr in fb_list):
+            print("it knows the role should be added")
+            role = discord.utils.get(message.server.roles, name="Feedback")
+
+            await bot.add_roles(message.author, role)
+
     if ("thank" in message.content.lower() and "@" in message.content.lower() and message.channel.id == "560511832322736138"):
         old,kar = message.content.split("@")
         fb,other = kar.split(">")
@@ -201,12 +209,7 @@ async def on_message(message):
                 await bot.send_message(message.channel, feedback_message)
         
         print("It knows the message exists")
-        
-        if any(fbr in message.content.lower() for fbr in fb_list):
-            print("it knows the role should be added")
-            role = discord.utils.get(message.server.roles, name="Feedback")
-        
-            await bot.add_roles(message.author, role)
+
     #print(url_string)
            
     await bot.process_commands(message)
