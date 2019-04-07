@@ -198,8 +198,7 @@ async def on_message(message):
                 if (rand_feedback == 19): feedback_message = "There's something off about this but idk anyway check mine out!"
                 if (rand_feedback == 20): feedback_message = "Okay dis hard"
                 if (rand_feedback == 21): feedback_message = "i like the 808 anyway here’s my whole mixtape please like and repost"
-                chn = bot.get_channel("560511832322736138")
-                await bot.send_message(chn, feedback_message)
+                await bot.send_message(message.channel, feedback_message)
         
         print("It knows the message exists")
         
