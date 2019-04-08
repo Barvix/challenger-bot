@@ -155,20 +155,22 @@ async def on_message(message):
 
             await bot.add_roles(message.author, role)
 
-    if ("thank" in message.content.lower() and "@" in message.content.lower() and message.channel.id == "560511832322736138"):
-        old,kar = message.content.split("@")
-        fb,other = kar.split(">")
-        fb = fb.replace("!", "")
-        
-        if (fb == message.author.id):
-            return
-        
-        server = message.server
-        feedbacker = server.get_member(fb)
-        
-        role = discord.utils.get(message.server.roles, name="Feedback")
-        
-        await bot.add_roles(feedbacker, role)
+    #if ("thank" in message.content.lower() and "@" in message.content.lower() and message.channel.id == "560511832322736138"):
+    #    old,kar = message.content.split("@")
+    #    fb,other = kar.split(">")
+    #    fb = fb.replace("!", "")
+    #    
+    #    if (fb == message.author.id):
+    #        return
+    #    if (fb == "428972162779578368"):
+    #        return
+    #    
+    #    server = message.server
+    #    feedbacker = server.get_member(fb)
+    #    
+    #    role = discord.utils.get(message.server.roles, name="Feedback")
+    #    
+    #    await bot.add_roles(feedbacker, role)
         
     if ("@" in message.content.lower()):
         
