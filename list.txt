@@ -18,7 +18,6 @@ melody
 sidechain
 compress
 eq
-sound
 vocal
 smooth
 rough
