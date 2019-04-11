@@ -148,12 +148,12 @@ async def on_message(message):
                     return
             if "🎧🎧🎧feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]:
                 return
-    if (message.channel.id == "560511832322736138"):    
-        if any(fbr in message.content.lower() for fbr in fb_list):
-            print("it knows the role should be added")
-            role = discord.utils.get(message.server.roles, name="Feedback")
+        if (message.channel.id == "560511832322736138" and ("http" not in message.content.lower())):    
+            if any(fbr in message.content.lower() for fbr in fb_list):
+                print("it knows the role should be added")
+                role = discord.utils.get(message.server.roles, name="Feedback")
 
-            await bot.add_roles(message.author, role)
+                await bot.add_roles(message.author, role)
 
     #if ("thank" in message.content.lower() and "@" in message.content.lower() and message.channel.id == "560511832322736138"):
     #    old,kar = message.content.split("@")
