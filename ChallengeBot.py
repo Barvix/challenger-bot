@@ -122,7 +122,7 @@ async def on_message(message):
             print("track deleted")
 
     if "leech" in [y.name.lower() for y in message.author.roles]:
-        if ("https://" in message.content or "soundcloud.com" in message.content):
+        if ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content):
             await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because you have the role Feedback Leech, which means you've been leaching off the community or the feedback channel. If you feel this is an error, please let someone know.")
             await bot.delete_message(message)
             chn = bot.get_channel("560534679229431808")
