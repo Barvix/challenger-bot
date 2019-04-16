@@ -231,15 +231,15 @@ async def on_member_join(member):
 @bot.command(pass_context = True)
 async def help(ctx):
     embed = discord.Embed(title="help", description="        This Command helps with commands for me", color=0x7abae8)
-    embed.add_field(name="timer <month_number> <day_in_month>", value="        Sets a timer for the challenge", inline=False)
-    embed.add_field(name="timeleft ", value="        Shows you how many days are left in a challenge", inline=False)
-    embed.add_field(name="enter <link to song>", value="        Enters your song for a challenge", inline=False)
-    embed.add_field(name="voting ", value="        Starts the voting of a challenge", inline=False)
-    embed.add_field(name="reset_votes ", value="        Resets the votes to be blank for the next challenge", inline=False)
     embed.add_field(name="producer ", value="        Gives you the Producer role", inline=False)
     embed.add_field(name="rapper ", value="        Gives you the Rapper role", inline=False)
     embed.add_field(name="singer ", value="        Gives you the Singer role", inline=False)
     embed.add_field(name="artist ", value="        Gives you the Singer role", inline=False)
+    embed.add_field(name="engineer ", value="        Gives you the Engineer role", inline=False)
+    embed.add_field(name="freestyler ", value="        Gives you the Freestyler role", inline=False)
+    embed.add_field(name="twitch ", value="        Gives you the Twitch Feedback role for the twitch streams done here sometimes", inline=False)
+    embed.add_field(name="roulette ", value="        Gives you 3 samples from youtube", inline=False)
+    embed.add_field(name="sample ", value="        Gives you 1 sample from youtube", inline=False)
     embed.add_field(name="daw <daw name>", value="        Gives you a role for a specified daw. <fl studio> <ableton> <reason> <pro tools> <logic>", inline=False)
     await bot.send_message(ctx.message.channel, embed=embed)
 
@@ -252,11 +252,7 @@ async def reset_feedback(ctx):
     for member in y:
         role = discord.utils.get(serv.roles, name='Feedback')
         await bot.remove_roles(member, role)
-    
-@bot.command(pass_context = True)
-async def heroku(ctx):
-    await bot.say("We on live 24/7 now :D")
-  
+
 @bot.command(pass_context = True)
 async def vox23(ctx):
     await bot.say("https://cdn.discordapp.com/attachments/446169554197151744/548588579329146890/VOX_23.wav");
@@ -364,82 +360,6 @@ async def rapper(ctx):
     role = discord.utils.get(ctx.message.server.roles, name="🎤🎤🎤Rapper🎤🎤🎤")
     await bot.add_roles(ctx.message.author, role)
     await bot.say("Role successfully added!")
-    
-@bot.command(pass_context = True)
-async def lotto(ctx):
-    if "lotto ban" in [y.name.lower() for y in ctx.message.author.roles]:
-        await bot.say("Whoa buddy, it appears as if you have been banned from the lotto. If you have any questions about this please talk to a mod.")
-    if "lotto ban" not in [y.name.lower() for y in ctx.message.author.roles]:
-        role = discord.utils.get(ctx.message.server.roles, name="Lotto")
-        await bot.add_roles(ctx.message.author, role)
-        await bot.say("Role successfully added!")
-    
-@bot.command(pass_context = True)
-async def timer(ctx, month : str, date : str):
-    challenge_name = ctx.message.channel.id
-
-    global s3
-    
-    cname = ctx.message.channel.name
-    cname = cname.replace('-',' ')
-    
-    if ("++" in [y.name.lower() for y in ctx.message.author.roles]) or ("+" in [y.name.lower() for y in ctx.message.author.roles]) or ("winners" in [y.name.lower() for y in ctx.message.author.roles]) or (ctx.message.author.id == "409223599757590538") or ("admin" in [y.name.lower() for y in ctx.message.author.roles]) or ("mod" in [y.name.lower() for y in ctx.message.author.roles]) or ("👑👑👑Challenge Winner👑👑👑" in [y.name.lower() for y in ctx.message.author.roles]):
-        challenge_file = challenge_name + ".txt"
-        filename = challenge_name+".txt"
-        
-        f = open(filename,"w+")
-        f.write(month + "." + date)
-        f.close()
-        
-        bucket_name = 'cloud-cube'
-
-        # Uploads the given file using a managed uploader, which will split up large
-        # files automatically and upload parts in parallel.
-        s3.upload_file(filename, bucket_name, "cvxsngshjp1h/"+filename)
-
-        await bot.say(cname + " set for " + month + "/" + date + ".")
-        return
-    await bot.say("You don't have permission to use this command. If you think this is an error please let someone know.")
-
-@bot.command(pass_context = True)
-async def timeleft(ctx):
-
-    challenge_name = ctx.message.channel.id  
-    
-    global s3
-    
-    cname = ctx.message.channel.name
-    cname = cname.replace('-',' ')
-    
-    challenge_file = challenge_name + ".txt"
-    
-    BUCKET_NAME = 'cloud-cube' # replace with your bucket name
-    KEY = "cvxsngshjp1h/"+challenge_file # replace with your object key
-
-    xs3 = boto3.resource('s3', 
-    aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
-    aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
-    region_name='us-west-1'
-    )
-
-    try:
-        xs3.Bucket(BUCKET_NAME).download_file(KEY, challenge_file)
-    except botocore.exceptions.ClientError as e:
-        if e.response['Error']['Code'] == "404":
-            print("The object does not exist.")
-            await bot.say("I'm sorry, it appears this challenge hasn't been added to my timer.")
-            return
-        else:
-            raise
-    f = open(challenge_file, "r")
-    date = f.readline()
-    month, day = date.split(".")
-    td = datetime.datetime(2018, int(month), int(day)) - datetime.datetime.now()
-    date_to = int(td.days) + 1
-    if (date_to != 1):
-        await bot.say("You have " + str(date_to) + " days to complete " + cname + ".")
-    if (date_to == 1):
-        await bot.say("You have " + str(date_to) + " day to complete " + cname + ".")
 
 @bot.command(pass_context = True)
 async def reset(ctx):
@@ -451,111 +371,6 @@ async def reset(ctx):
         
     if (id != "173850040568119296"):
         await bot.say("Hey now, you can't use that")
-
-@bot.command(pass_context = True)
-async def enter(ctx, link : str):
-
-    challenge_name = ctx.message.channel.id 
-    cname = ctx.message.channel.name
-    cname = cname.replace('-',' ')
-    
-    global s3
-
-    challenge_file = "entries_"+challenge_name+".txt"
-    
-    BUCKET_NAME = 'cloud-cube' # replace with your bucket name
-    KEY = "cvxsngshjp1h/"+challenge_file # replace with your object key
-
-    xs3 = boto3.resource('s3', 
-    aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
-    aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
-    region_name='us-west-1'
-    )
-    
-    name = str(ctx.message.author.nick)
-
-    if (name=="None"):
-        name = '{0.name}'.format(ctx.message.author)
-
-    try:
-        xs3.Bucket(BUCKET_NAME).download_file(KEY, challenge_file)
-    except botocore.exceptions.ClientError as e:
-        if e.response['Error']['Code'] == "404":
-            
-            c_file = open(challenge_file, "w+")
-            c_file.write(""+name + " --- " + "<" + link + ">\n")
-            c_file.close()
-            s3.upload_file(challenge_file, BUCKET_NAME, "cvxsngshjp1h/"+challenge_file)
-            await bot.say("Entry added!")
-            
-            return
-        else:
-            raise
-
-    c_file = open(challenge_file, "a")
-    c_file.write(""+name + " --- " + "<" + link + ">\n")
-    c_file.close()
-    s3.upload_file(challenge_file, BUCKET_NAME, "cvxsngshjp1h/"+challenge_file)
-    await bot.say("Entry added!")
-
-@bot.command(pass_context = True)
-async def reset_votes(ctx):
-
-    challenge_name = ctx.message.channel.id
-
-    BUCKET_NAME = 'cloud-cube' # replace with your bucket name
-    
-    global s3
-    
-    cname = ctx.message.channel.name
-    cname = cname.replace('-',' ')
-    
-    if ("++" in [y.name.lower() for y in ctx.message.author.roles]) or ("+" in [y.name.lower() for y in ctx.message.author.roles]) or ("winners" in [y.name.lower() for y in ctx.message.author.roles]) or (ctx.message.author.id == "409223599757590538") or ("admin" in [y.name.lower() for y in ctx.message.author.roles]) or ("mod" in [y.name.lower() for y in ctx.message.author.roles]) or ("👑👑👑Challenge Winner👑👑👑" in [y.name.lower() for y in ctx.message.author.roles]):
-        challenge_file = "entries_"+challenge_name+".txt"
-        c_file = open(challenge_file, "w+")
-        c_file.close()
-        s3.upload_file(challenge_file, BUCKET_NAME, "cvxsngshjp1h/"+challenge_file)
-        await bot.say("Votes reset!")
-        return
-    await bot.say("You don't have permission to use this command. If you think this is an error please let someone know.")
-
-@bot.command(pass_context = True)
-async def voting(ctx):
-
-    challenge_name = ctx.message.channel.id
-    
-    challenge_file = "entries_"+challenge_name+".txt"
-    
-    cname = ctx.message.channel.name
-    cname = cname.replace('-',' ')
-
-    BUCKET_NAME = 'cloud-cube' # replace with your bucket name
-    KEY = "cvxsngshjp1h/"+challenge_file # replace with your object key
-
-    xs3 = boto3.resource('s3', 
-    aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
-    aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
-    region_name='us-west-1'
-    )
-    
-    try:
-        xs3.Bucket(BUCKET_NAME).download_file(KEY, challenge_file)
-    except botocore.exceptions.ClientError as e:
-        if e.response['Error']['Code'] == "404":
-            await bot.say("I'm sorry, this challenge doesn't appear to have been found.")
-            return
-        else:
-            raise
-    
-    await bot.say("@everyone Come on out and vote for " + cname+"'s entries!\nPlease vote with <:upvote:423630753272823818> for the entry you wish to vote for, and please do not vote for yourself. If you entered in the challenge you must vote.")
-    c_file = open(challenge_file, "r")
-    with open(challenge_file) as cf:  
-        for cnt, line in enumerate(cf):
-            print("Line {}: {}".format(cnt, line))
-            name, entry = line.split(" --- ")
-            #entry = "<"+entry+">"
-            await bot.say("Entry " + str(cnt+1) + " by " + name + "\n" + entry)
-    c_file.close()
 
 @bot.command(pass_context = True)
 async def sayinchannel(ctx, roomid: str, *, msg_str: str):
