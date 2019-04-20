@@ -379,12 +379,13 @@ async def sayinchannel(ctx, roomid: str, *, msg_str: str):
     
     id = str(ctx.message.author.id)
     
-    if (id == "173850040568119296"):
+    #if (id == "173850040568119296"):
+    if "admin" in [y.name.lower() for y in message.author.roles]
 
         #await bot.delete_message(ctx.message)
         await bot.send_message(chn, msg_str)
         
-    if (id != "173850040568119296"):
+    if "admin" not in [y.name.lower() for y in message.author.roles]
         await bot.say("Hey now, you can't use that")
 
 #@bot.command()
