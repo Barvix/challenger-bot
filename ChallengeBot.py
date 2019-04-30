@@ -127,6 +127,7 @@ async def on_message(message):
             await bot.delete_message(message)
             chn = bot.get_channel("560534679229431808")
             await bot.send_message(chn, "Deleted track posted by <@"+str(message.author.id)+">")
+            await bot.send_message(chn, message.content)
             print("track deleted")
             
     if ("nigger" in message.content.lower() or "fag" in message.content.lower() or "aggot" in message.content.lower()):
