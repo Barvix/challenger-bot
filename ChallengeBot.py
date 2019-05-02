@@ -99,6 +99,7 @@ async def on_message(message):
                         await bot.delete_message(message)
                         chn = bot.get_channel("560534679229431808")
                         await bot.send_message(chn, "Deleted track posted by <@"+str(message.author.id)+">")
+                        await bot.send_message(chn, message.content)
                     if "feedback" in [y.name.lower() for y in message.author.roles]:
                         print("They have feedback")
                 if (message.channel.id is not "560511832322736138"):
@@ -107,6 +108,7 @@ async def on_message(message):
                         await bot.delete_message(message)
                         chn = bot.get_channel("560534679229431808")
                         await bot.send_message(chn, "Deleted track posted by <@"+str(message.author.id)+">")
+                        await bot.send_message(chn, message.content)
                     if "feedback" in [y.name.lower() for y in message.author.roles]:
                         print("They have feedback")
     
