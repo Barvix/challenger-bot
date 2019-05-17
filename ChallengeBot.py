@@ -187,7 +187,7 @@ async def on_message(message):
         
         if (fb == "428972162779578368"):
             if ("feedback" in message.content.lower()):
-                rand_feedback = random.randint(0, 20)
+                rand_feedback = random.randint(0, 22)
                 feedback_message = "test text"
                 if (rand_feedback == 0): feedback_message = "Yo fam, this shit bangs in the whip. Like as soon as I play this in my Honda Pilot, the whip bangs bro, and not like the porn studios. I fuck with it."
                 if (rand_feedback == 1): feedback_message = "Not gonna lie fam, this shit weak. The fuck is going on with that bass? Is it outta tune? Just a weak melody? A lame ass bass I banged in my whip 500000000 times? fuck outta here with this lame shit"
@@ -211,6 +211,7 @@ async def on_message(message):
                 if (rand_feedback == 19): feedback_message = "There's something off about this but idk anyway check mine out!"
                 if (rand_feedback == 20): feedback_message = "Okay dis hard"
                 if (rand_feedback == 21): feedback_message = "i like the 808 anyway here’s my whole mixtape please like and repost"
+                if (rand_feedback == 22): feedback_message = "https://lesterisdead.com/"
                 await bot.send_message(message.channel, feedback_message)
         
         print("It knows the message exists")
