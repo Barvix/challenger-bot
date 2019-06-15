@@ -116,7 +116,7 @@ async def on_message(message):
         await bot.delete_message(message)
     
     if "feedback leech" in [y.name.lower() for y in message.author.roles]:
-        if ("https://" in message.content or "soundcloud.com" in message.content):
+        if ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content):
             await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because you have the role Feedback Leech, which means you've been leaching off the community or the feedback channel. If you feel this is an error, please let someone know.")
             await bot.delete_message(message)
             chn = bot.get_channel("560534679229431808")
@@ -124,7 +124,7 @@ async def on_message(message):
             print("track deleted")
 
     if "leech" in [y.name.lower() for y in message.author.roles]:
-        if ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content):
+        if ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content or "http://" in message.content):
             await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because you have the role Feedback Leech, which means you've been leaching off the community or the feedback channel. If you feel this is an error, please let someone know.")
             await bot.delete_message(message)
             chn = bot.get_channel("560534679229431808")
@@ -141,7 +141,7 @@ async def on_message(message):
             
     if (mod_feedback is True):
         
-        if ( (message.channel.id == "560511832322736138") and ("https://" in message.content or "soundcloud.com" in message.content)):
+        if ( (message.channel.id == "560511832322736138") and ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content)):
             if "🎧🎧🎧feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
                  if "feedback" not in [y.name.lower() for y in message.author.roles]:
                         await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it - which means you have never given **quality** feedback yet. If you want the feedback role, *YOU HAVE TO GIVE SOMEBODY QUALITY FEEDBACK IN THIS CHANNEL* If you think this is an error please let someone know.")
