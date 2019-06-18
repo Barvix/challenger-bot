@@ -212,6 +212,14 @@ async def on_message(message):
                 if (rand_feedback == 20): feedback_message = "Okay dis hard"
                 if (rand_feedback == 21): feedback_message = "i like the 808 anyway here’s my whole mixtape please like and repost"
                 if (rand_feedback == 22): feedback_message = "https://lesterisdead.com/"
+                if (rand_feedback == 23): feedback_message = "Damn, this some IGOR type shit'
+                if (rand_feedback == 24): feedback_message = "Snare needs more high-end, it doesn't hurt my ears"
+                if (rand_feedback == 25): feedback_message = "dope, but i think you should pitch the vocals down an octave"
+                if (rand_feedback == 26): feedback_message = "nice, try side chaining the snare to the master"
+                if (rand_feedback == 27): feedback_message = "it sounded quiet, so i turned up my headphones a little"
+                if (rand_feedback == 28): feedback_message = "use a childhood photo for cover art"
+                if (rand_feedback == 29): feedback_message = "it sounded awful, i smoked a j, it sounds ok now"
+                if (rand_feedback == 30): feedback_message = "i could mix this to sound wayyy better, not trynna be cocky"
                 await bot.send_message(message.channel, feedback_message)
         
         print("It knows the message exists")
