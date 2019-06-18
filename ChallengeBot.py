@@ -187,7 +187,7 @@ async def on_message(message):
         
         if (fb == "428972162779578368"):
             if ("feedback" in message.content.lower()):
-                rand_feedback = random.randint(0, 22)
+                rand_feedback = random.randint(0, 30)
                 feedback_message = "test text"
                 if (rand_feedback == 0): feedback_message = "Yo fam, this shit bangs in the whip. Like as soon as I play this in my Honda Pilot, the whip bangs bro, and not like the porn studios. I fuck with it."
                 if (rand_feedback == 1): feedback_message = "Not gonna lie fam, this shit weak. The fuck is going on with that bass? Is it outta tune? Just a weak melody? A lame ass bass I banged in my whip 500000000 times? fuck outta here with this lame shit"
