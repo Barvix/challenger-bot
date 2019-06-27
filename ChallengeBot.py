@@ -146,6 +146,7 @@ async def on_message(message):
                  if "feedback" not in [y.name.lower() for y in message.author.roles]:
                         await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it - which means you have never given **quality** feedback yet. If you want the feedback role, *YOU HAVE TO GIVE SOMEBODY QUALITY FEEDBACK IN THIS CHANNEL* If you think this is an error please let someone know.")
                         await bot.delete_message(message)
+                        await bot.send_message(chn, message.content)
                         #donothin = message.channel
                  if "feedback" in [y.name.lower() for y in message.author.roles]:
                     return
