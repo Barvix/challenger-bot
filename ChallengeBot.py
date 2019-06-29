@@ -142,7 +142,7 @@ async def on_message(message):
     if (mod_feedback is True):
         
         if ( (message.channel.id == "560511832322736138") and ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content)):
-            if "🎧🎧🎧feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
+            if "🎧🎧🎧quality feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
                  if "feedback" not in [y.name.lower() for y in message.author.roles]:
                         await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it - which means you have never given **quality** feedback yet. If you want the feedback role, *YOU HAVE TO GIVE SOMEBODY QUALITY FEEDBACK IN THIS CHANNEL* If you think this is an error please let someone know.")
                         await bot.delete_message(message)
@@ -150,7 +150,7 @@ async def on_message(message):
                         #donothin = message.channel
                  if "feedback" in [y.name.lower() for y in message.author.roles]:
                     return
-            if "🎧🎧🎧feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]:
+            if "🎧🎧🎧quality feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]:
                 return
         if (message.channel.id == "560511832322736138" and ("http" not in message.content.lower())):    
             if any(fbr in message.content.lower() for fbr in fb_list):
