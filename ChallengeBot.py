@@ -114,6 +114,15 @@ async def on_message(message):
     
     if "Timeout" in [y.name.lower() for y in message.author.roles]:
         await bot.delete_message(message)
+        
+    if "discord.gg/" in message.content.lower:
+        if "mod" in [y.name.lower() for y in message.author.roles]:
+            print("allowed to post track")
+        if "mod" not in [y.name.lower() for y in message.author.roles]:
+            await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because you are posting a discord link. If you would like to have your server promoted, please see #rules and #other-discord-promotion for more info on how to get your link shared.")
+            await bot.delete_message(message)
+            chn = bot.get_channel("560534679229431808")
+            await bot.send_message(chn, "Deleted discord link posted by <@"+str(message.author.id)+">")
     
     if "feedback leech" in [y.name.lower() for y in message.author.roles]:
         if ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content):
