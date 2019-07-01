@@ -115,7 +115,7 @@ async def on_message(message):
     if "Timeout" in [y.name.lower() for y in message.author.roles]:
         await bot.delete_message(message)
         
-    if "discord.gg/" in message.content.lower:
+    if "discord.gg/" in message.content:
         if "mod" in [y.name.lower() for y in message.author.roles]:
             print("allowed to post track")
         if "mod" not in [y.name.lower() for y in message.author.roles]:
