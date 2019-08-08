@@ -166,8 +166,12 @@ async def on_message(message):
             if any(fbr in message.content.lower() for fbr in fb_list):
                 print("it knows the role should be added")
                 role = discord.utils.get(message.server.roles, name="Feedback")
-
-                await bot.add_roles(message.author, role)
+                
+                if ("fire" in message.content.lower()):
+                    return
+                
+                if ("fire" not in message.content.lower()):
+                    await bot.add_roles(message.author, role)
 
     #if ("thank" in message.content.lower() and "@" in message.content.lower() and message.channel.id == "560511832322736138"):
     #    old,kar = message.content.split("@")
