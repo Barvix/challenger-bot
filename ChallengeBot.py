@@ -211,11 +211,11 @@ async def on_message(message):
 
                             for idx in range(len(mlist)):
                                 ln = mlist[idx]
+                                ln = mlist[idx]
                                 if ln.startswith(member):
-                                    pts = ln.readline()
+                                    pts = ln
                                     uid, pt = pts.split(',')
                                     intpt = int(pt.strip())
-                                    
                                     intpt -= 3
                                     
                                     if (intpt < 3):
@@ -271,30 +271,6 @@ async def on_message(message):
                     else:
                         print("At else statement")
                         raise
-
-                        with open(filename,"r+") as fi:
-                            print("opening file")
-                            if str(message.author.id in fi):
-                                id = []
-                                for ln in fi:
-                                    if ln.startswith(str(message.author.id)):
-                                        #id.append(ln[2:])
-                                        pts = ln.readline()
-                                        uid, pt = pts.split(',')
-                                        intpt = int(pt.strip())
-                                        
-                                        intpt += points
-                                        #print("total points in file for user: " +  str(intpt))
-
-                                        
-                                        fi.write(str(message.author.id) + "," + str(intpt))
-                            else:
-                                fi.close()
-                                fi = open(filename, "a")
-                                fi.write(str(message.author.id), + "," + str(points))
-                        fi.close()
-                        
-                        s3.upload_file(filename, BUCKET_NAME, ky + "/" + filename)
                 #--------------------------------------------------------------------
                 if os.path.exists('karma.txt'):
                     member = str(message.author.id)
