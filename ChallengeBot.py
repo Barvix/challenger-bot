@@ -33,7 +33,7 @@ fb_list = [line.rstrip('\n') for line in open('list.txt')]
 
 @bot.event
 async def on_ready():
-	global s3
+    global s3
     print('Logged in as')
     print("Challenge Bot")
     print(bot.user.id)
