@@ -186,7 +186,8 @@ async def on_message(message):
                 filename = "karma.txt"
                 
                 BUCKET_NAME = 'cloud-cube' # replace with your bucket name
-                KEY = 'CLOUDCUBE_KEY' + "/" + filename # replace with your object key
+                ky = os.environ['CLOUDCUBE_KEY']
+                KEY = ky + "/" + filename # replace with your object key
                 
                 try:
                     xs3.Bucket(BUCKET_NAME).download_file(KEY, filename)
