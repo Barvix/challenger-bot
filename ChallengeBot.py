@@ -251,7 +251,40 @@ async def on_message(message):
                         fi.close()
                         
                         s3.upload_file(filename, BUCKET_NAME, ky + "/" + filename)
-                                    
+                #--------------------------------------------------------------------
+                if os.path.exists('karma.txt'):
+                    member = str(message.author.id)
+                    if member in open('karma.txt').read():
+                        mlist = [line.rstrip('\n') for line in open("karma.txt")]
+
+                        for ln in mlist:
+                            print(ln)
+                            if ln.startswith(member):
+                                index = mlist.index[ln]
+                                pts = ln
+                                print("read: " + pts)
+                                uid, pt = pts.split(',')
+                                intpt = int(pt.strip())
+                                intpt += points
+                                
+                                mlist[index] = member + "," + str(intpt)
+                        
+                        fl = open("karma.txt", 'w')
+                        
+                        for ln in mlist:
+                            fl.write(ln)
+                        fl.close()
+                        
+                        s3.upload_file(filename, BUCKET_NAME, ky + "/" + filename)
+                        #fi.close()
+                    else:
+                        print("Is it here?")
+                        #fi.close()
+                        fi = open(filename, "a")
+                        fi.write(member + ","+str(points))
+                        #karma = 0
+                        fi.close()
+                        s3.upload_file(filename, BUCKET_NAME, KEY)
                         #giv_file = open(filename, "r+")
                         #gcoins = giv_file.readline()
                         #gcoins = int(gcoins.rstrip())
