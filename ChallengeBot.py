@@ -187,10 +187,10 @@ async def on_message(message):
                 points = 0
                 
                 mgr  = [word for word in mg if word.lower() in fb_list]
-                msg = ' '.join(mgr)
-                print(msg)
+                #msg = ' '.join(mgr)
+                #print(msg)
                 
-                for i in msg:
+                for i in mgr:
                     index = fb_list.index(i)
                     pz = fb_points[index]
                     print(pz)
