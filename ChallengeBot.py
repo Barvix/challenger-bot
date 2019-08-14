@@ -193,7 +193,8 @@ async def on_message(message):
                 for i in msg:
                     index = msg.index(i)
                     pz = fb_list[index]
-                    points+=pz
+                    print(pz)
+                    #points+=pz
                 
                 global s3
     
