@@ -514,7 +514,7 @@ async def viewkarma(ctx, member: str):
                 fi = open("karma.txt")
                 id = []
                 for ln in fi:
-                print(ln)
+                    print(ln)
                     if ln.startswith(member):
                         pts = fi.readline()
                         uid, pt = pts.split(',')
