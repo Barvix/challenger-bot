@@ -502,6 +502,8 @@ async def viewkarma(ctx, member: str):
             giv_file.write(member+",0\n")
             giv_file.close()
             karma = 0
+            
+            s3.upload_file(filename, BUCKET_NAME, ky+"/"+filename)
 
         else:
             print ("made it to else")
