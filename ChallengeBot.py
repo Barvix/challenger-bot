@@ -207,17 +207,22 @@ async def on_message(message):
                         raise
 
                         with open(filename,"r+") as fi:
-                            id = []
-                            for ln in fi:
-                                if ln.startswith(str(message.author.id)):
-                                    #id.append(ln[2:])
-                                    pts = ln.readline()
-                                    uid, pt = pts.split(',')
-                                    intpt = int(pt.strip())
-                                    
-                                    intpt += points
-                                    
-                                    fi.write(str(message.author.id) + "," + str(intpt))
+                            if str(message.author.id in fi):
+                                id = []
+                                for ln in fi:
+                                    if ln.startswith(str(message.author.id)):
+                                        #id.append(ln[2:])
+                                        pts = ln.readline()
+                                        uid, pt = pts.split(',')
+                                        intpt = int(pt.strip())
+                                        
+                                        intpt += points
+                                        
+                                        fi.write(str(message.author.id) + "," + str(intpt))
+                            else:
+                                fi.close()
+                                fi = open(filename, "a")
+                                fi.write(str(message.author.id), + "," + str(points))
                         fi.close()
                         
                         s3.upload_file(filename, BUCKET_NAME, "ctzu5erud1ha/"+filename)
@@ -473,18 +478,22 @@ async def viewkarma(ctx, member: str):
             raise
 
             with open(filename,"r+") as fi:
-                id = []
-                for ln in fi:
-                    if ln.startswith(str(message.author.id)):
-                        #id.append(ln[2:])
-                        pts = ln.readline()
-                        uid, pt = pts.split(',')
-                        intpt = int(pt.strip())
-                        karma = intpt
-                        print(str(karma))
-                        #intpt += points
-                        
-                        #fi.write(str(message.author.id) + "," + str(intpt))
+                if str(message.author.id in fi):
+                    id = []
+                    for ln in fi:
+                        if ln.startswith(str(message.author.id)):
+                            #id.append(ln[2:])
+                            pts = ln.readline()
+                            uid, pt = pts.split(',')
+                            intpt = int(pt.strip())
+                            
+                            intpt += points
+                            
+                            fi.write(str(message.author.id) + "," + str(intpt))
+                else:
+                    fi.close()
+                    fi = open(filename, "a")
+                    fi.write(str(message.author.id), + "," + str(points))
             fi.close()
         
     #print(name + " has " + str(gcoins) + " coins.")
