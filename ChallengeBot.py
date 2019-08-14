@@ -196,7 +196,7 @@ async def on_message(message):
                     #print(pz)
                     points+=pz
                     
-                    print("points from feedback " + str(points))
+                print("points from feedback " + str(points))
                 
                 global s3
     
@@ -226,6 +226,7 @@ async def on_message(message):
                         #print(str(gcoins))
 
                     else:
+                        print("At else statement")
                         raise
 
                         with open(filename,"r+") as fi:
