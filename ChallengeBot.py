@@ -199,7 +199,7 @@ async def on_message(message):
                         giv_file.write(str(message.author.id)+","+str(points)+"\n")
                         giv_file.close()
                         print("At the 404, almost upload")
-                        s3.upload_file(filename, BUCKET_NAME, "ctzu5erud1ha/"+filename)
+                        s3.upload_file(filename, BUCKET_NAME, ky + "/" +filename)
                         #gcoins = 0
                         #print(str(gcoins))
 
