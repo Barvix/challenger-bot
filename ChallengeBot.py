@@ -494,16 +494,9 @@ async def viewkarma(ctx, member: str):
     
     try:
         xs3.Bucket(BUCKET_NAME).download_file(KEY, filename)
-        if os.path.exists('karma.txt'):
-            print("file downloaded as karma.txt")
-        if os.path.exists(KEY):
-            print("file downloaded as KEY")
-        #xs3.download_file(BUCKET_NAME, KEY, filename)
-        print ("it tried")
     except botocore.exceptions.ClientError as e:
-        print("weeeeee")
+
         if e.response['Error']['Code'] == "404":
-            print ("404")
 
             giv_file = open(filename, "w+")
             giv_file.write(member+",0\n")
@@ -536,7 +529,27 @@ async def viewkarma(ctx, member: str):
                 fi.close()
                 s3.upload_file(filename, BUCKET_NAME, KEY)
         
-    #print(name + " has " + str(gcoins) + " coins.")
+    if os.path.exists('karma.txt'):
+        if member in open('karma.txt').read():
+            print("is it here")
+            fi = open("karma.txt")
+            id = []
+            for ln in fi:
+                if ln.startswith(member):
+                    pts = ln.readline()
+                    uid, pt = pts.split(',')
+                    intpt = int(pt.strip())
+                    
+                    karma = intpt
+            fi.close()
+        else:
+            print("Is it here?")
+            #fi.close()
+            fi = open(filename, "a")
+            fi.write(str(message.author.id), + "," + str(points))
+            fi.close()
+            s3.upload_file(filename, BUCKET_NAME, KEY)
+    
     await bot.say("They have " + str(karma) + " karma.")
 
 @bot.command(pass_context = True)
