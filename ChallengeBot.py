@@ -195,7 +195,7 @@ async def on_message(message):
                     if e.response['Error']['Code'] == "404":
 
                         giv_file = open(filename, "w+")
-                        giv_file.write(str(message.author.id+","+points)+"\n")
+                        giv_file.write(str(message.author.id)+","+str(points)+"\n")
                         giv_file.close()
                         #gcoins = 0
                         #print(str(gcoins))
