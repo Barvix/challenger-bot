@@ -535,13 +535,16 @@ async def viewkarma(ctx, member: str):
             #print("is it here")
             fi = open("karma.txt")
             id = []
+            currentline = fi.readline()
             for ln in fi:
                 print(ln)
+                previous_line = current_line
+                current_line = fi.readline()
                 if ln.startswith(member):
-                    pts = fi.readline()
-                    #print("read: " + pts)
-                    #uid, pt = pts.split(',')
-                    #intpt = int(pt.strip())
+                    pts = previous_line
+                    print("read: " + pts)
+                    uid, pt = pts.split(',')
+                    intpt = int(pt.strip())
                     
                     #karma = intpt
             fi.close()
