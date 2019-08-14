@@ -487,7 +487,7 @@ async def viewkarma(ctx, member: str):
     ky = os.environ['CLOUDCUBE_KEY']
     KEY = ky + "/" + filename # replace with your object key
 
-    karma = 0
+    karma = 1000000
     
     try:
         xs3.Bucket(BUCKET_NAME).download_file(KEY, filename)
