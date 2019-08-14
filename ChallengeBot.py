@@ -542,13 +542,14 @@ async def viewkarma(ctx, member: str):
                     uid, pt = pts.split(',')
                     intpt = int(pt.strip())
                     
-                    #karma = intpt
+                    karma = intpt
             #fi.close()
         else:
             print("Is it here?")
             #fi.close()
             fi = open(filename, "a")
             fi.write(member + ",0")
+            karma = 0
             fi.close()
             s3.upload_file(filename, BUCKET_NAME, KEY)
     
