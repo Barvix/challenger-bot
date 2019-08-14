@@ -488,7 +488,7 @@ async def viewkarma(ctx, member: str):
     BUCKET_NAME = 'cloud-cube' # replace with your bucket name
     ky = os.environ['CLOUDCUBE_KEY']
     KEY = ky + "/" + filename # replace with your object key
-    print(KEY)
+    #print(KEY)
 
     karma = 1000000
     
@@ -537,7 +537,7 @@ async def viewkarma(ctx, member: str):
             for ln in fi:
                 if ln.startswith(member):
                     pts = fi.readline()
-                    print(pts)
+                    print("read: " + pts)
                     #uid, pt = pts.split(',')
                     #intpt = int(pt.strip())
                     
