@@ -473,7 +473,7 @@ async def viewkarma(ctx, member: str):
     member = member.replace(">", "")
     member = member.replace("!", "")
     
-    print(member)
+    #print(member)
     
     global s3
     
@@ -532,16 +532,12 @@ async def viewkarma(ctx, member: str):
         
     if os.path.exists('karma.txt'):
         if member in open('karma.txt').read():
-            print("is it here")
-            fi = open("karma.txt")
-            id = []
-            currentline = fi.readline()
-            for ln in fi:
+            mlist = [line.rstrip('\n') for line in open("karma.txt")]
+
+            for ln in mlist:
                 print(ln)
-                previous_line = current_line
-                current_line = fi.readline()
                 if ln.startswith(member):
-                    pts = previous_line
+                    pts = ln
                     print("read: " + pts)
                     uid, pt = pts.split(',')
                     intpt = int(pt.strip())
@@ -552,7 +548,7 @@ async def viewkarma(ctx, member: str):
             print("Is it here?")
             #fi.close()
             fi = open(filename, "a")
-            fi.write(str(message.author.id), + "," + str(points))
+            fi.write(member + ",0")
             fi.close()
             s3.upload_file(filename, BUCKET_NAME, KEY)
     
