@@ -576,9 +576,9 @@ async def setkarma(ctx, amt: int, member: str):
         await bot.say("Hey now, you can't use that")
         
 @bot.command(pass_context = True)
-async def viewkarma(ctx, member = "none"):
+async def viewkarma(ctx, member : discord.Member = None):
 
-    if member = "none":
+    if member = None:
         member = str(ctx.message.author.id)
 
     member = member.replace("@", "")
