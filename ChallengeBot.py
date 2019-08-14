@@ -568,7 +568,7 @@ async def setkarma(ctx, amt: int, member: str):
             raise
 
     if os.path.exists('karma.txt'):
-        member = str(message.author.id)
+        #member = str(message.author.id)
         if member in open('karma.txt').read():
             mlist = [line.rstrip('\n') for line in open("karma.txt")]
 
