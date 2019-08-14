@@ -182,12 +182,12 @@ async def on_message(message):
 				aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
 				region_name='us-west-1'
 				)
-				
+
 				filename = "karma.txt"
-				
+
 				BUCKET_NAME = 'cloud-cube' # replace with your bucket name
 				KEY = 'CLOUDCUBE_KEY'+"\"+filename # replace with your object key
-				
+
 				try:
 					xs3.Bucket(BUCKET_NAME).download_file(KEY, filename)
 				except botocore.exceptions.ClientError as e:
@@ -210,12 +210,12 @@ async def on_message(message):
 									pts = ln.readline()
 									uid, pt = pts.split(',')
 									intpt = int(pt.strip())
-									
+
 									intpt += points
-									
+
 									fi.write(str(message.author.id) + "," + str(intpt))
 						fi.close()
-									
+
 						giv_file = open(filename, "r+")
 						#gcoins = giv_file.readline()
 						#gcoins = int(gcoins.rstrip())
