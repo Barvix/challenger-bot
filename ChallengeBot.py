@@ -532,7 +532,7 @@ async def viewkarma(ctx, member: str):
         
     if os.path.exists('karma.txt'):
         if member in open('karma.txt').read():
-            #print("is it here")
+            print("is it here")
             fi = open("karma.txt")
             id = []
             currentline = fi.readline()
