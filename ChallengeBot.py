@@ -29,7 +29,15 @@ s3 = boto3.client('s3',
     region_name='us-west-1'
     )
 
-fb_list = [line.rstrip('\n') for line in open('list.txt')]
+#fb_list = [line.rstrip('\n') for line in open('list.txt')]
+with open("list.txt") as f:
+    fb_list=[]
+    fb_points=[]
+    for line in f:
+        l,p = line.spit(",")
+        np = int(p)
+        fb_list.append(l)
+        fb_points.append(np)
 
 @bot.event
 async def on_ready():
@@ -82,6 +90,7 @@ async def on_ready():
 async def on_message(message):
 
     global fb_list
+    global fb_points
     
     if (message.author == bot.user):
         return
@@ -172,6 +181,12 @@ async def on_message(message):
         if (message.channel.id == "560511832322736138" and ("http" not in message.content.lower())):    
             if any(fbr in message.content.lower() for fbr in fb_list):
                 role = discord.utils.get(message.server.roles, name="Feedback")
+                
+                mg = message.content.split()
+                
+                mgr  = [word for word in querywords if word.lower() in stopwords]
+                msg = ' '.join(mgr)
+                print(msg)
                 
                 points = 0
                 
@@ -490,12 +505,13 @@ async def viewkarma(ctx, member: str):
                             intpt += points
                             
                             fi.write(str(message.author.id) + "," + str(intpt))
+                    fi.close()
                 else:
                     fi.close()
                     fi = open(filename, "a")
                     fi.write(str(message.author.id), + "," + str(points))
+                    fi.close()
                     s3.upload_file(filename, BUCKET_NAME, "ctzu5erud1ha/"+filename)
-            fi.close()
         
     #print(name + " has " + str(gcoins) + " coins.")
     await bot.say("They have " + str(karma) + " karma.")
