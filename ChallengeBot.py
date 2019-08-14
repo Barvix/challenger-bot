@@ -191,7 +191,7 @@ async def on_message(message):
                 print(msg)
                 
                 for i in msg:
-                    index = msg.index(i)
+                    index = fb_list.index(i)
                     pz = fb_points[index]
                     print(pz)
                     points+=pz
