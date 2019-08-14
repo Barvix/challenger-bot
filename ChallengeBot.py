@@ -493,12 +493,11 @@ async def viewkarma(ctx, member: str):
     karma = 1000000
     
     try:
-        print ("trying")
         xs3.Bucket(BUCKET_NAME).download_file(KEY, filename)
         #xs3.download_file(BUCKET_NAME, KEY, filename)
         print ("it tried")
     except botocore.exceptions.ClientError as e:
-        print(str(e))
+        print("weeeeee")
         if e.response['Error']['Code'] == "404":
             print ("404")
 
