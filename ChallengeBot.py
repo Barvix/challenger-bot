@@ -592,7 +592,7 @@ async def viewkarma(ctx, member : discord.Member = None):
     
     print (member)
     
-    if (member is "428972162779578368"):
+    if (member == "428972162779578368"):
         noun = "I"
     
     global s3
