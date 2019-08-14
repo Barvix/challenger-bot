@@ -590,6 +590,8 @@ async def viewkarma(ctx, member : discord.Member = None):
     member = member.replace(">", "")
     member = member.replace("!", "")
     
+    print (member)
+    
     if (member is "428972162779578368"):
         noun = "I"
     
