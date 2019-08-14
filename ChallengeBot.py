@@ -234,7 +234,7 @@ async def on_message(message):
                             #await bot.say("Set their karma to " + str(amt))
                             
             if "🎧🎧🎧quality feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]:
-                #return
+                return
         if (message.channel.id == "560511832322736138" and ("http" not in message.content.lower())):    
             if any(fbr in message.content.lower() for fbr in fb_list):
                 role = discord.utils.get(message.server.roles, name="Feedback")
