@@ -504,27 +504,24 @@ async def viewkarma(ctx, member: str):
         else:
             raise
 
-            with open(filename,"r+") as fi:
-                if str(member in fi):
-                    id = []
-                    for ln in fi:
-                        if ln.startswith(member):
-                            #id.append(ln[2:])
-                            pts = ln.readline()
-                            uid, pt = pts.split(',')
-                            intpt = int(pt.strip())
-                            
-                            intpt += points
-                            
-                            fi.write(str(message.author.id) + "," + str(intpt))
-                    fi.close()
-                else:
+            if member in open('karma.txt').read():
+                fi = open("karma.txt")
+                id = []
+                for ln in fi:
+                    if ln.startswith(member):
+                        pts = ln.readline()
+                        uid, pt = pts.split(',')
+                        intpt = int(pt.strip())
+                        
+                        karma = intpt
+                fi.close()
+            else:
                 print("Is it here?")
-                    fi.close()
-                    fi = open(filename, "a")
-                    fi.write(str(message.author.id), + "," + str(points))
-                    fi.close()
-                    s3.upload_file(filename, BUCKET_NAME, "ctzu5erud1ha/"+filename)
+                #fi.close()
+                fi = open(filename, "a")
+                fi.write(str(message.author.id), + "," + str(points))
+                fi.close()
+                s3.upload_file(filename, BUCKET_NAME, ky+"/"+filename)
         
     #print(name + " has " + str(gcoins) + " coins.")
     await bot.say("They have " + str(karma) + " karma.")
