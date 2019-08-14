@@ -240,9 +240,9 @@ async def on_message(message):
         fb,other = kar.split(">")
         fb = fb.replace("!", "")
         
-        if (fb == message.author.id):
-            print("Same ID error")
-            return
+        #if (fb == message.author.id):
+        #    print("Same ID error")
+        #    return
         
         if (fb == "428972162779578368"):
             if ("feedback" in message.content.lower()):
