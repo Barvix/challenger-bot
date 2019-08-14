@@ -267,8 +267,9 @@ async def on_message(message):
                                 uid, pt = pts.split(',')
                                 intpt = int(pt.strip())
                                 intpt += points
-                                
-                                mlist[idx] = member + "," + str(intpt)
+                                swrite = member + "," + str(intpt)
+                                print(swrite)
+                                mlist[idx] = swrite
                         
                         fl = open("karma.txt", 'w')
                         
