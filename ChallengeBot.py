@@ -184,11 +184,16 @@ async def on_message(message):
                 
                 mg = message.content.split()
                 
+                points = 0
+                
                 mgr  = [word for word in mg if word.lower() in fb_list]
                 msg = ' '.join(mgr)
                 print(msg)
                 
-                points = 0
+                for i in msg:
+                    index = msg.index(i)
+                    pz = fb_list[index]
+                    points+=pz
                 
                 global s3
     
