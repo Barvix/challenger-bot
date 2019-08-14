@@ -218,7 +218,7 @@ async def on_message(message):
                                     
                                     intpt -= 3
                                     
-                                    if (intpt < 3)
+                                    if (intpt < 3):
                                     role = discord.utils.get(serv.roles, name='Feedback')
                                     await bot.remove_roles(member, role)
                                     
