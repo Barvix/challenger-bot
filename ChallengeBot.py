@@ -220,7 +220,7 @@ async def on_message(message):
                                     
                                     if (intpt < 3):
                                         role = discord.utils.get(message.server.roles, name="Feedback")
-                                        await bot.remove_roles(member, role)
+                                        await bot.remove_roles(message.author, role)
                                     
                                     swrite = member + "," + str(intpt)
                                     mlist[idx] = swrite
