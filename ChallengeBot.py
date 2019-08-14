@@ -257,10 +257,10 @@ async def on_message(message):
                     if member in open('karma.txt').read():
                         mlist = [line.rstrip('\n') for line in open("karma.txt")]
 
-                        for ln in mlist:
+                        for idx,ln in mlist:
                             print(ln)
                             if ln.startswith(member):
-                                index = mlist.index[ln]
+                                index = idx
                                 pts = ln
                                 print("read: " + pts)
                                 uid, pt = pts.split(',')
