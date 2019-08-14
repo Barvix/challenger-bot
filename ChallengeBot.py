@@ -517,6 +517,7 @@ async def viewkarma(ctx, member: str):
                             fi.write(str(message.author.id) + "," + str(intpt))
                     fi.close()
                 else:
+                print("Is it here?")
                     fi.close()
                     fi = open(filename, "a")
                     fi.write(str(message.author.id), + "," + str(points))
