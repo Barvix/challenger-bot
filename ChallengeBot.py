@@ -493,7 +493,8 @@ async def viewkarma(ctx, member: str):
     
     try:
         print ("trying")
-        xs3.Bucket(BUCKET_NAME).download_file(KEY, filename)
+        #xs3.Bucket(BUCKET_NAME).download_file(KEY, filename)
+        xs3.download_file(BUCKET_NAME, KEY, filename)
         print ("it tried")
     except botocore.exceptions.ClientError as e:
         print(str(e))
