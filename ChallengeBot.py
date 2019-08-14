@@ -583,12 +583,12 @@ async def viewkarma(ctx, member : discord.Member = None):
     if member is None:
         member = str(ctx.message.author.id)
         noun = "You"
-
-    member = str(member.id)
-    member = member.replace("@", "")
-    member = member.replace("<", "")
-    member = member.replace(">", "")
-    member = member.replace("!", "")
+    if (member is not None):
+        member = str(member.id)
+        member = member.replace("@", "")
+        member = member.replace("<", "")
+        member = member.replace(">", "")
+        member = member.replace("!", "")
     
     print (member)
     
