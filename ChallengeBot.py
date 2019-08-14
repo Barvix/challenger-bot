@@ -250,7 +250,7 @@ async def on_message(message):
                                 fi.write(str(message.author.id), + "," + str(points))
                         fi.close()
                         
-                        s3.upload_file(filename, BUCKET_NAME, "ctzu5erud1ha/"+filename)
+                        s3.upload_file(filename, BUCKET_NAME, ky + "/" + filename)
                                     
                         #giv_file = open(filename, "r+")
                         #gcoins = giv_file.readline()
@@ -497,7 +497,7 @@ async def viewkarma(ctx, member: str):
         if e.response['Error']['Code'] == "404":
 
             giv_file = open(filename, "w+")
-            giv_file.write(str("0")+"\n")
+            giv_file.write(member+",0\n")
             giv_file.close()
             karma = 0
 
