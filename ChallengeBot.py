@@ -488,13 +488,14 @@ async def viewkarma(ctx, member: str):
     BUCKET_NAME = 'cloud-cube' # replace with your bucket name
     ky = os.environ['CLOUDCUBE_KEY']
     KEY = ky + "/" + filename # replace with your object key
+    print(KEY)
 
     karma = 1000000
     
     try:
         print ("trying")
-        #xs3.Bucket(BUCKET_NAME).download_file(KEY, filename)
-        xs3.download_file(BUCKET_NAME, KEY, filename)
+        xs3.Bucket(BUCKET_NAME).download_file(KEY, filename)
+        #xs3.download_file(BUCKET_NAME, KEY, filename)
         print ("it tried")
     except botocore.exceptions.ClientError as e:
         print(str(e))
@@ -506,7 +507,7 @@ async def viewkarma(ctx, member: str):
             giv_file.close()
             karma = 0
             
-            s3.upload_file(filename, BUCKET_NAME, ky+"/"+filename)
+            s3.upload_file(filename, BUCKET_NAME, KEY)
 
         else:
             print ("made it to else")
@@ -530,7 +531,7 @@ async def viewkarma(ctx, member: str):
                 fi = open(filename, "a")
                 fi.write(str(message.author.id), + "," + str(points))
                 fi.close()
-                s3.upload_file(filename, BUCKET_NAME, ky+"/"+filename)
+                s3.upload_file(filename, BUCKET_NAME, KEY)
         
     #print(name + " has " + str(gcoins) + " coins.")
     await bot.say("They have " + str(karma) + " karma.")
