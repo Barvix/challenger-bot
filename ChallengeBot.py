@@ -184,7 +184,7 @@ async def on_message(message):
                 
                 mg = message.content.split()
                 
-                mgr  = [word for word in querywords if word.lower() in stopwords]
+                mgr  = [word for word in mg if word.lower() in fb_list]
                 msg = ' '.join(mgr)
                 print(msg)
                 
