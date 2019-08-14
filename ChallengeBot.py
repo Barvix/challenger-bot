@@ -437,6 +437,60 @@ async def reset(ctx):
         await bot.say("Hey now, you can't use that")
 
 @bot.command(pass_context = True)
+async def viewkarma(ctx, member: str):
+    member = member.replace("@", "")
+    member = member.replace("<", "")
+    member = member.replace(">", "")
+    member = member.replace("!", "")
+    
+    global s3
+    
+    xs3 = boto3.resource('s3', 
+    aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
+    aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
+    region_name='us-west-1'
+    )
+    
+    filename = "karma.txt"
+    
+    BUCKET_NAME = 'cloud-cube' # replace with your bucket name
+    ky = os.environ['CLOUDCUBE_KEY']
+    KEY = ky + "/" + filename # replace with your object key
+
+    karma = 0
+    
+    try:
+        xs3.Bucket(BUCKET_NAME).download_file(KEY, filename)
+    except botocore.exceptions.ClientError as e:
+        if e.response['Error']['Code'] == "404":
+
+            giv_file = open(filename, "w+")
+            giv_file.write(str("0")+"\n")
+            giv_file.close()
+            karma = 0
+
+        else:
+            raise
+
+            with open(filename,"r+") as fi:
+                id = []
+                for ln in fi:
+                    if ln.startswith(str(message.author.id)):
+                        #id.append(ln[2:])
+                        pts = ln.readline()
+                        uid, pt = pts.split(',')
+                        intpt = int(pt.strip())
+                        karma = intpt
+                        print(str(karma))
+                        #intpt += points
+                        
+                        #fi.write(str(message.author.id) + "," + str(intpt))
+            fi.close()
+        
+    #print(name + " has " + str(gcoins) + " coins.")
+    await bot.say("They have " + str(karma) + " karma.")
+
+@bot.command(pass_context = True)
 async def sayinchannel(ctx, roomid: str, *, msg_str: str):
 
     chn = bot.get_channel(roomid)
