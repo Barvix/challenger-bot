@@ -1,9 +1,9 @@
-fire,-3
-lit,-3
-fw,-3
-mad,-2
-lol,-2
-mine,-1
+fire,-1
+lit,-1
+fw,-1
+mad,0
+lol,0
+mine,0
 vibe,-1
 sidechain,0
 mix,1
