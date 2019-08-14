@@ -195,6 +195,8 @@ async def on_message(message):
                     pz = fb_points[index]
                     print(pz)
                     points+=pz
+                    
+                    print(str(points))
                 
                 global s3
     
@@ -238,6 +240,7 @@ async def on_message(message):
                                         intpt = int(pt.strip())
                                         
                                         intpt += points
+                                        print(str(intpt))
                                         
                                         fi.write(str(message.author.id) + "," + str(intpt))
                             else:
