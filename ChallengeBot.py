@@ -543,7 +543,7 @@ async def viewkarma(ctx, member: str):
                     intpt = int(pt.strip())
                     
                     #karma = intpt
-            fi.close()
+            #fi.close()
         else:
             print("Is it here?")
             #fi.close()
