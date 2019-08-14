@@ -165,6 +165,8 @@ async def on_message(message):
     mod_feedback = True
             
     if (mod_feedback is True):
+        
+        feedback_barrier = 2
     
         global s3
     
@@ -216,9 +218,9 @@ async def on_message(message):
                                     pts = ln
                                     uid, pt = pts.split(',')
                                     intpt = int(pt.strip())
-                                    intpt -= 3
+                                    intpt -= feedback_barrier
                                     
-                                    if (intpt < 3):
+                                    if (intpt < feedback_barrier):
                                         role = discord.utils.get(message.server.roles, name="Feedback")
                                         await bot.remove_roles(message.author, role)
                                     
@@ -285,7 +287,7 @@ async def on_message(message):
                                 intpt = int(pt.strip())
                                 intpt += points
                                 
-                                if (intpt >= 3):
+                                if (intpt >= feedback_barrier):
                                     await bot.add_roles(message.author, role)
                                 
                                 swrite = member + "," + str(intpt)
