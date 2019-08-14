@@ -34,7 +34,7 @@ with open("list.txt") as f:
     fb_list=[]
     fb_points=[]
     for line in f:
-        l,p = line.spit(",")
+        l,p = line.split(",")
         np = int(p)
         fb_list.append(l)
         fb_points.append(np)
