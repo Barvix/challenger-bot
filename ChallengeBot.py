@@ -584,10 +584,14 @@ async def viewkarma(ctx, member : discord.Member = None):
         member = str(ctx.message.author.id)
         noun = "You"
 
+    member = str(member)
     member = member.replace("@", "")
     member = member.replace("<", "")
     member = member.replace(">", "")
     member = member.replace("!", "")
+    
+    if (member is "428972162779578368"):
+        noun = "I"
     
     global s3
     
