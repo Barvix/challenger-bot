@@ -274,7 +274,7 @@ async def on_message(message):
                         fl = open("karma.txt", 'w')
                         
                         for ln in mlist:
-                            fl.write(ln)
+                            fl.write(ln+"\n")
                         fl.close()
                         
                         s3.upload_file(filename, BUCKET_NAME, ky + "/" + filename)
