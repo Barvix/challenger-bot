@@ -33,7 +33,6 @@ fb_list = [line.rstrip('\n') for line in open('list.txt')]
 
 @bot.event
 async def on_ready():
-    global s3
     print('Logged in as')
     print("Challenge Bot")
     print(bot.user.id)
@@ -42,12 +41,6 @@ async def on_ready():
     await bot.send_message(chn, "Reset complete 😄")
     mygame = "Making Music 🎹 🎼 🎧 🎤"
     await bot.change_presence(game=discord.Game(name=str(mygame)))
-    
-    xs3 = boto3.resource('s3', 
-    aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
-    aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
-    region_name='us-west-1'
-    )
     
     #for server in bot.servers:
     #    print(server.id+"\n")
@@ -171,65 +164,31 @@ async def on_message(message):
                 return
         if (message.channel.id == "560511832322736138" and ("http" not in message.content.lower())):    
             if any(fbr in message.content.lower() for fbr in fb_list):
+                print("it knows the role should be added")
                 role = discord.utils.get(message.server.roles, name="Feedback")
-                
-                points = 0
-                
-                global s3
-    
-                xs3 = boto3.resource('s3', 
-                aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
-                aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
-                region_name='us-west-1'
-                )
-                
-                filename = "karma.txt"
-                
-                BUCKET_NAME = 'cloud-cube' # replace with your bucket name
-                ky = os.environ['CLOUDCUBE_KEY']
-                KEY = ky + "/" + filename # replace with your object key
-                
-                try:
-                    xs3.Bucket(BUCKET_NAME).download_file(KEY, filename)
-                except botocore.exceptions.ClientError as e:
-                    if e.response['Error']['Code'] == "404":
-
-                        giv_file = open(filename, "w+")
-                        giv_file.write(str(message.author.id)+","+str(points)+"\n")
-                        giv_file.close()
-                        #gcoins = 0
-                        #print(str(gcoins))
-
-                    else:
-                        raise
-
-                        with open(filename,"r+") as fi:
-                            id = []
-                            for ln in fi:
-                                if ln.startswith(str(message.author.id)):
-                                    #id.append(ln[2:])
-                                    pts = ln.readline()
-                                    uid, pt = pts.split(',')
-                                    intpt = int(pt.strip())
-                                    
-                                    intpt += points
-                                    
-                                    fi.write(str(message.author.id) + "," + str(intpt))
-                        fi.close()
-                        
-                        s3.upload_file(filename, BUCKET_NAME, "ctzu5erud1ha/"+filename)
-                                    
-                        #giv_file = open(filename, "r+")
-                        #gcoins = giv_file.readline()
-                        #gcoins = int(gcoins.rstrip())
-                        #giv_file.close()
-                        #print(str(gcoins))
                 
                 if ("fire" in message.content.lower()):
                     return
                 
                 if ("fire" not in message.content.lower()):
                     await bot.add_roles(message.author, role)
+
+    #if ("thank" in message.content.lower() and "@" in message.content.lower() and message.channel.id == "560511832322736138"):
+    #    old,kar = message.content.split("@")
+    #    fb,other = kar.split(">")
+    #    fb = fb.replace("!", "")
+    #    
+    #    if (fb == message.author.id):
+    #        return
+    #    if (fb == "428972162779578368"):
+    #        return
+    #    
+    #    server = message.server
+    #    feedbacker = server.get_member(fb)
+    #    
+    #    role = discord.utils.get(message.server.roles, name="Feedback")
+    #    
+    #    await bot.add_roles(feedbacker, role)
         
     if ("@" in message.content.lower()):
         
@@ -277,6 +236,10 @@ async def on_message(message):
                 if (rand_feedback == 29): feedback_message = "it sounded awful, i smoked a j, it sounds ok now"
                 if (rand_feedback == 30): feedback_message = "i could mix this to sound wayyy better, not trynna be cocky"
                 await bot.send_message(message.channel, feedback_message)
+        
+        print("It knows the message exists")
+
+    #print(url_string)
            
     await bot.process_commands(message)
 
@@ -377,6 +340,8 @@ async def engineer(ctx):
   
 @bot.command(pass_context = True)
 async def feedback(ctx):
+    #role = discord.utils.get(ctx.message.server.roles, name="🎧🎧🎧Engineer🎧🎧🎧")
+    #await bot.add_roles(ctx.message.author, role)
     await bot.say("I probably just said you need to give somebody feedback in the feedback channel to get this role. It is not difficult to give somebody feedback. c'mon. don't be that guy.")
 
 @bot.command(pass_context = True)
@@ -414,6 +379,7 @@ async def daw(ctx, *, dawname : str):
         await bot.add_roles(ctx.message.author, role)
         await bot.say("Role successfully added!")
     if (role is discord.utils.get(ctx.message.server.roles, name="NONE")):
+        #await bot.add_roles(ctx.message.author, role)
         await bot.say("Role not found :(")
 
 @bot.command(pass_context = True)
@@ -440,11 +406,17 @@ async def sayinchannel(ctx, roomid: str, *, msg_str: str):
     
     id = str(ctx.message.author.id)
     
+    #if (id == "173850040568119296"):
     if "admin" in [y.name.lower() for y in ctx.message.author.roles]:
 
+        #await bot.delete_message(ctx.message)
         await bot.send_message(chn, msg_str)
         
     if "admin" not in [y.name.lower() for y in ctx.message.author.roles]:
         await bot.say("Hey now, you can't use that")
+
+#@bot.command()
+#async def playing(*, mygame : str):
+#    await bot.change_presence(game=discord.Game(name=str(mygame)))
         
 bot.run(os.environ['BOT_TOKEN'])
