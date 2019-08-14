@@ -505,6 +505,7 @@ async def viewkarma(ctx, member: str):
             raise
 
             if member in open('karma.txt').read():
+                print("is it here")
                 fi = open("karma.txt")
                 id = []
                 for ln in fi:
