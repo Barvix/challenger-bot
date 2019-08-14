@@ -173,7 +173,7 @@ async def on_message(message):
             if any(fbr in message.content.lower() for fbr in fb_list):
                 role = discord.utils.get(message.server.roles, name="Feedback")
                 
-                #points = 0
+                points = 0
                 
                 global s3
     
@@ -216,8 +216,10 @@ async def on_message(message):
                                     
                                     fi.write(str(message.author.id) + "," + str(intpt))
                         fi.close()
+                        
+                        s3.upload_file(filename, BUCKET_NAME, "ctzu5erud1ha/"+filename)
                                     
-                        giv_file = open(filename, "r+")
+                        #giv_file = open(filename, "r+")
                         #gcoins = giv_file.readline()
                         #gcoins = int(gcoins.rstrip())
                         #giv_file.close()
