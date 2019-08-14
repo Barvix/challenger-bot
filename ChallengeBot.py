@@ -578,8 +578,11 @@ async def setkarma(ctx, amt: int, member: str):
 @bot.command(pass_context = True)
 async def viewkarma(ctx, member : discord.Member = None):
 
+    noun = "They"
+
     if member is None:
         member = str(ctx.message.author.id)
+        noun = "You"
 
     member = member.replace("@", "")
     member = member.replace("<", "")
@@ -659,7 +662,7 @@ async def viewkarma(ctx, member : discord.Member = None):
             fi.close()
             s3.upload_file(filename, BUCKET_NAME, KEY)
     
-    await bot.say("They have " + str(karma) + " karma.")
+    await bot.say(noun + " have " + str(karma) + " karma.")
 
 @bot.command(pass_context = True)
 async def sayinchannel(ctx, roomid: str, *, msg_str: str):
