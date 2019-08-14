@@ -283,7 +283,7 @@ async def on_message(message):
                         print("Is it here?")
                         #fi.close()
                         fi = open(filename, "a")
-                        fi.write(member + ","+str(points))
+                        fi.write("\n"+member + ","+str(points))
                         #karma = 0
                         fi.close()
                         s3.upload_file(filename, BUCKET_NAME, KEY)
@@ -583,7 +583,7 @@ async def viewkarma(ctx, member: str):
             print("Is it here?")
             #fi.close()
             fi = open(filename, "a")
-            fi.write(member + ",0")
+            fi.write("\n"+member + ",0")
             karma = 0
             fi.close()
             s3.upload_file(filename, BUCKET_NAME, KEY)
