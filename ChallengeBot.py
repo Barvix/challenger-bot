@@ -33,6 +33,7 @@ fb_list = [line.rstrip('\n') for line in open('list.txt')]
 
 @bot.event
 async def on_ready():
+	global s3
     print('Logged in as')
     print("Challenge Bot")
     print(bot.user.id)
@@ -41,8 +42,6 @@ async def on_ready():
     await bot.send_message(chn, "Reset complete 😄")
     mygame = "Making Music 🎹 🎼 🎧 🎤"
     await bot.change_presence(game=discord.Game(name=str(mygame)))
-    
-	global s3
     
     xs3 = boto3.resource('s3', 
     aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
