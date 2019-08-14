@@ -515,7 +515,7 @@ async def viewkarma(ctx, member: str):
                 id = []
                 for ln in fi:
                     if ln.startswith(member):
-                        pts = ln.readline()
+                        pts = fi.readline()
                         uid, pt = pts.split(',')
                         intpt = int(pt.strip())
                         
@@ -536,7 +536,7 @@ async def viewkarma(ctx, member: str):
             id = []
             for ln in fi:
                 if ln.startswith(member):
-                    pts = ln.readline()
+                    pts = fi.readline()
                     uid, pt = pts.split(',')
                     intpt = int(pt.strip())
                     
