@@ -473,6 +473,8 @@ async def viewkarma(ctx, member: str):
     member = member.replace(">", "")
     member = member.replace("!", "")
     
+    print(member)
+    
     global s3
     
     xs3 = boto3.resource('s3', 
@@ -503,10 +505,10 @@ async def viewkarma(ctx, member: str):
             raise
 
             with open(filename,"r+") as fi:
-                if str(message.author.id in fi):
+                if str(member in fi):
                     id = []
                     for ln in fi:
-                        if ln.startswith(str(message.author.id)):
+                        if ln.startswith(member):
                             #id.append(ln[2:])
                             pts = ln.readline()
                             uid, pt = pts.split(',')
