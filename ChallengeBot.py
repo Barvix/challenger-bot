@@ -193,10 +193,10 @@ async def on_message(message):
                 for i in mgr:
                     index = fb_list.index(i)
                     pz = fb_points[index]
-                    print(pz)
+                    #print(pz)
                     points+=pz
                     
-                    print(str(points))
+                    print("points from feedback " + str(points))
                 
                 global s3
     
@@ -210,7 +210,6 @@ async def on_message(message):
                 
                 BUCKET_NAME = 'cloud-cube' # replace with your bucket name
                 ky = os.environ['CLOUDCUBE_KEY']
-                print(ky)
                 KEY = ky + "/" + filename # replace with your object key
                 
                 try:
@@ -230,6 +229,7 @@ async def on_message(message):
                         raise
 
                         with open(filename,"r+") as fi:
+                            print("opening file")
                             if str(message.author.id in fi):
                                 id = []
                                 for ln in fi:
@@ -240,7 +240,7 @@ async def on_message(message):
                                         intpt = int(pt.strip())
                                         
                                         intpt += points
-                                        print(str(intpt))
+                                        print("total points in file for user: " +  str(intpt))
                                         
                                         fi.write(str(message.author.id) + "," + str(intpt))
                             else:
