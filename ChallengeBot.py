@@ -33,7 +33,7 @@ fb_list = [line.rstrip('\n') for line in open('list.txt')]
 
 @bot.event
 async def on_ready():
-    global s3
+	global s3
     print('Logged in as')
     print("Challenge Bot")
     print(bot.user.id)
@@ -173,54 +173,54 @@ async def on_message(message):
             if any(fbr in message.content.lower() for fbr in fb_list):
                 role = discord.utils.get(message.server.roles, name="Feedback")
 				
-		points = 0
+				#points = 0
+				
+				global s3
+    
+				xs3 = boto3.resource('s3', 
+				aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
+				aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
+				region_name='us-west-1'
+				)
+				
+				filename = "karma.txt"
+				
+				BUCKET_NAME = 'cloud-cube' # replace with your bucket name
+				KEY = 'CLOUDCUBE_KEY'+"\"+filename # replace with your object key
+				
+				try:
+					xs3.Bucket(BUCKET_NAME).download_file(KEY, filename)
+				except botocore.exceptions.ClientError as e:
+					if e.response['Error']['Code'] == "404":
 
-		global s3
+						giv_file = open(filename, "w+")
+						giv_file.write(str(message.author.id+","+points)+"\n")
+						giv_file.close()
+						#gcoins = 0
+						#print(str(gcoins))
 
-		xs3 = boto3.resource('s3', 
-		aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
-		aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
-		region_name='us-west-1'
-		)
+					else:
+						raise
 
-		filename = "karma.txt"
-
-		BUCKET_NAME = 'cloud-cube' # replace with your bucket name
-		KEY = 'CLOUDCUBE_KEY'+"\"+filename # replace with your object key
-
-		try:
-			xs3.Bucket(BUCKET_NAME).download_file(KEY, filename)
-		except botocore.exceptions.ClientError as e:
-			if e.response['Error']['Code'] == "404":
-
-				giv_file = open(filename, "w+")
-				giv_file.write(str(message.author.id+","+points)+"\n")
-				giv_file.close()
-				#gcoins = 0
-				#print(str(gcoins))
-
-			else:
-				raise
-
-				with open(filename,"r+") as fi:
-					id = []
-					for ln in fi:
-						if ln.startswith(str(message.author.id)):
-							#id.append(ln[2:])
-							pts = ln.readline()
-							uid, pt = pts.split(',')
-							intpt = int(pt.strip())
-
-							intpt += points
-
-							fi.write(str(message.author.id) + "," + str(intpt))
-				fi.close()
-
-				giv_file = open(filename, "r+")
-				#gcoins = giv_file.readline()
-				#gcoins = int(gcoins.rstrip())
-				#giv_file.close()
-				#print(str(gcoins))
+						with open(filename,"r+") as fi:
+							id = []
+							for ln in fi:
+								if ln.startswith(str(message.author.id)):
+									#id.append(ln[2:])
+									pts = ln.readline()
+									uid, pt = pts.split(',')
+									intpt = int(pt.strip())
+									
+									intpt += points
+									
+									fi.write(str(message.author.id) + "," + str(intpt))
+						fi.close()
+									
+						giv_file = open(filename, "r+")
+						#gcoins = giv_file.readline()
+						#gcoins = int(gcoins.rstrip())
+						#giv_file.close()
+						#print(str(gcoins))
                 
                 if ("fire" in message.content.lower()):
                     return
