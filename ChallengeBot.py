@@ -494,6 +494,7 @@ async def viewkarma(ctx, member: str):
                     fi.close()
                     fi = open(filename, "a")
                     fi.write(str(message.author.id), + "," + str(points))
+                    s3.upload_file(filename, BUCKET_NAME, "ctzu5erud1ha/"+filename)
             fi.close()
         
     #print(name + " has " + str(gcoins) + " coins.")
