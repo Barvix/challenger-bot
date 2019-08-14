@@ -494,6 +494,10 @@ async def viewkarma(ctx, member: str):
     
     try:
         xs3.Bucket(BUCKET_NAME).download_file(KEY, filename)
+        if os.path.exists('karma.txt'):
+            print("file downloaded as karma.txt")
+        if os.path.exists(KEY):
+            print("file downloaded as KEY")
         #xs3.download_file(BUCKET_NAME, KEY, filename)
         print ("it tried")
     except botocore.exceptions.ClientError as e:
