@@ -535,6 +535,11 @@ async def reset(ctx):
 async def setkarma(ctx, amt: int, member: str):
     global s3
     
+    member = member.replace("@", "")
+    member = member.replace("<", "")
+    member = member.replace(">", "")
+    member = member.replace("!", "")
+    
     xs3 = boto3.resource('s3', 
     aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
     aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
@@ -553,7 +558,7 @@ async def setkarma(ctx, amt: int, member: str):
         if e.response['Error']['Code'] == "404":
 
             giv_file = open(filename, "w+")
-            giv_file.write(str(message.author.id)+","+str(amt)+"\n")
+            giv_file.write(member+","+str(amt)+"\n")
             giv_file.close()
             print("At the 404, almost upload")
             s3.upload_file(filename, BUCKET_NAME, ky + "/" +filename)
