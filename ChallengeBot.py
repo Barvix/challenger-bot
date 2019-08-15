@@ -243,17 +243,17 @@ async def on_message(message):
         
         feedback_barrier = 2
         
-        if (message.channel.id == "560511832322736138" and message.attachments > 0):
-            mat = message.attachments[0]['url']
-            mus_ext = ['.wav','.mp3','.flax',".aiff",".ogg",".aiff",".alac"]
-            for ext in mus_ext:
-                if ext in mat:
-                    km = karmamod(message.author.id, feedback_barrier, "sub")
-                    if (km < feedback_barrier):
-                        role = discord.utils.get(message.server.roles, name="Feedback")
-                        await bot.remove_roles(message.author, role)
-                    else:
-                        return
+        #if (message.channel.id == "560511832322736138" and message.attachments > 0):
+        #    mat = message.attachments[0]['url']
+        #    mus_ext = ['.wav','.mp3','.flax',".aiff",".ogg",".aiff",".alac"]
+        #    for ext in mus_ext:
+        #        if ext in mat:
+        #            km = karmamod(message.author.id, feedback_barrier, "sub")
+        #            if (km < feedback_barrier):
+        #                role = discord.utils.get(message.server.roles, name="Feedback")
+        #                await bot.remove_roles(message.author, role)
+        #            else:
+        #                return
         
         if ( (message.channel.id == "560511832322736138") and ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content)):
             if "🎧🎧🎧quality feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
