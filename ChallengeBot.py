@@ -182,6 +182,9 @@ async def on_message(message):
         ky = os.environ['CLOUDCUBE_KEY']
         KEY = ky + "/" + filename # replace with your object key
         
+        if ((message.channel.id == "560511832322736138")):
+            print(message.attachments)
+        
         if ( (message.channel.id == "560511832322736138") and ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content)):
             if "🎧🎧🎧quality feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
                  if "feedback" not in [y.name.lower() for y in message.author.roles]:
