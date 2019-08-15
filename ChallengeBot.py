@@ -39,6 +39,81 @@ with open("list.txt") as f:
         fb_list.append(l)
         fb_points.append(np)
 
+def karmamod(member, amount, mod):
+    global s3
+    
+    amount = int(amount)
+    
+    karma = 0
+    
+    xs3 = boto3.resource('s3', 
+    aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
+    aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
+    region_name='us-west-1'
+    )
+    
+    filename = "karma.txt"
+    
+    BUCKET_NAME = 'cloud-cube' # replace with your bucket name
+    ky = os.environ['CLOUDCUBE_KEY']
+    KEY = ky + "/" + filename # replace with your object key
+    
+    try:
+        xs3.Bucket(BUCKET_NAME).download_file(KEY, filename)
+    except botocore.exceptions.ClientError as e:
+        if e.response['Error']['Code'] == "404":
+
+            giv_file = open(filename, "w+")
+            giv_file.write(member+","+str(amount)+"\n")
+            giv_file.close()
+            print("At the 404, almost upload")
+            s3.upload_file(filename, BUCKET_NAME, ky + "/" +filename)
+            return amount
+
+        else:
+            raise
+
+    if os.path.exists('karma.txt'):
+        #member = str(message.author.id)
+        if member in open('karma.txt').read():
+            mlist = [line.rstrip('\n') for line in open("karma.txt")]
+
+            for idx in range(len(mlist)):
+                ln = mlist[idx]
+                ln = mlist[idx]
+                if ln.startswith(member):
+                    pts = ln
+                    uid, pt = pts.split(',')
+                    intpt = int(pt.strip())
+                    #intpt -= feedback_barrier
+                    if (mod == "sub"):
+                        intpt -= amount
+                    if (mod == "add"):
+                        intpt += amount
+                    if (mod == "set"):
+                        intpt = amount
+                    karma = intpt
+            
+                    swrite = member + "," + str(intpt)
+                    mlist[idx] = swrite
+            
+            fl = open("karma.txt", 'w')
+            
+            for ln in mlist:
+                fl.write(ln+"\n")
+            fl.close()
+            s3.upload_file(filename, BUCKET_NAME, ky + "/" + filename)
+            
+            return karma
+
+        else:
+            fi = open(filename, "a")
+            fi.write("\n"+member + ","+str(amount))
+            fi.close()
+            s3.upload_file(filename, BUCKET_NAME, KEY)
+            
+            return amount
+
 @bot.event
 async def on_ready():
     global s3
@@ -167,23 +242,16 @@ async def on_message(message):
     if (mod_feedback is True):
         
         feedback_barrier = 2
-    
-        global s3
-    
-        xs3 = boto3.resource('s3', 
-        aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
-        aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
-        region_name='us-west-1'
-        )
         
-        filename = "karma.txt"
-        
-        BUCKET_NAME = 'cloud-cube' # replace with your bucket name
-        ky = os.environ['CLOUDCUBE_KEY']
-        KEY = ky + "/" + filename # replace with your object key
-        
-        if ((message.channel.id == "560511832322736138")):
-            print(message.attachments)
+        if (message.channel.id == "560511832322736138"):
+            #print(message.attachments)
+            mus_ext = ['.wav','.mp3','.flax',".aiff",".ogg",".aiff",".alac"]
+            for ext inmus_ext:
+                if message.content.endswith(ext):
+                    km = karmamod(message.author.id, feedback_barrier, "sub")
+                    if (km < feedback_barrier):
+                        role = discord.utils.get(message.server.roles, name="Feedback")
+                        await bot.remove_roles(message.author, role)
         
         if ( (message.channel.id == "560511832322736138") and ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content)):
             if "🎧🎧🎧quality feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
@@ -194,49 +262,10 @@ async def on_message(message):
                         await bot.send_message(chn, message.content)
                         #donothin = message.channel
                  if "feedback" in [y.name.lower() for y in message.author.roles]:
-                    try:
-                        xs3.Bucket(BUCKET_NAME).download_file(KEY, filename)
-                    except botocore.exceptions.ClientError as e:
-                        if e.response['Error']['Code'] == "404":
-
-                            giv_file = open(filename, "w+")
-                            giv_file.write(str(message.author.id)+","+str(amt)+"\n")
-                            giv_file.close()
-                            print("At the 404, almost upload")
-                            s3.upload_file(filename, BUCKET_NAME, ky + "/" +filename)
-                            await bot.say("Set their karma to " + str(amt))
-
-                        else:
-                            raise
-
-                    if os.path.exists('karma.txt'):
-                        member = str(message.author.id)
-                        if member in open('karma.txt').read():
-                            mlist = [line.rstrip('\n') for line in open("karma.txt")]
-
-                            for idx in range(len(mlist)):
-                                ln = mlist[idx]
-                                ln = mlist[idx]
-                                if ln.startswith(member):
-                                    pts = ln
-                                    uid, pt = pts.split(',')
-                                    intpt = int(pt.strip())
-                                    intpt -= feedback_barrier
-                                    
-                                    if (intpt < feedback_barrier):
-                                        role = discord.utils.get(message.server.roles, name="Feedback")
-                                        await bot.remove_roles(message.author, role)
-                                    
-                                    swrite = member + "," + str(intpt)
-                                    mlist[idx] = swrite
-                            
-                            fl = open("karma.txt", 'w')
-                            
-                            for ln in mlist:
-                                fl.write(ln+"\n")
-                            fl.close()
-                            s3.upload_file(filename, BUCKET_NAME, ky + "/" + filename)
-                            #await bot.say("Set their karma to " + str(amt))
+                    km = karmamod(message.author.id, feedback_barrier, "sub")
+                    if (km < feedback_barrier):
+                        role = discord.utils.get(message.server.roles, name="Feedback")
+                        await bot.remove_roles(message.author, role)
                             
             if "🎧🎧🎧quality feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]:
                 return
@@ -260,55 +289,7 @@ async def on_message(message):
                     
                 print("points from feedback " + str(points))
                 
-                try:
-                    xs3.Bucket(BUCKET_NAME).download_file(KEY, filename)
-                except botocore.exceptions.ClientError as e:
-                    if e.response['Error']['Code'] == "404":
-
-                        giv_file = open(filename, "w+")
-                        giv_file.write(str(message.author.id)+","+str(points)+"\n")
-                        giv_file.close()
-                        print("At the 404, almost upload")
-                        s3.upload_file(filename, BUCKET_NAME, ky + "/" +filename)
-                        #gcoins = 0
-                        #print(str(gcoins))
-
-                    else:
-                        print("At else statement")
-                        raise
-                #--------------------------------------------------------------------
-                if os.path.exists('karma.txt'):
-                    member = str(message.author.id)
-                    if member in open('karma.txt').read():
-                        mlist = [line.rstrip('\n') for line in open("karma.txt")]
-
-                        for idx in range(len(mlist)):
-                            ln = mlist[idx]
-                            if ln.startswith(member):
-                                pts = ln
-                                uid, pt = pts.split(',')
-                                intpt = int(pt.strip())
-                                intpt += points
-                                
-                                if (intpt >= feedback_barrier):
-                                    await bot.add_roles(message.author, role)
-                                
-                                swrite = member + "," + str(intpt)
-                                mlist[idx] = swrite
-                        
-                        fl = open("karma.txt", 'w')
-                        
-                        for ln in mlist:
-                            fl.write(ln+"\n")
-                        fl.close()
-                        s3.upload_file(filename, BUCKET_NAME, ky + "/" + filename)
-
-                    else:
-                        print("Is it here?")
-                        fi = open(filename, "a")
-                        fi.write("\n"+member + ","+str(points))
-                        fi.close()
-                        s3.upload_file(filename, BUCKET_NAME, KEY)
+                karmamod(message.author.id, points, "add")
         
     if ("@" in message.content.lower()):
         
@@ -516,66 +497,13 @@ async def reset(ctx):
 async def setkarma(ctx, amt: int, member: str):
 
     if "admin" in [y.name.lower() for y in ctx.message.author.roles]:
-        global s3
-        
         member = member.replace("@", "")
         member = member.replace("<", "")
         member = member.replace(">", "")
         member = member.replace("!", "")
         
-        xs3 = boto3.resource('s3', 
-        aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
-        aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
-        region_name='us-west-1'
-        )
-        
-        filename = "karma.txt"
-        
-        BUCKET_NAME = 'cloud-cube' # replace with your bucket name
-        ky = os.environ['CLOUDCUBE_KEY']
-        KEY = ky + "/" + filename # replace with your object key
-        
-        try:
-            xs3.Bucket(BUCKET_NAME).download_file(KEY, filename)
-        except botocore.exceptions.ClientError as e:
-            if e.response['Error']['Code'] == "404":
-
-                giv_file = open(filename, "w+")
-                giv_file.write(member+","+str(amt)+"\n")
-                giv_file.close()
-                print("At the 404, almost upload")
-                s3.upload_file(filename, BUCKET_NAME, ky + "/" +filename)
-                await bot.say("Set their karma to " + str(amt))
-
-            else:
-                raise
-
-        if os.path.exists('karma.txt'):
-            #member = str(message.author.id)
-            if member in open('karma.txt').read():
-                mlist = [line.rstrip('\n') for line in open("karma.txt")]
-
-                for idx in range(len(mlist)):
-                    ln = mlist[idx]
-                    if ln.startswith(member):
-                        swrite = member + "," + str(amt)
-                        mlist[idx] = swrite
-                
-                fl = open("karma.txt", 'w')
-                
-                for ln in mlist:
-                    fl.write(ln+"\n")
-                fl.close()
-                s3.upload_file(filename, BUCKET_NAME, ky + "/" + filename)
-                await bot.say("Set their karma to " + str(amt))
-
-            else:
-                print("Is it here?")
-                fi = open(filename, "a")
-                fi.write("\n"+member + ","+str(amt))
-                fi.close()
-                s3.upload_file(filename, BUCKET_NAME, KEY)
-                await bot.say("Set their karma to " + str(amt))
+        xo = kamramod(member, amt, "set")
+        await bot.say("Set their karma to " + str(xo))
 
     if "admin" not in [y.name.lower() for y in ctx.message.author.roles]:
         await bot.say("Hey now, you can't use that")
