@@ -498,7 +498,7 @@ async def reset(ctx):
         await bot.say("Hey now, you can't use that")
 
 @bot.command(pass_context = True)
-async def givekarma(ctx, amt: int, member: str):
+async def givekarma(ctx, member: str):
     member = member.replace("@", "")
     member = member.replace("<", "")
     member = member.replace(">", "")
