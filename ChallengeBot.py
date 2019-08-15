@@ -244,10 +244,10 @@ async def on_message(message):
         feedback_barrier = 2
         
         if (message.channel.id == "560511832322736138"):
-            #print(message.attachments)
+            mat = message.attachments.url
             mus_ext = ['.wav','.mp3','.flax',".aiff",".ogg",".aiff",".alac"]
             for ext in mus_ext:
-                if message.content.endswith(ext):
+                if ext in mat:
                     km = karmamod(message.author.id, feedback_barrier, "sub")
                     if (km < feedback_barrier):
                         role = discord.utils.get(message.server.roles, name="Feedback")
@@ -528,80 +528,9 @@ async def viewkarma(ctx, member : discord.Member = None):
     if (member == "428972162779578368"):
         noun = "I"
     
-    global s3
+    xo = karmamod(member, amt, "set")
     
-    xs3 = boto3.resource('s3', 
-    aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
-    aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
-    region_name='us-west-1'
-    )
-    
-    filename = "karma.txt"
-    
-    BUCKET_NAME = 'cloud-cube' # replace with your bucket name
-    ky = os.environ['CLOUDCUBE_KEY']
-    KEY = ky + "/" + filename # replace with your object key
-
-    karma = 1000000
-    
-    try:
-        xs3.Bucket(BUCKET_NAME).download_file(KEY, filename)
-    except botocore.exceptions.ClientError as e:
-
-        if e.response['Error']['Code'] == "404":
-
-            giv_file = open(filename, "w+")
-            giv_file.write(member+",0\n")
-            giv_file.close()
-            karma = 0
-            
-            s3.upload_file(filename, BUCKET_NAME, KEY)
-
-        else:
-            print ("made it to else")
-            raise
-
-            if member in open('karma.txt').read():
-                print("is it here")
-                fi = open("karma.txt")
-                id = []
-                for ln in fi:
-                    print(ln)
-                    if ln.startswith(member):
-                        pts = fi.readline()
-                        uid, pt = pts.split(',')
-                        intpt = int(pt.strip())
-                        
-                        karma = intpt
-                fi.close()
-            else:
-                print("Is it here?")
-                #fi.close()
-                fi = open(filename, "a")
-                fi.write(str(message.author.id), + "," + str(points))
-                fi.close()
-                s3.upload_file(filename, BUCKET_NAME, KEY)
-        
-    if os.path.exists('karma.txt'):
-        if member in open('karma.txt').read():
-            mlist = [line.rstrip('\n') for line in open("karma.txt")]
-
-            for ln in mlist:
-                if ln.startswith(member):
-                    pts = ln
-                    uid, pt = pts.split(',')
-                    intpt = int(pt.strip())
-                    
-                    karma = intpt
-
-        else:
-            fi = open(filename, "a")
-            fi.write("\n"+member + ",0")
-            karma = 0
-            fi.close()
-            s3.upload_file(filename, BUCKET_NAME, KEY)
-    
-    await bot.say(noun + " have " + str(karma) + " karma.")
+    await bot.say(noun + " have " + str(xo) + " karma.")
 
 @bot.command(pass_context = True)
 async def sayinchannel(ctx, roomid: str, *, msg_str: str):
