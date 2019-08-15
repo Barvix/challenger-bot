@@ -502,7 +502,7 @@ async def setkarma(ctx, amt: int, member: str):
         member = member.replace(">", "")
         member = member.replace("!", "")
         
-        xo = kamramod(member, amt, "set")
+        xo = karmamod(member, amt, "set")
         await bot.say("Set their karma to " + str(xo))
 
     if "admin" not in [y.name.lower() for y in ctx.message.author.roles]:
