@@ -185,7 +185,7 @@ async def on_message(message):
         if ( (message.channel.id == "560511832322736138") and ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content)):
             if "🎧🎧🎧quality feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
                  if "feedback" not in [y.name.lower() for y in message.author.roles]:
-                        await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it. To get the feedback role you need at least 3 Karma, which you get automatically by giving people quality feedback.")
+                        await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it. To get the feedback role you need at least " + str(feedback_barrier) + " Karma, which you get automatically by giving people quality feedback.")
                         await bot.delete_message(message)
                         chn = bot.get_channel("560534679229431808")
                         await bot.send_message(chn, message.content)
