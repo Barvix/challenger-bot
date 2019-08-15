@@ -252,6 +252,8 @@ async def on_message(message):
                     if (km < feedback_barrier):
                         role = discord.utils.get(message.server.roles, name="Feedback")
                         await bot.remove_roles(message.author, role)
+                    else:
+                        return
         
         if ( (message.channel.id == "560511832322736138") and ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content)):
             if "🎧🎧🎧quality feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
@@ -266,6 +268,8 @@ async def on_message(message):
                     if (km < feedback_barrier):
                         role = discord.utils.get(message.server.roles, name="Feedback")
                         await bot.remove_roles(message.author, role)
+                    else:
+                        return
                             
             if "🎧🎧🎧quality feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]:
                 return
@@ -492,6 +496,20 @@ async def reset(ctx):
         
     if (id != "173850040568119296"):
         await bot.say("Hey now, you can't use that")
+
+@bot.command(pass_context = True)
+async def givekarma(ctx, amt: int, member: str):
+    member = member.replace("@", "")
+    member = member.replace("<", "")
+    member = member.replace(">", "")
+    member = member.replace("!", "")
+    
+    if (ctx.message.author.id == member):
+        await bot.say("Hey now, you can't give yourself karma <:gtfo:479669715669745673>")
+    else:
+        xo = karmamod(member, 1, "add")
+        await bot.say("Gave them 1 karma")
+        
 
 @bot.command(pass_context = True)
 async def setkarma(ctx, amt: int, member: str):
