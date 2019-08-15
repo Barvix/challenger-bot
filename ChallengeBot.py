@@ -243,7 +243,7 @@ async def on_message(message):
         
         feedback_barrier = 2
         
-        if (message.channel.id == "560511832322736138"):
+        if (message.channel.id == "560511832322736138" and message.attachments > 0):
             mat = message.attachments[0]['url']
             mus_ext = ['.wav','.mp3','.flax',".aiff",".ogg",".aiff",".alac"]
             for ext in mus_ext:
