@@ -246,7 +246,7 @@ async def on_message(message):
         if (message.channel.id == "560511832322736138"):
             #print(message.attachments)
             mus_ext = ['.wav','.mp3','.flax',".aiff",".ogg",".aiff",".alac"]
-            for ext inmus_ext:
+            for ext in mus_ext:
                 if message.content.endswith(ext):
                     km = karmamod(message.author.id, feedback_barrier, "sub")
                     if (km < feedback_barrier):
