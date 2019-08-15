@@ -528,7 +528,7 @@ async def viewkarma(ctx, member : discord.Member = None):
     if (member == "428972162779578368"):
         noun = "I"
     
-    xo = karmamod(member, amt, "set")
+    xo = karmamod(member, 0, "add")
     
     await bot.say(noun + " have " + str(xo) + " karma.")
 
