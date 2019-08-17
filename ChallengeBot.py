@@ -517,7 +517,7 @@ async def givekarma(ctx, member: str):
 @bot.command(pass_context = True)
 async def setkarma(ctx, amt: int, member: str):
 
-    if "admin" in [y.name.lower() for y in ctx.message.author.roles]:
+    if "mod" in [y.name.lower() for y in ctx.message.author.roles]:
         member = member.replace("@", "")
         member = member.replace("<", "")
         member = member.replace(">", "")
@@ -526,7 +526,7 @@ async def setkarma(ctx, amt: int, member: str):
         xo = karmamod(member, amt, "set")
         await bot.say("Set their karma to " + str(xo))
 
-    if "admin" not in [y.name.lower() for y in ctx.message.author.roles]:
+    if "mod" not in [y.name.lower() for y in ctx.message.author.roles]:
         await bot.say("Hey now, you can't use that")
         
 @bot.command(pass_context = True)
