@@ -294,7 +294,9 @@ async def on_message(message):
                     
                 print("points from feedback " + str(points))
                 
-                karmamod(message.author.id, points, "add")
+                xo = karmamod(message.author.id, points, "add")
+                if (xo >= feedback_barrier):
+                    await bot.add_roles(message.author, role)
         
     if ("@" in message.content.lower()):
         
