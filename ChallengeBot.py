@@ -510,6 +510,7 @@ async def givekarma(ctx, member: str):
     if (ctx.message.author.id == member):
         await bot.say("Hey now, you can't give yourself karma <:gtfo:479669715669745673>")
     else:
+        yo = karmamod(ctx.author.id, 1, "sub")
         xo = karmamod(member, 1, "add")
         await bot.say("Gave them 1 karma")
         
