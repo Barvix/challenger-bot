@@ -289,8 +289,12 @@ async def on_message(message):
                 for i in mgr:
                     index = fb_list.index(i)
                     pz = fb_points[index]
-                    #print(pz)
-                    points+=pz
+                    if (points > 0 and pz < 0):
+                        return
+                    if (pz >= 0):
+                        points+=pz
+                    if (pz < 0 and points < 1):
+                        points += pz
                     
                 print("points from feedback " + str(points))
                 
