@@ -362,7 +362,7 @@ async def on_member_join(member):
         rules = bot.get_channel('560535198769348631')
         getarole = bot.get_channel('560551182586609712')
         feedbacks = bot.get_channel('560511832322736138')
-        message = 'Welcome {0.member.mention} to HipHop Creation Central! Please be sure to read the {1.mention}! If you need help using me head to {2.mention} and type !help\nPlease not if you want to post in {3.mention} you must first give quality feedback to someone.'.format(member.mention,rules,getarole,feedbacks)
+        message = 'Welcome {0.mention} to HipHop Creation Central! Please be sure to read the {1.mention}! If you need help using me head to {2.mention} and type !help\nPlease not if you want to post in {3.mention} you must first give quality feedback to someone.'.format(member,rules,getarole,feedbacks)
         chn = bot.get_channel("560542321490264076")
         await bot.send_message(chn, message)
     
