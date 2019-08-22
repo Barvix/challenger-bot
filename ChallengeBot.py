@@ -556,7 +556,8 @@ async def viewallkarma(ctx):
 
     with open("karma.txt", "r") as kfile:
         for line in kfile:
-            await bot.say(line)
+            if (line is not '\n'):
+                await bot.say(line)
             
         
 @bot.command(pass_context = True)
