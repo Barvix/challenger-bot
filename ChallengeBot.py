@@ -170,6 +170,15 @@ async def on_message(message):
     if (message.author == bot.user):
         return
     
+    if (message.channel.id == "567801985374355476"):
+        if message.attachments:
+            pic = message.attachments[0]['url']
+            picext = ['.png','.jpeg','.jpg',".bmp"]
+            for ext in picext:
+                if ext in pic:
+                    emoji = get(bot.get_all_emojis(), name='fireanim')
+                    await bot.add_reaction(message, emoji)
+    
     if ("https://" in message.content and message.server.id == "446157087211520030"):
         print("Message: Read\n")
         user_join_day = message.author.joined_at.strftime("%d, %m, %y")
