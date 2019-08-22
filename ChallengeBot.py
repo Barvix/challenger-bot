@@ -77,7 +77,19 @@ def karmamod(member, amount, mod):
     
     downloadfile(amount)
     
+    global s3
+    
+    xs3 = boto3.resource('s3', 
+    aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
+    aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
+    region_name='us-west-1'
+    )
+    
     filename = "karma.txt"
+    
+    BUCKET_NAME = 'cloud-cube' # replace with your bucket name
+    ky = os.environ['CLOUDCUBE_KEY']
+    KEY = ky + "/" + filename # replace with your object key
 
     if os.path.exists('karma.txt'):
         #member = str(message.author.id)
