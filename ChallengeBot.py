@@ -76,6 +76,8 @@ def karmamod(member, amount, mod):
     karma = 0
     
     downloadfile(amount)
+    
+    filename = "karma.txt"
 
     if os.path.exists('karma.txt'):
         #member = str(message.author.id)
