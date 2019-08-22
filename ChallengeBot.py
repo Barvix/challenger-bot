@@ -40,12 +40,8 @@ with open("list.txt") as f:
         fb_list.append(l)
         fb_points.append(np)
 
-def karmamod(member, amount, mod):
+def downloadfile(amount):
     global s3
-    
-    amount = int(amount)
-    
-    karma = 0
     
     xs3 = boto3.resource('s3', 
     aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
@@ -73,6 +69,13 @@ def karmamod(member, amount, mod):
 
         else:
             raise
+        
+def karmamod(member, amount, mod):
+    amount = int(amount)
+    
+    karma = 0
+    
+    downloadfile(amount)
 
     if os.path.exists('karma.txt'):
         #member = str(message.author.id)
@@ -546,6 +549,15 @@ async def setkarma(ctx, amt: int, member: str):
 
     if "mod" not in [y.name.lower() for y in ctx.message.author.roles]:
         await bot.say("Hey now, you can't use that")
+        
+@bot.command(pass_context = True)
+async def viewallkarma(ctx):
+    downloadfile(0)
+
+    with open("karma.txt", "r") as kfile:
+        for line in kfile:
+            await bot.say(line)
+            
         
 @bot.command(pass_context = True)
 async def viewkarma(ctx, member : discord.Member = None):
