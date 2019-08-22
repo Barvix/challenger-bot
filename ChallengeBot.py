@@ -573,7 +573,9 @@ async def viewallkarma(ctx):
 
         for line in kfile:
             if (line is not '\n'):
-                msx += line
+                ping,count=line.split(',')
+                ping = "<@"+ping+">"
+                msx += ping+","+count
         await bot.say(msx)
             
         
