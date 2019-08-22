@@ -555,11 +555,14 @@ async def setkarma(ctx, amt: int, member: str):
 @bot.command(pass_context = True)
 async def viewallkarma(ctx):
     downloadfile(0)
+    msx = ""
 
     with open("karma.txt", "r") as kfile:
+
         for line in kfile:
             if (line is not '\n'):
-                await bot.say(line)
+                msx += line
+        await bot.say(msx)
             
         
 @bot.command(pass_context = True)
