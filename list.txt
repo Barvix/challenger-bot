@@ -16,6 +16,7 @@ drum,1
 end,1
 guitar,1
 jazz,1
+key,1
 kick,1
 lead,1
 loop,1
@@ -46,6 +47,7 @@ groove,2
 high,2
 low,2
 muddy,2
+progression,2
 rhythm,2
 saturation,2
 transition,2
