@@ -304,6 +304,7 @@ async def on_message(message):
         if (message.channel.id == "560511832322736138" and ("http" not in message.content.lower())):    
             if any(fbr in message.content.lower() for fbr in fb_list):
                 role = discord.utils.get(message.server.roles, name="Feedback")
+                leech = discord.utils.get(message.server.roles, name="Leech")
                 
                 mg = message.content.split()
                 
@@ -328,6 +329,8 @@ async def on_message(message):
                 xo = karmamod(message.author.id, points, "add")
                 if (xo >= feedback_barrier):
                     await bot.add_roles(message.author, role)
+                if (xo >= 10):
+                    await bot.remove_roles(message.author, leech)
         
     if ("@" in message.content.lower()):
         
