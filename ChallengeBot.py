@@ -10,8 +10,12 @@ from dateutil.relativedelta import relativedelta
 import datetime
 import boto3
 import botocore
+import logging
 
 #https://discordapp.com/oauth2/authorize?&client_id=428972162779578368&scope=bot&permissions=336063568
+
+
+logging.basicConfig(level=logging.INFO)
 
 description = '''Hi, I'm the Challenger!'''
 bot = commands.Bot(command_prefix='!', description=description)
