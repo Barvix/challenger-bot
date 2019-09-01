@@ -431,25 +431,25 @@ async def vox23(ctx):
 
 @bot.command(pass_context = True)
 async def sample(ctx):
-    if (ctx.message.channel.id == "560556421733810187"):
+    if (ctx.message.channel.id == "560556421733810187" or ctx.message.server.id != "446157087211520030"):
         f = open("BotSampleList.txt", 'r')
         x = f.readlines()
         f.close()
         urls = str(x[random.randrange(0, len(x)-1)])
         await bot.say(urls)
-    if (ctx.message.channel.id != "560556421733810187"):
+    if (ctx.message.channel.id != "560556421733810187" and ctx.message.server.id == "446157087211520030"):
         await bot.say("Please use <#560556421733810187> instead so this channel doesn't get cluttered")
 
 @bot.command(pass_context = True)
 async def roulette(ctx):
     
-    if (ctx.message.channel.id == "560556421733810187"):
+    if (ctx.message.channel.id == "560556421733810187" or ctx.message.server.id != "446157087211520030"):
         f = open("BotSampleList.txt", 'r')
         x = f.readlines()
         f.close()
         urls = str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)])
         await bot.say(urls)
-    if (ctx.message.channel.id != "560556421733810187"):
+    if (ctx.message.channel.id != "560556421733810187" and ctx.message.server.id == "446157087211520030"):
         await bot.say("Please use <#560556421733810187> instead so this channel doesn't get cluttered")
 
 @bot.command(pass_context = True)
