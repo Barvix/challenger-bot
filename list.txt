@@ -1,6 +1,6 @@
-fire,-1
-fw,-1
-lit,-1
+fire,0
+fw,0
+lit,0
 lol,0
 mad,0
 mine,0
