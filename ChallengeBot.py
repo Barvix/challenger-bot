@@ -185,7 +185,7 @@ async def on_message(message):
     if (message.author == bot.user):
         return
     
-    if ("crack" in message.content.lower() or "pirate" in message.content.lower()):
+    if ("crack" in message.content.lower() or "pirate" in message.content.lower() or "torrent" in message.content.lower() or "legionmuzik" in message.content.lower()):
         await bot.delete_message(message)
     
     if (message.channel.id == "567801985374355476"):
