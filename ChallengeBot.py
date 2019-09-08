@@ -185,6 +185,9 @@ async def on_message(message):
     if (message.author == bot.user):
         return
     
+    if ("crack" in message.content.lower() or "pirate" in message.content.lower()):
+        await bot.delete_message(message)
+    
     if (message.channel.id == "567801985374355476"):
         if message.attachments:
             pic = message.attachments[0]['url']
