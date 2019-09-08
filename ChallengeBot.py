@@ -5,7 +5,6 @@ import os.path
 import os
 import datetime
 import random
-#import dateutil
 from dateutil.relativedelta import relativedelta
 import datetime
 import boto3
@@ -14,7 +13,6 @@ import logging
 
 #https://discordapp.com/oauth2/authorize?&client_id=428972162779578368&scope=bot&permissions=336063568
 
-
 logging.basicConfig(level=logging.INFO)
 
 description = '''Hi, I'm the Challenger!'''
@@ -22,8 +20,6 @@ bot = commands.Bot(command_prefix='!', description=description)
 bot.remove_command('help')
 
 session = boto3.Session(
-    #aws_access_key_id=settings.AWS_SERVER_PUBLIC_KEY,
-    #aws_secret_access_key=settings.AWS_SERVER_SECRET_KEY,
     aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
     aws_secret_access_key=os.environ['CLOUDCUBE_SECRET_ACCESS_KEY'],
 )
@@ -34,7 +30,6 @@ s3 = boto3.client('s3',
     region_name='us-west-1'
     )
 
-#fb_list = [line.rstrip('\n') for line in open('list.txt')]
 with open("list.txt") as f:
     fb_list=[]
     fb_points=[]
@@ -96,7 +91,6 @@ def karmamod(member, amount, mod):
     KEY = ky + "/" + filename # replace with your object key
 
     if os.path.exists('karma.txt'):
-        #member = str(message.author.id)
         if member in open('karma.txt').read():
             mlist = [line.rstrip('\n') for line in open("karma.txt")]
 
@@ -167,7 +161,6 @@ async def on_ready():
         x = f.readlines()
         f.close()
         urls = str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)])
-        #await bot.say(urls)
         rhythmchannel = bot.get_channel('560556421733810187')
         await bot.send_message(rhythmchannel, urls)
     
@@ -267,9 +260,7 @@ async def on_message(message):
         await bot.delete_message(message)
             
     mod_feedback = True
-            
-    mod_feedback = True
-            
+        
     if (mod_feedback is True):
         
         feedback_barrier = 2
@@ -315,8 +306,6 @@ async def on_message(message):
                 points = 0
                 
                 mgr  = [word for word in mg if word.lower() in fb_list]
-                #msg = ' '.join(mgr)
-                #print(msg)
                 
                 for i in mgr:
                     index = fb_list.index(i)
@@ -391,7 +380,6 @@ my_server = client.get_server('server id')
 @bot.event
 async def on_member_join(member):
     server = member.server.id
-    #print(str(server))
     if (server == "446157087211520030"):
         rules = bot.get_channel('560535198769348631')
         getarole = bot.get_channel('560551182586609712')
