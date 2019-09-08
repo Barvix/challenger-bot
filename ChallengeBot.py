@@ -274,7 +274,11 @@ async def on_message(message):
                 mus_ext = ['.wav','.mp3','.flax',".aiff",".ogg",".aiff",".alac"]
                 for ext in mus_ext:
                     if ext in mat:
-                        km = karmamod(message.author.id, feedback_barrier, "sub")
+                        cnn = feedback_barrier;
+                        if "feedback" in [y.name.lower() for y in message.author.roles]: cnn = 2;
+                        if "good feedback" in [y.name.lower() for y in message.author.roles]: cnn = 1;
+                        if "🎧🎧🎧quality feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]: cnn = 0;
+                        km = karmamod(message.author.id, cnn, "sub")
                         if (km < feedback_barrier):
                             role = discord.utils.get(message.server.roles, name="Feedback")
                             await bot.remove_roles(message.author, role)
@@ -290,7 +294,11 @@ async def on_message(message):
                         await bot.send_message(chn, message.content)
                         #donothin = message.channel
                  if "feedback" in [y.name.lower() for y in message.author.roles]:
-                    km = karmamod(message.author.id, feedback_barrier, "sub")
+                    cnn = feedback_barrier;
+                    if "feedback" in [y.name.lower() for y in message.author.roles]: cnn = 2;
+                    if "good feedback" in [y.name.lower() for y in message.author.roles]: cnn = 1;
+                    if "🎧🎧🎧quality feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]: cnn = 0;
+                    km = karmamod(message.author.id, cnn, "sub")
                     if (km < feedback_barrier):
                         role = discord.utils.get(message.server.roles, name="Feedback")
                         await bot.remove_roles(message.author, role)
