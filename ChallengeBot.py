@@ -310,6 +310,8 @@ async def on_message(message):
         if (message.channel.id == "560511832322736138" and ("http" not in message.content.lower())):    
             if any(fbr in message.content.lower() for fbr in fb_list):
                 role = discord.utils.get(message.server.roles, name="Feedback")
+                gfb = discord.utils.get(message.server.roles, name="Good Feedback")
+                qfb = discord.utils.get(message.server.roles, name="🎧🎧🎧Quality Feedback Giver🎧🎧🎧")
                 leech = discord.utils.get(message.server.roles, name="Leech")
                 
                 mg = message.content.split()
@@ -335,6 +337,10 @@ async def on_message(message):
                     await bot.add_roles(message.author, role)
                 if (xo >= 10):
                     await bot.remove_roles(message.author, leech)
+                    await bot.add_roles(message.author, gfb)
+                if (xo >= 20):
+                    await bot.remove_roles(message.author, leech)
+                    await bot.add_roles(message.author, qfb)
         
     if ("@" in message.content.lower()):
         
