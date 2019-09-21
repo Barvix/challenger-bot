@@ -404,7 +404,13 @@ async def on_message(message):
                     "Paint her face rainbow like a tic-tac",
                     "She said she's bisexual so she got off with a good bye",
                     "your girl annoying, everywhere I go, she follow me\nI have to tell her where to put her mouth like geology",
-                    "She said what happened to our chemistry?\nI said we lost the bond like telemetry"
+                    "She said what happened to our chemistry?\nI said we lost the bond like telemetry",
+                    "I'm the best at this rappin'\neverything I say is so fly like an arachnid",
+                    "Y'all pissin yellow but I'm hydrated so I'm pissin jello",
+                    "She stabbin me in the back so I seized her like I'm Plato",
+                    "Deus Vult",
+                    "She said let's party like it's the 60s cus we got the Great Depression",
+                    "https://drive.google.com/open?id=1GBV07Uzy9pXKaUN-7OB11cgO8uoxFj6m"
                 ]
                 feedback_message = "test text"
                 rlstein = random.randint(0,len(rand_lyrics)-1)
