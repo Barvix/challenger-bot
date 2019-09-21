@@ -381,7 +381,30 @@ async def on_message(message):
                     "Blow on her cheek like a cartridge\nI paint on her face like an artist",
                     "Got some pics of us using toys in bed now that's a great story",
                     "You need some praise girl, get that ass raised girl",
-                    "every conflict that I'm in I have a right to win\nto the people I'm a breath of fresh air like nitrogen"
+                    "every conflict that I'm in I have a right to win\nto the people I'm a breath of fresh air like nitrogen",
+                    "I got bands like woodstock\nhand on my dick I got my wood cocked",
+                    "none of us would be here WITHOUT CUM",
+                    "Now if I fuck this model\nAnd she just bleached her asshole\nAnd I get bleach on my T-shirt\nI'mma feel like an asshole",
+                    "I drowned in the pussy so I swam in her butt",
+                    "I'm rapping 25/7 cus I'm ahead of the game",
+                    "She gave me head like an Atari",
+                    "wish a nibba would like a tree in this bitch",
+                    "I don't fuck with hoes but don't fuck up with wayne cuz when it wayne's it pours .",
+                    "I'm on a roll like Cottonelle, I was made for all this shit",
+                    "She calls me Angel Soft but I'm Angel Hard when I'm in her ass",
+                    "I'm all ears. In otherwords, I'm hear for ya.",
+                    "I'm trying to move a safe, like the safe was a safe house",
+                    "Hey guys, Adolphany Hitlertano here with another 6/10 Kanye review",
+                    "I guess when the stars align, you do like a solar system and planet out",
+                    "she doing tricks with her pussy, I guess she a vagician",
+                    "I'm rubbing her neck like Crayola",
+                    "my fans love my music, they'll always want to rep this\nwhen I drop, they'll be foaming at the mouth like tetanus",
+                    "She put the thong on my groin, then it go boing",
+                    "She's licking my tongue like a pikachu",
+                    "Paint her face rainbow like a tic-tac",
+                    "She said she's bisexual so she got off with a good bye",
+                    "your girl annoying, everywhere I go, she follow me\nI have to tell her where to put her mouth like geology",
+                    "She said what happened to our chemistry?\nI said we lost the bond like telemetry"
                 ]
                 feedback_message = "test text"
                 rlstein = random.randint(0,len(rand_lyrics)-1)
