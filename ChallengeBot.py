@@ -353,6 +353,41 @@ async def on_message(message):
         #    return
         
         if (fb == "428972162779578368"):
+            
+            if ("lyrics" in message.content.lower() and not "feedback" in message.content.lower()):
+                rand_lyrics = [
+                    "i popped a percy now i'm swerving and im crashing just to hurt me",
+                    "yuh yuh yuh yuh yuh yuh",
+                    "Hoes Mad\nHoes Mad\nHoes Mad\nHoes Mad\nHoes Mad\nHoes Mad\nHoes Mad\nHoes Mad\nHoes Mad\nHoes Mad\nHoes Mad\nHoes Mad\nHoes Mad\nHoes Mad\nHoes Mad\nHoes Mad\nHoes Mad\nHoes Mad\nHoes Mad\nHoes Mad\nHoes Mad\nHoes Mad\nHoes Mad\nHoes Mad\n",
+                    "Beatin off to dead shit like a fuckin dead beat",
+                    "im the shit IM STILL IN DIAPERS",
+                    "the school thotty didn't think i was a hotty so i went to get my shotty",
+                    "fuck the old me, don’t worry, i use protection",
+                    "Innocent til she start sippin\nThighs so sore she starts limpin",
+                    "Logging on minecraft and i get some iron\nI don't like fortnite and i'm very tired",
+                    "Dap on them haters ya yeet i got some beetroot seeds and im going to stuff them down your knees and my mac 10 be sprayin out cheese and i got to leave because i just ejaculated On my peas",
+                    "Ride like piranha, she eat me like soup",
+                    "Screamin' eagles on my shoulders, tryin' my best to not get older. Figured out your girls number, plaguing outwards within the thunder",
+                    "Y'all can't fuck with me\nchain around my neck, same color as pee",
+                    "Pullin up in pull ups cus I'm shitting on you niggas",
+                    "im so fresh you can suck my nuts",
+                    "I'm snapping her pussy like legos",
+                    "I love my wife!",
+                    "Open up my brain and you’ll see that my thoughts go insane",
+                    "Slurp on my gurp cus you know it's purp",
+                    "Shit is real, i poop jerusalem",
+                    "bath water tickles my beard like that activis when I'm sipping",
+                    "she feeds me grapes when i eat her face",
+                    "Blow on her cheek like a cartridge\nI paint on her face like an artist",
+                    "Got some pics of us using toys in bed now that's a great story",
+                    "You need some praise girl, get that ass raised girl",
+                    "every conflict that I'm in I have a right to win\nto the people I'm a breath of fresh air like nitrogen"
+                ]
+                feedback_message = "test text"
+                rlstein = random.randint(0,len(rand_lyrics)-1)
+                feedback_message = rand_lyrics[rlstein]
+                await bot.send_message(message.channel, feedback_message)
+            
             if ("feedback" in message.content.lower()):
                 rand_feedback = random.randint(0, 31)
                 feedback_message = "test text"
