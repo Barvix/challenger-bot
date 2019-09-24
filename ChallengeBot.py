@@ -410,7 +410,8 @@ async def on_message(message):
                     "She stabbin me in the back so I seized her like I'm Plato",
                     "Deus Vult",
                     "She said let's party like it's the 60s cus we got the Great Depression",
-                    "https://drive.google.com/open?id=1GBV07Uzy9pXKaUN-7OB11cgO8uoxFj6m"
+                    "https://drive.google.com/open?id=1GBV07Uzy9pXKaUN-7OB11cgO8uoxFj6m",
+                    "music so hot, it'll have your speakers meltin'\nthermometers would read over 95 Kelvin"
                 ]
                 feedback_message = "test text"
                 rlstein = random.randint(0,len(rand_lyrics)-1)
