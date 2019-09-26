@@ -415,7 +415,8 @@ async def on_message(message):
                     "Deus Vult",
                     "She said let's party like it's the 60s cus we got the Great Depression",
                     "https://drive.google.com/open?id=1GBV07Uzy9pXKaUN-7OB11cgO8uoxFj6m",
-                    "music so hot, it'll have your speakers meltin'\nthermometers would read over 95 Kelvin"
+                    "music so hot, it'll have your speakers meltin'\nthermometers would read over 95 Kelvin",
+                    "i am cool\nu droll\ni have shame\nyou are lame\nyou are a shame\nand a disgrace\nto the human race\nyour face looks\nlike a mace\nand your name is ace\nand you like ass\nand you are a male\nwhich means you are a big rainbow homo\nand you like unicorns because YOU IS A BITCH!111"
                 ]
                 feedback_message = "test text"
                 rlstein = random.randint(0,len(rand_lyrics)-1)
