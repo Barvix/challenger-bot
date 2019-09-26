@@ -457,7 +457,12 @@ async def on_message(message):
                     "it sounded awful, i smoked a j, it sounds ok now",
                     "i could mix this to sound wayyy better, not trynna be cocky",
                     "why does it sound like the drummer fell into their set at 27 lol",
-                    "I mean it's good, but I prefer the National Geotrappin remix."
+                    "I mean it's good, but I prefer the National Geotrappin remix.",
+                    "Well, at least it doesn't have Yxng Squirtle rapping on it. So it has that going for it. Barely.",
+                    "I kinda wanna drink myself to sleep so I can forget I ever even heard that song.",
+                    "If this song played Smash Bros, it would main Captain Falcon.",
+                    "This bass drop is similar to Kanye dropping Yandhi: it doesn't fucking exist",
+                    "xD lmfao this so fire HAHAHA"
                 ]
                 feedback_message = "test text"
                 rlstein = random.randint(0,len(rand_fb)-1)
