@@ -38,7 +38,7 @@ with open("list.txt") as f:
         np = int(p)
         fb_list.append(l)
         fb_points.append(np)
-
+#
 def downloadfile(amount):
     global s3
     
