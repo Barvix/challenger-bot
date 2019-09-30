@@ -463,7 +463,11 @@ async def on_message(message):
                     "I kinda wanna drink myself to sleep so I can forget I ever even heard that song.",
                     "If this song played Smash Bros, it would main Captain Falcon.",
                     "This bass drop is similar to Kanye dropping Yandhi: it doesn't fucking exist",
-                    "xD lmfao this so fire HAHAHA"
+                    "xD lmfao this so fire HAHAHA",
+                    "It's not like its a bad song it's just a little too sweet for me *laughs*",
+                    "Do you see yourself doing music forever? *laughs* Are you going to keep going in this field?",
+                    "the snare needs to have a more pronounced 'click","the low frequency and high frequency are really similar, you should keep all of them, or stick to that",
+                    "that's a good idea, the low frequencies should be boosted"
                 ]
                 feedback_message = "test text"
                 rlstein = random.randint(0,len(rand_fb)-1)
