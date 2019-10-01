@@ -418,6 +418,14 @@ async def on_message(message):
                     "https://drive.google.com/open?id=1GBV07Uzy9pXKaUN-7OB11cgO8uoxFj6m",
                     "music so hot, it'll have your speakers meltin'\nthermometers would read over 95 Kelvin",
                     "i am cool\nu droll\ni have shame\nyou are lame\nyou are a shame\nand a disgrace\nto the human race\nyour face looks\nlike a mace\nand your name is ace\nand you like ass\nand you are a male\nwhich means you are a big rainbow homo\nand you like unicorns because YOU IS A BITCH!111"
+                    "This is an excellent opportunity to learn to fly like David Bowie",
+                    "These are some of the best people I've ever met",
+                    "I want to fuck the devil",
+                    "This one was so cool, I went over his words and his words were like shit, like, shit... he's like fucking a dude",
+                    "I'm on the run, get me into the safehouse, and take me out!",
+                    "What I mean is I've had sex and I'm hard as hell",
+                    "Well then it's not fair for you to be in her ass while she gets her pussy washed",
+                    "I may not find her beautiful yet, but I do find her incredibly sexy. I'm not trying to say that what I'm doing is wrong or that I'm a slavophile for wanting to feel the way I feel about the beautiful naked body of her. When I talk about my sex life and the fantasies of my mind I'm not just describing what I've experienced, I'm trying to convey the experience that I've had, and trying to convey a more realistic picture of that."
                 ]
                 feedback_message = "test text"
                 rlstein = random.randint(0,len(rand_lyrics)-1)
