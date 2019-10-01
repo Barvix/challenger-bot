@@ -186,9 +186,10 @@ async def on_message(message):
         return
     
     if ("crack" in message.content.lower() or "pirate" in message.content.lower() or "torrent" in message.content.lower() or "legionmuzik" in message.content.lower()):
-        chn = bot.get_channel("560534679229431808")
-        await bot.send_message(chn, "<@"+str(message.author.id)+">: " + message.content)
-        await bot.delete_message(message)
+        if "mod" not in [y.name.lower() for y in message.author.roles]:
+            chn = bot.get_channel("560534679229431808")
+            await bot.send_message(chn, "<@"+str(message.author.id)+">: " + message.content)
+            await bot.delete_message(message)
     
     if (message.channel.id == "567801985374355476"):
         if message.attachments:
