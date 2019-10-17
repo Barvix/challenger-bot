@@ -693,7 +693,7 @@ async def viewallkarma(ctx):
                 ping,count=line.split(',')
                 ping = "<@"+ping+">"
                 msx += ping+","+count
-        await bot.say(msx)
+        #await bot.say(msx)
             
         
 @bot.command(pass_context = True)
