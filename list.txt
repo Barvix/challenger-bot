@@ -44,7 +44,7 @@ melodic,1
 mix,1
 mixing,1
 pass,1
-pattern
+pattern,1
 perc,1
 percussion,1
 percussions,1
