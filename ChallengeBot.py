@@ -694,6 +694,7 @@ async def viewallkarma(ctx):
                 ping = "<@"+ping+">"
                 msx += ping+","+count
         #await bot.say(msx)
+        await bot.send_file(ctx.message.channel, "karma.txt")
             
         
 @bot.command(pass_context = True)
