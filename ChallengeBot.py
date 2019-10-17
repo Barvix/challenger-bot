@@ -49,6 +49,7 @@ def downloadfile(amount):
     )
     
     filename = "karma.txt"
+    member = "428972162779578368"
     
     BUCKET_NAME = 'cloud-cube' # replace with your bucket name
     ky = os.environ['CLOUDCUBE_KEY']
