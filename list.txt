@@ -53,7 +53,7 @@ practice,1
 punchy,1
 pitch,1
 quiet,1
-repetitive
+repetitive,1
 reverb,1
 rhythm,1
 rim,1
