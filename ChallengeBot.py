@@ -682,7 +682,8 @@ async def setkarma(ctx, amt: int, member: str):
         
 @bot.command(pass_context = True)
 async def viewallkarma(ctx):
-    downloadfile(0)
+    #downloadfile(0)
+    xo = karmamod("428972162779578368", 0, "add")
     msx = ""
 
     with open("karma.txt", "r") as kfile:
