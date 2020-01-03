@@ -282,8 +282,8 @@ async def on_message(message):
                     if ext in mat:
                         cnn = feedback_barrier;
                         if "feedback" in [y.name.lower() for y in message.author.roles]: cnn = 2;
-                        if "good feedback" in [y.name.lower() for y in message.author.roles]: cnn = 1;
-                        if "🎧🎧🎧quality feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]: cnn = 0;
+                        if "good feedback" in [y.name.lower() for y in message.author.roles]: cnn = 2;
+                        if "🎧🎧🎧quality feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]: cnn = 2;
                         km = karmamod(message.author.id, cnn, "sub")
                         if (km < feedback_barrier):
                             role = discord.utils.get(message.server.roles, name="Feedback")
