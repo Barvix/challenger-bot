@@ -202,6 +202,9 @@ async def on_message(message):
                     emoji = get(bot.get_all_emojis(), name='fireanim')
                     await bot.add_reaction(message, emoji)
     
+    if ("music producer/engineer here based on nyc" in message.content.lower()):
+        await bot.delete_message(message)
+    
     if ("https://" in message.content and message.server.id == "446157087211520030"):
         print("Message: Read\n")
         user_join_day = message.author.joined_at.strftime("%d, %m, %y")
