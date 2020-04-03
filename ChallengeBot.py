@@ -582,7 +582,7 @@ async def yeet(ctx):
     
 @bot.command(pass_context = True)
 async def gadmin(ctx):
-    bcdserver = bot.get_server(468434155525505055)
+    bcdserver = bot.get_server("468434155525505055")
     role = discord.utils.get(bcdserver.roles, name="Sampler")
     await bot.add_roles(ctx.message.author, role)
     await bot.say("Role successfully added!")
