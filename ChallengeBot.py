@@ -193,12 +193,12 @@ async def on_message(message):
                 await bot.send_message(chn, "<@"+str(message.author.id)+">: " + message.content)
                 await bot.delete_message(message)
     
-    if (message.channel.id == "567801985374355476"):
-        if message.attachments:
-            pic = message.attachments[0]['url']
-            picext = ['.png','.jpeg','.jpg',".bmp"]
-            for ext in picext:
-                if ext in pic:
+    #if (message.channel.id == "567801985374355476"):
+    #    if message.attachments:
+    #        pic = message.attachments[0]['url']
+    #        picext = ['.png','.jpeg','.jpg',".bmp"]
+    #        for ext in picext:
+    #            if ext in pic:
     
     if (message.channel.id == "472402996378992650"):
         if message.attachments:
