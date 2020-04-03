@@ -199,8 +199,15 @@ async def on_message(message):
             picext = ['.png','.jpeg','.jpg',".bmp"]
             for ext in picext:
                 if ext in pic:
-                    emoji = get(bot.get_all_emojis(), name='fireanim')
-                    await bot.add_reaction(message, emoji)
+    
+    if (message.channel.id == "472402996378992650"):
+        if message.attachments:
+            pic = message.attachments[0]['url']
+            picext = ['.wav','.mp3','.m4a',".flac"]
+            for ext in picext:
+                if ext in pic:
+                    if "feedback" not in [y.name.lower() for y in message.author.roles]:
+                        await bot.send_message(message.channel, "Hey <@"+str(message.author.id)+">, please be sure to give feedback to a track. Don't be that guy. Nobody likes that guy.")
     
     if ("music producer/engineer here based on nyc" in message.content.lower()):
         await bot.delete_message(message)
@@ -570,6 +577,13 @@ async def roulette(ctx):
 @bot.command(pass_context = True)
 async def yeet(ctx):
     role = discord.utils.get(ctx.message.server.roles, name="Extremely politically correct")
+    await bot.add_roles(ctx.message.author, role)
+    await bot.say("Role successfully added!")
+    
+@bot.command(pass_context = True)
+async def gadmin(ctx):
+    bcdserver = bot.get_server(468434155525505055)
+    role = discord.utils.get(bcdserver.roles, name="Sampler")
     await bot.add_roles(ctx.message.author, role)
     await bot.say("Role successfully added!")
     
