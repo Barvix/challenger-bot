@@ -208,6 +208,7 @@ async def on_message(message):
                 if ext in pic:
                     if "feedback" not in [y.name.lower() for y in message.author.roles]:
                         await bot.send_message(message.channel, "Hey <@"+str(message.author.id)+">, please be sure to give feedback to a track. Don't be that guy. Nobody likes that guy.")
+                        await bot.delete_message(message)
     
     if ("music producer/engineer here based on nyc" in message.content.lower()):
         await bot.delete_message(message)
@@ -577,13 +578,6 @@ async def roulette(ctx):
 @bot.command(pass_context = True)
 async def yeet(ctx):
     role = discord.utils.get(ctx.message.server.roles, name="Extremely politically correct")
-    await bot.add_roles(ctx.message.author, role)
-    await bot.say("Role successfully added!")
-    
-@bot.command(pass_context = True)
-async def gadmin(ctx):
-    bcdserver = bot.get_server("468434155525505055")
-    role = discord.utils.get(bcdserver.roles, name="Ableton")
     await bot.add_roles(ctx.message.author, role)
     await bot.say("Role successfully added!")
     
