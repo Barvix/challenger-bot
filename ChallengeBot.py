@@ -284,7 +284,7 @@ async def on_message(message):
         
     if (mod_feedback is True):
         
-        feedback_barrier = 2
+        feedback_barrier = 0
         
         if (message.channel.id == "560511832322736138"):
             if message.attachments:
