@@ -163,7 +163,7 @@ async def on_ready():
         f.close()
         urls = str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)])
         rhythmchannel = bot.get_channel('560556421733810187')
-        await bot.send_message(rhythmchannel, urls)
+        #await bot.send_message(rhythmchannel, urls)
     
     dayofthemonth = datetime.datetime.today()
     dayofthemonth = dayofthemonth.day
