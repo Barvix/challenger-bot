@@ -520,11 +520,11 @@ async def kickall(ctx):
 
     for member in x:
         dontkick = False;
-        if "archive" in [y.name.lower() for y in x.roles]: dontkick = True
-        if "mod" in [y.name.lower() for y in x.roles]: dontkick = True
-        if "🎵🎵🎵VIP🎵🎵🎵" in [y.name.lower() for y in x.roles]: dontkick = True
-        if "admin" in [y.name.lower() for y in x.roles]: dontkick = True
-        if "bot" in [y.name.lower() for y in x.roles]: dontkick = True
+        if "archive" in [y.name.lower() for y in member.roles]: dontkick = True
+        if "mod" in [y.name.lower() for y in member.roles]: dontkick = True
+        if "🎵🎵🎵VIP🎵🎵🎵" in [y.name.lower() for y in member.roles]: dontkick = True
+        if "admin" in [y.name.lower() for y in member.roles]: dontkick = True
+        if "bot" in [y.name.lower() for y in member.roles]: dontkick = True
         if dontkick is True:
             chn = bot.get_channel("560534679229431808")
             await bot.send_message(chn, "<@"+str(x.id)+">: will not be kicked")
