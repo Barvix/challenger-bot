@@ -527,10 +527,10 @@ async def kickall(ctx):
         if "bot" in [y.name.lower() for y in member.roles]: dontkick = True
         if dontkick is True:
             chn = bot.get_channel("560534679229431808")
-            await bot.send_message(chn, "<@"+str(x.id)+">: will not be kicked")
+            await bot.send_message(chn, "<@"+str(member.id)+">: will not be kicked")
         if dontkick is False:
             chn = bot.get_channel("560534679229431808")
-            await bot.send_message(chn, "<@"+str(x.id)+">: will be kicked")
+            await bot.send_message(chn, "<@"+str(member.id)+">: will be kicked")
 
 @bot.event
 async def on_member_join(member):
