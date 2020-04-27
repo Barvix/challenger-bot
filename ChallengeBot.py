@@ -268,7 +268,7 @@ async def on_message(message):
 
     if "leech" in [y.name.lower() for y in message.author.roles]:
         if ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content or "http://" in message.content):
-            await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because you have the role Feedback Leech, which means you've been leaching off the community or the feedback channel. If you feel this is an error, please let someone know. To get the role removed you should have at least 10 Karma, which you can get by giving people Feedback.")
+            await bot.send_message(message.channel , "Look <@"+str(message.author.id)+">, you've been posting too many tracks dude. Like literally just tracks and nothing else. wack")
             await bot.delete_message(message)
             chn = bot.get_channel("560534679229431808")
             await bot.send_message(chn, "Deleted track posted by <@"+str(message.author.id)+">")
