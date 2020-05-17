@@ -208,6 +208,8 @@ async def on_message(message):
                 if ext in pic:
                     if "feedback" not in [y.name.lower() for y in message.author.roles]:
                         await bot.send_message(message.channel, "Hey <@"+str(message.author.id)+">, please be sure to give feedback to a track. Don't be that guy. Nobody likes that guy.")
+                        chn = bot.get_channel("560534679229431808")
+                        await bot.send_message(chn, "<@"+str(message.author.id)+">: " + message.content)
                         await bot.delete_message(message)
     
     if ("music producer/engineer here based on nyc" in message.content.lower()):
@@ -306,6 +308,8 @@ async def on_message(message):
         if ( (message.channel.id == "472402996378992650") and ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content)):
             if "feedback" not in [y.name.lower() for y in message.author.roles]:
                 await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it. To get the feedback role you must give someone feedback first. Please remember this is a **feedback** channel, not a promotion channel.")
+                chn = bot.get_channel("560534679229431808")
+                await bot.send_message(chn, "<@"+str(message.author.id)+">: " + message.content)
                 await bot.delete_message(message)
         
         if (message.channel.id == "472402996378992650" and ("http" not in message.content.lower())):    
