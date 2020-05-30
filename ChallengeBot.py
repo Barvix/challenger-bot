@@ -140,7 +140,7 @@ async def on_ready():
     print('------')
     chn = bot.get_channel(560534679229431808)
     await chn.send("Reset complete 😄")
-    mygame = "Making Music 🎹 🎼 🎧 🎤"
+    mygame = discord.Game("Making Music 🎹 🎼 🎧 🎤")
     #game = discord.Game("with the API")
     await bot.change_presence(activity=mygame)
     #await bot.change_presence(game=discord.Game(name=str(mygame)))
