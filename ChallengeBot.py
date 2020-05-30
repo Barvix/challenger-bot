@@ -49,7 +49,7 @@ def downloadfile(amount):
     )
     
     filename = "karma.txt"
-    member = "428972162779578368"
+    member = 428972162779578368
     
     BUCKET_NAME = 'cloud-cube' # replace with your bucket name
     ky = os.environ['CLOUDCUBE_KEY']
@@ -138,8 +138,8 @@ async def on_ready():
     print("Challenge Bot")
     print(bot.user.id)
     print('------')
-    chn = bot.get_channel("560534679229431808")
-    await bot.send_message(chn, "Reset complete 😄")
+    chn = bot.get_channel(560534679229431808)
+    await chn.send("Reset complete 😄")
     mygame = "Making Music 🎹 🎼 🎧 🎤"
     await bot.change_presence(game=discord.Game(name=str(mygame)))
     
@@ -149,7 +149,7 @@ async def on_ready():
     region_name='us-west-1'
     )
     
-    #for server in bot.servers:
+    #for server in bot.guilds:
     #    print(server.id+"\n")
     #    if server.id != "446157087211520030":
     #        await bot.leave_server(server) 
@@ -162,27 +162,27 @@ async def on_ready():
         x = f.readlines()
         f.close()
         urls = str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)])
-        rhythmchannel = bot.get_channel('560556421733810187')
-        #await bot.send_message(rhythmchannel, urls)
+        rhythmchannel = bot.get_channel(560556421733810187)
+        #await bot.send(rhythmchannel, urls)
     
     the_month = datetime.datetime.now().month
     print(str(the_month))
     the_day = datetime.datetime.now().day
     print(str(the_day))
     if (the_month is 5 and the_day is 30):
-        desiguser = bot.get_user("173850040568119296")
+        desiguser = bot.get_user(173850040568119296)
         em1 = os.environ['EMAIL_ONE']
         em2 = os.environ['EMAIL_TWO']
         pwd = os.environ['PASSWORD_ONE']
         emc = os.environ['EMERGENCY_CONTACT']
         themessage = "Hey guys, so if you're reading this, I guess it has all come to an end. Can we get an F in chat?\nThis also assumes I haven't been online in a week, which would've caused enough worry I'm sure based on my previous messages. However, it is best to get a confirmation with my emergency contact, aka my stepdad. Just tell him you're some friends of mine who are concerned and want to know if I'm alright. You don't *have* to do that part, however, I could just be stuck somewhere with some cell service but no internet.\nIf, y'know, I didn't make it - I would like to ask one favor, to make the recent unpublished songs i have public on both of my profiles. On Yxng Squirtle it should be the WVTER album, it's 9-12 songs, I'm still deciding as I write this. On Jake Swimmer, it's everything there.\nNo need to worry about my internet history or anything like that haha. \nI love you guys, y'all really were my second family.\nHere is everything needed.\nYxng Squirtle Email: "+em1+"\nJake Swimmer Email: "+em2+"\nPassword to both: "+pwd+"\nEmergency Contact: "+emc+"\n"
-        await bot.send_message(desiguser, themessage)
+        await desiguser.send(themessage)
     
     dayofthemonth = datetime.datetime.today()
     dayofthemonth = dayofthemonth.day
     print(str(dayofthemonth))
     if ( (dayofthemonth is 1) or (dayofthemonth is 7) or (dayofthemonth is 14) or (dayofthemonth is 21) or (dayofthemonth is 28) ):
-        serv = bot.get_guild("446157087211520030")
+        serv = bot.get_guild(446157087211520030)
 
         x = serv.members
 
@@ -199,12 +199,12 @@ async def on_message(message):
     if (message.author == bot.user):
         return
     
-    if (message.server.id == "446157087211520030"):
+    if (message.guild.id == 446157087211520030):
         if ("crack" in message.content.lower() or "pirate" in message.content.lower() or "torrent" in message.content.lower() or "legionmuzik" in message.content.lower()):
             if "mod" not in [y.name.lower() for y in message.author.roles]:
-                chn = bot.get_channel("560534679229431808")
-                await bot.send_message(chn, "<@"+str(message.author.id)+">: " + message.content)
-                await bot.delete_message(message)
+                chn = bot.get_channel(560534679229431808)
+                await chn.send("<@"+str(message.author.id)+">: " + message.content)
+                await Message.delete(message)
     
     #if (message.channel.id == "567801985374355476"):
     #    if message.attachments:
@@ -220,15 +220,15 @@ async def on_message(message):
             for ext in picext:
                 if ext in pic:
                     if "feedback" not in [y.name.lower() for y in message.author.roles]:
-                        await bot.send_message(message.channel, "Hey <@"+str(message.author.id)+">, please be sure to give feedback to a track. Don't be that guy. Nobody likes that guy.")
-                        chn = bot.get_channel("560534679229431808")
-                        await bot.send_message(chn, "<@"+str(message.author.id)+">: " + message.content)
-                        await bot.delete_message(message)
+                        await message.channel.send("Hey <@"+str(message.author.id)+">, please be sure to give feedback to a track. Don't be that guy. Nobody likes that guy.")
+                        chn = bot.get_channel(560534679229431808)
+                        await chn.send("<@"+str(message.author.id)+">: " + message.content)
+                        await Message.delete(message)
     
     if ("music producer/engineer here based on nyc" in message.content.lower()):
-        await bot.delete_message(message)
+        await Message.delete(message)
     
-    if ("https://" in message.content and message.server.id == "446157087211520030"):
+    if ("https://" in message.content and message.guild.id == 446157087211520030):
         print("Message: Read\n")
         user_join_day = message.author.joined_at.strftime("%d, %m, %y")
         message_day = datetime.datetime.now().strftime("%d, %m, %y")
@@ -242,58 +242,58 @@ async def on_message(message):
             if sub_time >= 60:
                 print("They may now post")
             if sub_time < 60:
-                if (message.channel.id is "560511832322736138"):
+                if (message.channel.id is 560511832322736138):
                     if "feedback" not in [y.name.lower() for y in message.author.roles]:
-                        await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because your account here is still new, and to avoid leech behavior this track is being deleted. In addition, this channel is for feedbacks - which requires users to give a feedback before asking for one/posting a song. If you feel this is an error please let someone know.")
-                        await bot.delete_message(message)
-                        chn = bot.get_channel("560534679229431808")
-                        await bot.send_message(chn, "Deleted track posted by <@"+str(message.author.id)+">")
-                        await bot.send_message(chn, message.content)
+                        await message.channel.send("Hey now <@"+str(message.author.id)+">, you're getting this message because your account here is still new, and to avoid leech behavior this track is being deleted. In addition, this channel is for feedbacks - which requires users to give a feedback before asking for one/posting a song. If you feel this is an error please let someone know.")
+                        await Message.delete(message)
+                        chn = bot.get_channel(560534679229431808)
+                        await chn.send("Deleted track posted by <@"+str(message.author.id)+">")
+                        await chn.send(message.content)
                     if "feedback" in [y.name.lower() for y in message.author.roles]:
                         print("They have feedback")
-                if (message.channel.id is not "560511832322736138"):
+                if (message.channel.id is not 560511832322736138):
                     if "feedback" not in [y.name.lower() for y in message.author.roles]:
-                        await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because your account here is still new. To avoid leech behavior here this track is being deleted. In the meantime, please try and engage with the community here a bit, and in up to an hour you can post your tracks. If you feel this is an error, please let someone know.")
-                        await bot.delete_message(message)
-                        chn = bot.get_channel("560534679229431808")
-                        await bot.send_message(chn, "Deleted track posted by <@"+str(message.author.id)+">")
-                        await bot.send_message(chn, message.content)
+                        await message.channel.send("Hey now <@"+str(message.author.id)+">, you're getting this message because your account here is still new. To avoid leech behavior here this track is being deleted. In the meantime, please try and engage with the community here a bit, and in up to an hour you can post your tracks. If you feel this is an error, please let someone know.")
+                        await Message.delete(message)
+                        chn = bot.get_channel(560534679229431808)
+                        await chn.send("Deleted track posted by <@"+str(message.author.id)+">")
+                        await chn.send(message.content)
                     if "feedback" in [y.name.lower() for y in message.author.roles]:
                         print("They have feedback")
     
     if "Timeout" in [y.name.lower() for y in message.author.roles]:
-        await bot.delete_message(message)
+        await Message.delete(message)
         
     if "discord.gg/" in message.content:
         if "mod" in [y.name.lower() for y in message.author.roles]:
             print("allowed to post track")
         if "mod" not in [y.name.lower() for y in message.author.roles]:
-            await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because you are posting a discord link. If you would like to have your server promoted, please see #rules and #other-discord-promotion for more info on how to get your link shared.")
-            await bot.delete_message(message)
-            chn = bot.get_channel("560534679229431808")
-            await bot.send_message(chn, "Deleted discord link posted by <@"+str(message.author.id)+">")
+            await message.channel.send("Hey now <@"+str(message.author.id)+">, you're getting this message because you are posting a discord link. If you would like to have your server promoted, please see #rules and #other-discord-promotion for more info on how to get your link shared.")
+            await Message.delete(message)
+            chn = bot.get_channel(560534679229431808)
+            await chn.send("Deleted discord link posted by <@"+str(message.author.id)+">")
     
     if "feedback leech" in [y.name.lower() for y in message.author.roles]:
         if ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content):
-            await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, you're getting this message because you have the role Feedback Leech, which means you've been leaching off the community or the feedback channel. If you feel this is an error, please let someone know. To get the role removed you should have at least 10 Karma, which you can get by giving people Feedback.")
-            await bot.delete_message(message)
-            chn = bot.get_channel("560534679229431808")
-            await bot.send_message(chn, "Deleted track posted by <@"+str(message.author.id)+">")
+            await message.channel.send("Hey now <@"+str(message.author.id)+">, you're getting this message because you have the role Feedback Leech, which means you've been leaching off the community or the feedback channel. If you feel this is an error, please let someone know. To get the role removed you should have at least 10 Karma, which you can get by giving people Feedback.")
+            await Message.delete(message)
+            chn = bot.get_channel(560534679229431808)
+            await chn.send("Deleted track posted by <@"+str(message.author.id)+">")
             print("track deleted")
 
     if "leech" in [y.name.lower() for y in message.author.roles]:
         if ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content or "http://" in message.content):
-            await bot.send_message(message.channel , "Look <@"+str(message.author.id)+">, you've been posting too many tracks dude. Like literally just tracks and nothing else. wack")
-            await bot.delete_message(message)
-            chn = bot.get_channel("560534679229431808")
-            await bot.send_message(chn, "Deleted track posted by <@"+str(message.author.id)+">")
-            await bot.send_message(chn, message.content)
+            await message.channel.send("Look <@"+str(message.author.id)+">, you've been posting too many tracks dude. Like literally just tracks and nothing else. wack")
+            await Message.delete(message)
+            chn = bot.get_channel(560534679229431808)
+            await chn.send("Deleted track posted by <@"+str(message.author.id)+">")
+            await chn.send(message.content)
             print("track deleted")
             
     if ("nigger" in message.content.lower() or "fag" in message.content.lower() or "aggot" in message.content.lower()):
-        chn = bot.get_channel("560534679229431808")
-        await bot.send_message(chn, "<@"+str(message.author.id)+">: " + message.content)
-        await bot.delete_message(message)
+        chn = bot.get_channel(560534679229431808)
+        await chn.send("<@"+str(message.author.id)+">: " + message.content)
+        await Message.delete(message)
             
     mod_feedback = True
         
@@ -301,7 +301,7 @@ async def on_message(message):
         
         feedback_barrier = 0
         
-        if (message.channel.id == "560511832322736138"):
+        if (message.channel.id == 560511832322736138):
             if message.attachments:
                 mat = message.attachments[0]['url']
                 mus_ext = ['.wav','.mp3','.flax',".aiff",".ogg",".aiff",".alac"]
@@ -313,30 +313,30 @@ async def on_message(message):
                         if "🎧🎧🎧quality feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]: cnn = 2;
                         km = karmamod(message.author.id, cnn, "sub")
                         if (km < feedback_barrier):
-                            role = discord.utils.get(message.server.roles, name="Feedback")
+                            role = discord.utils.get(message.guild.roles, name="Feedback")
                             await bot.remove_roles(message.author, role)
                         else:
                             return
         
-        if ( (message.channel.id == "472402996378992650") and ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content)):
+        if ( (message.channel.id == 472402996378992650) and ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content)):
             if "feedback" not in [y.name.lower() for y in message.author.roles]:
-                await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it. To get the feedback role you must give someone feedback first. Please remember this is a **feedback** channel, not a promotion channel.")
-                chn = bot.get_channel("560534679229431808")
-                await bot.send_message(chn, "<@"+str(message.author.id)+">: " + message.content)
-                await bot.delete_message(message)
+                await message.channel.send("Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it. To get the feedback role you must give someone feedback first. Please remember this is a **feedback** channel, not a promotion channel.")
+                chn = bot.get_channel(560534679229431808)
+                await chn.send("<@"+str(message.author.id)+">: " + message.content)
+                await Message.delete(message)
         
-        if (message.channel.id == "472402996378992650" and ("http" not in message.content.lower())):    
+        if (message.channel.id == 472402996378992650 and ("http" not in message.content.lower())):    
             if any(fbr in message.content.lower() for fbr in fb_list):
-                role = discord.utils.get(message.server.roles, name="Feedback")
+                role = discord.utils.get(message.guild.roles, name="Feedback")
                 await bot.add_roles(message.author, role)
         
-        if ( (message.channel.id == "560511832322736138") and ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content)):
+        if ( (message.channel.id == 560511832322736138) and ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content)):
             if "🎧🎧🎧quality feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
                  if "feedback" not in [y.name.lower() for y in message.author.roles]:
-                        await bot.send_message(message.channel , "Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it. To get the feedback role you need at least " + str(feedback_barrier) + " Karma, which you get automatically by giving people quality feedback.")
-                        await bot.delete_message(message)
-                        chn = bot.get_channel("560534679229431808")
-                        await bot.send_message(chn, message.content)
+                        await message.channel.send("Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it. To get the feedback role you need at least " + str(feedback_barrier) + " Karma, which you get automatically by giving people quality feedback.")
+                        await Message.delete(message)
+                        chn = bot.get_channel(560534679229431808)
+                        await chn.send(message.content)
                         #donothin = message.channel
                  if "feedback" in [y.name.lower() for y in message.author.roles]:
                     cnn = feedback_barrier;
@@ -345,7 +345,7 @@ async def on_message(message):
                     if "🎧🎧🎧quality feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]: cnn = 0;
                     km = karmamod(message.author.id, cnn, "sub")
                     if (km < feedback_barrier):
-                        role = discord.utils.get(message.server.roles, name="Feedback")
+                        role = discord.utils.get(message.guild.roles, name="Feedback")
                         await bot.remove_roles(message.author, role)
                     else:
                         return
@@ -353,12 +353,12 @@ async def on_message(message):
             if "🎧🎧🎧quality feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]:
                 return
             
-        if (message.channel.id == "560511832322736138" and ("http" not in message.content.lower())):    
+        if (message.channel.id == 560511832322736138 and ("http" not in message.content.lower())):    
             if any(fbr in message.content.lower() for fbr in fb_list):
-                role = discord.utils.get(message.server.roles, name="Feedback")
-                gfb = discord.utils.get(message.server.roles, name="Good Feedback")
-                qfb = discord.utils.get(message.server.roles, name="🎧🎧🎧Quality Feedback Giver🎧🎧🎧")
-                leech = discord.utils.get(message.server.roles, name="Leech")
+                role = discord.utils.get(message.guild.roles, name="Feedback")
+                gfb = discord.utils.get(message.guild.roles, name="Good Feedback")
+                qfb = discord.utils.get(message.guild.roles, name="🎧🎧🎧Quality Feedback Giver🎧🎧🎧")
+                leech = discord.utils.get(message.guild.roles, name="Leech")
                 
                 mg = message.content.split()
                 
@@ -398,7 +398,7 @@ async def on_message(message):
         #    print("Same ID error")
         #    return
         
-        if (fb == "428972162779578368"):
+        if (fb == 428972162779578368):
             
             if ("lyrics" in message.content.lower() and not "feedback" in message.content.lower()):
                 rand_lyrics = [
@@ -471,7 +471,7 @@ async def on_message(message):
                 feedback_message = "test text"
                 rlstein = random.randint(0,len(rand_lyrics)-1)
                 feedback_message = rand_lyrics[rlstein]
-                await bot.send_message(message.channel, feedback_message)
+                await bot.send(message.channel, feedback_message)
             
             if ("feedback" in message.content.lower()):
                 rand_feedback = random.randint(0, 31)
@@ -522,7 +522,7 @@ async def on_message(message):
                 feedback_message = "test text"
                 rlstein = random.randint(0,len(rand_fb)-1)
                 feedback_message = rand_fb[rlstein]
-                await bot.send_message(message.channel, feedback_message)
+                await bot.send(message.channel, feedback_message)
            
     await bot.process_commands(message)
 
@@ -531,7 +531,7 @@ my_server = client.get_guild('server id')
 
 @bot.command(pass_context = True)
 async def kickall(ctx):
-    serv = bot.get_guild("446157087211520030")
+    serv = bot.get_guild(446157087211520030)
 
     x = serv.members
     kickamnt = 0
@@ -544,24 +544,24 @@ async def kickall(ctx):
         if "admin" in [y.name.lower() for y in member.roles]: dontkick = True
         if "bot" in [y.name.lower() for y in member.roles]: dontkick = True
         if dontkick is True:
-            #chn = bot.get_channel("560534679229431808")
-            #await bot.send_message(chn, "<@"+str(member.id)+">: will not be kicked")
+            #chn = bot.get_channel(560534679229431808)
+            #await chn.send("<@"+str(member.id)+">: will not be kicked")
             safeamnt=safeamnt+1
         if dontkick is False:
             kickamnt=kickamnt+1
-    chn = bot.get_channel("560534679229431808")
-    await bot.send_message(chn, str(kickamnt) + " people will be kicked\n"+str(safeamnt)+" people will not be kicked")
+    chn = bot.get_channel(560534679229431808)
+    await chn.send(str(kickamnt) + " people will be kicked\n"+str(safeamnt)+" people will not be kicked")
 
 @bot.event
 async def on_member_join(member):
-    server = member.server.id
-    if (server == "446157087211520030"):
-        rules = bot.get_channel('560535198769348631')
-        getarole = bot.get_channel('560551182586609712')
-        feedbacks = bot.get_channel('560511832322736138')
+    server = member.guild.id
+    if (server == 446157087211520030):
+        rules = bot.get_channel(560535198769348631)
+        getarole = bot.get_channel(560551182586609712)
+        feedbacks = bot.get_channel(560511832322736138)
         message = 'Welcome {0.mention} to HipHop Creation Central! Please be sure to read the {1.mention}! If you need help using me head to {2.mention} and type !help\nPlease note if you want to post in {3.mention} you must first give quality feedback to someone.'.format(member,rules,getarole,feedbacks)
-        chn = bot.get_channel("560542321490264076")
-        await bot.send_message(chn, message)
+        chn = bot.get_channel(560542321490264076)
+        await chn.send(message)
     
 @bot.command(pass_context = True)
 async def help(ctx):
@@ -576,11 +576,11 @@ async def help(ctx):
     embed.add_field(name="roulette ", value="        Gives you 3 samples from youtube", inline=False)
     embed.add_field(name="sample ", value="        Gives you 1 sample from youtube", inline=False)
     embed.add_field(name="daw <daw name>", value="        Gives you a role for a specified daw. <fl studio> <ableton> <reason> <pro tools> <logic>", inline=False)
-    await bot.send_message(ctx.message.channel, embed=embed)
+    await bot.send(ctx.message.channel, embed=embed)
 
 @bot.command(pass_context = True)
 async def reset_feedback(ctx):
-    serv = bot.get_guild(ctx.message.server)
+    serv = bot.get_guild(ctx.message.guild)
     
     y = serv.members
     
@@ -594,42 +594,42 @@ async def vox23(ctx):
 
 @bot.command(pass_context = True)
 async def sample(ctx):
-    if (ctx.message.channel.id == "560556421733810187" or ctx.message.server.id != "446157087211520030"):
+    if (ctx.message.channel.id == 560556421733810187 or ctx.message.guild.id != 446157087211520030):
         f = open("BotSampleList.txt", 'r')
         x = f.readlines()
         f.close()
         urls = str(x[random.randrange(0, len(x)-1)])
         await bot.say(urls)
-    if (ctx.message.channel.id != "560556421733810187" and ctx.message.server.id == "446157087211520030"):
+    if (ctx.message.channel.id != 560556421733810187 and ctx.message.guild.id == 446157087211520030):
         await bot.say("Please use <#560556421733810187> instead so this channel doesn't get cluttered")
 
 @bot.command(pass_context = True)
 async def roulette(ctx):
     
-    if (ctx.message.channel.id == "560556421733810187" or ctx.message.server.id != "446157087211520030"):
+    if (ctx.message.channel.id == 560556421733810187 or ctx.message.guild.id != 446157087211520030):
         f = open("BotSampleList.txt", 'r')
         x = f.readlines()
         f.close()
         urls = str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)])
         await bot.say(urls)
-    if (ctx.message.channel.id != "560556421733810187" and ctx.message.server.id == "446157087211520030"):
+    if (ctx.message.channel.id != 560556421733810187 and ctx.message.guild.id == 446157087211520030):
         await bot.say("Please use <#560556421733810187> instead so this channel doesn't get cluttered")
 
 @bot.command(pass_context = True)
 async def yeet(ctx):
-    role = discord.utils.get(ctx.message.server.roles, name="Extremely politically correct")
+    role = discord.utils.get(ctx.message.guild.roles, name="Extremely politically correct")
     await bot.add_roles(ctx.message.author, role)
     await bot.say("Role successfully added!")
 
 @bot.command(pass_context = True)
 async def archive(ctx):
-    role = discord.utils.get(ctx.message.server.roles, name="archive")
+    role = discord.utils.get(ctx.message.guild.roles, name="archive")
     await bot.add_roles(ctx.message.author, role)
     await bot.say("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def twitch(ctx):
-    role = discord.utils.get(ctx.message.server.roles, name="TwitchFeedback")
+    role = discord.utils.get(ctx.message.guild.roles, name="TwitchFeedback")
     await bot.add_roles(ctx.message.author, role)
     await bot.say("Role successfully added!")
   
@@ -639,25 +639,25 @@ async def admin(ctx):
 
 @bot.command(pass_context = True)
 async def edgy(ctx):
-    role = discord.utils.get(ctx.message.server.roles, name="Extremely politically correct")
+    role = discord.utils.get(ctx.message.guild.roles, name="Extremely politically correct")
     await bot.add_roles(ctx.message.author, role)
     await bot.say("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def producer(ctx):
-    role = discord.utils.get(ctx.message.server.roles, name="🎹🎹🎹Producer🎹🎹🎹")
+    role = discord.utils.get(ctx.message.guild.roles, name="🎹🎹🎹Producer🎹🎹🎹")
     await bot.add_roles(ctx.message.author, role)
     await bot.say("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def freestyler(ctx):
-    role = discord.utils.get(ctx.message.server.roles, name="FREESTYLER")
+    role = discord.utils.get(ctx.message.guild.roles, name="FREESTYLER")
     await bot.add_roles(ctx.message.author, role)
     await bot.say("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def engineer(ctx):
-    role = discord.utils.get(ctx.message.server.roles, name="🎧🎧🎧Engineer🎧🎧🎧")
+    role = discord.utils.get(ctx.message.guild.roles, name="🎧🎧🎧Engineer🎧🎧🎧")
     await bot.add_roles(ctx.message.author, role)
     await bot.say("Role successfully added!")
   
@@ -667,44 +667,44 @@ async def feedback(ctx):
 
 @bot.command(pass_context = True)
 async def singer(ctx):
-    role = discord.utils.get(ctx.message.server.roles, name="🎤🎤🎤Singer🎤🎤🎤")
+    role = discord.utils.get(ctx.message.guild.roles, name="🎤🎤🎤Singer🎤🎤🎤")
     await bot.add_roles(ctx.message.author, role)
     await bot.say("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def artist(ctx):
-    role = discord.utils.get(ctx.message.server.roles, name="🎤🎤🎤Singer🎤🎤🎤")
+    role = discord.utils.get(ctx.message.guild.roles, name="🎤🎤🎤Singer🎤🎤🎤")
     await bot.add_roles(ctx.message.author, role)
     await bot.say("Role successfully added!")
 
 @bot.command(pass_context = True)
 async def daw(ctx, *, dawname : str):
-    role = discord.utils.get(ctx.message.server.roles, name="NONE") 
+    role = discord.utils.get(ctx.message.guild.roles, name="NONE") 
     if (dawname.lower() == "fl studio"):
-        role = discord.utils.get(ctx.message.server.roles, name="FL STUDIO")
+        role = discord.utils.get(ctx.message.guild.roles, name="FL STUDIO")
     if (dawname.lower() == "ableton"):
-        role = discord.utils.get(ctx.message.server.roles, name="ABLETON")
+        role = discord.utils.get(ctx.message.guild.roles, name="ABLETON")
     if (dawname.lower() == "reason"):
-        role = discord.utils.get(ctx.message.server.roles, name="REASON")
+        role = discord.utils.get(ctx.message.guild.roles, name="REASON")
     if (dawname.lower() == "pro tools"):
-        role = discord.utils.get(ctx.message.server.roles, name="PRO TOOLS")
+        role = discord.utils.get(ctx.message.guild.roles, name="PRO TOOLS")
     if (dawname.lower() == "reaper"):
-        role = discord.utils.get(ctx.message.server.roles, name="REAPER")
+        role = discord.utils.get(ctx.message.guild.roles, name="REAPER")
     if (dawname.lower() == "lmms"):
-        role = discord.utils.get(ctx.message.server.roles, name="LMMS")
+        role = discord.utils.get(ctx.message.guild.roles, name="LMMS")
     if (dawname.lower() == "garage band" or dawname.lower() == "garageband"):
-        role = discord.utils.get(ctx.message.server.roles, name="GARAGE BAND")
+        role = discord.utils.get(ctx.message.guild.roles, name="GARAGE BAND")
     if (dawname.lower() == "logic pro x" or dawname.lower() == "logic pro" or dawname.lower() == "logic"):
-        role = discord.utils.get(ctx.message.server.roles, name="LOGIC PRO X")
-    if (role is not discord.utils.get(ctx.message.server.roles, name="NONE")):
+        role = discord.utils.get(ctx.message.guild.roles, name="LOGIC PRO X")
+    if (role is not discord.utils.get(ctx.message.guild.roles, name="NONE")):
         await bot.add_roles(ctx.message.author, role)
         await bot.say("Role successfully added!")
-    if (role is discord.utils.get(ctx.message.server.roles, name="NONE")):
+    if (role is discord.utils.get(ctx.message.guild.roles, name="NONE")):
         await bot.say("Role not found :(")
 
 @bot.command(pass_context = True)
 async def rapper(ctx):
-    role = discord.utils.get(ctx.message.server.roles, name="🎤🎤🎤Rapper🎤🎤🎤")
+    role = discord.utils.get(ctx.message.guild.roles, name="🎤🎤🎤Rapper🎤🎤🎤")
     await bot.add_roles(ctx.message.author, role)
     await bot.say("Role successfully added!")
 
@@ -712,11 +712,11 @@ async def rapper(ctx):
 async def reset(ctx):
     id = str(ctx.message.author.id)
     
-    if (id == "173850040568119296"):
+    if (id == 173850040568119296):
         await bot.say("Resetting :D")
         exit()
         
-    if (id != "173850040568119296"):
+    if (id != 173850040568119296):
         await bot.say("Hey now, you can't use that")
 
 @bot.command(pass_context = True)
@@ -752,7 +752,7 @@ async def setkarma(ctx, amt: int, member: str):
 @bot.command(pass_context = True)
 async def viewallkarma(ctx):
     #downloadfile(0)
-    xo = karmamod("428972162779578368", 0, "add")
+    xo = karmamod(428972162779578368, 0, "add")
     msx = ""
 
     with open("karma.txt", "r") as kfile:
@@ -783,7 +783,7 @@ async def viewkarma(ctx, member : discord.Member = None):
 
     print (member)
     
-    if (member == "428972162779578368"):
+    if (member == 428972162779578368):
         noun = "I"
     
     xo = karmamod(member, 0, "add")
@@ -799,7 +799,7 @@ async def sayinchannel(ctx, roomid: str, *, msg_str: str):
     
     if "admin" in [y.name.lower() for y in ctx.message.author.roles]:
 
-        await bot.send_message(chn, msg_str)
+        await chn.send(msg_str)
         
     if "admin" not in [y.name.lower() for y in ctx.message.author.roles]:
         await bot.say("Hey now, you can't use that")
