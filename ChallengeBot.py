@@ -141,7 +141,9 @@ async def on_ready():
     chn = bot.get_channel(560534679229431808)
     await chn.send("Reset complete 😄")
     mygame = "Making Music 🎹 🎼 🎧 🎤"
-    await bot.change_presence(game=discord.Game(name=str(mygame)))
+    #game = discord.Game("with the API")
+    await bot.change_presence(activity=mygame)
+    #await bot.change_presence(game=discord.Game(name=str(mygame)))
     
     xs3 = boto3.resource('s3', 
     aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
