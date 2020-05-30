@@ -175,7 +175,7 @@ async def on_ready():
         em2 = os.environ['EMAIL_TWO']
         pwd = os.environ['PASSWORD_ONE']
         themessage = "Hey guys, so if you're reading this, I guess it has all come to an end. Can we get an F in chat?\nThis also assumes I haven't been online in a week, which would've caused enough worry I'm sure based on my previous messages. However, it is best to get a confirmation with my emergency contact, aka my stepdad. Just tell him you're some friends of mine who are concerned and want to know if I'm alright. You don't *have* to do that part, however, I could just be stuck somewhere with some cell service but no internet.\nIf, y'know, I didn't make it - I would like to ask one favor, to make the recent unpublished songs i have public on both of my profiles. On Yxng Squirtle it should be the WVTER album, it's 9-12 songs, I'm still deciding as I write this. On Jake Swimmer, it's everything there.\nNo need to worry about my internet history or anything like that haha. \nI love you guys, y'all really were my second family. ")
-        await bot.sendmessage(user, themessage)
+        await bot.send_message(user, themessage)
     
     dayofthemonth = datetime.datetime.today()
     dayofthemonth = dayofthemonth.day
