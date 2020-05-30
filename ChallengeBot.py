@@ -592,7 +592,7 @@ async def reset_feedback(ctx):
 
 @bot.command(pass_context = True)
 async def vox23(ctx):
-    await bot.say("https://cdn.discordapp.com/attachments/446169554197151744/548588579329146890/VOX_23.wav");
+    await ctx.send("https://cdn.discordapp.com/attachments/446169554197151744/548588579329146890/VOX_23.wav");
 
 @bot.command(pass_context = True)
 async def sample(ctx):
@@ -601,9 +601,9 @@ async def sample(ctx):
         x = f.readlines()
         f.close()
         urls = str(x[random.randrange(0, len(x)-1)])
-        await bot.say(urls)
+        await ctx.send(urls)
     if (ctx.message.channel.id != 560556421733810187 and ctx.message.guild.id == 446157087211520030):
-        await bot.say("Please use <#560556421733810187> instead so this channel doesn't get cluttered")
+        await ctx.send("Please use <#560556421733810187> instead so this channel doesn't get cluttered")
 
 @bot.command(pass_context = True)
 async def roulette(ctx):
@@ -613,71 +613,71 @@ async def roulette(ctx):
         x = f.readlines()
         f.close()
         urls = str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)])
-        await bot.say(urls)
+        await ctx.send(urls)
     if (ctx.message.channel.id != 560556421733810187 and ctx.message.guild.id == 446157087211520030):
-        await bot.say("Please use <#560556421733810187> instead so this channel doesn't get cluttered")
+        await ctx.send("Please use <#560556421733810187> instead so this channel doesn't get cluttered")
 
 @bot.command(pass_context = True)
 async def yeet(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="Extremely politically correct")
     await bot.add_roles(ctx.message.author, role)
-    await bot.say("Role successfully added!")
+    await ctx.send("Role successfully added!")
 
 @bot.command(pass_context = True)
 async def archive(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="archive")
     await bot.add_roles(ctx.message.author, role)
-    await bot.say("Role successfully added!")
+    await ctx.send("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def twitch(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="TwitchFeedback")
     await bot.add_roles(ctx.message.author, role)
-    await bot.say("Role successfully added!")
+    await ctx.send("Role successfully added!")
   
 @bot.command(pass_context = True)
 async def admin(ctx):
-    await bot.say("Role successfully added!")
+    await ctx.send("Role successfully added!")
 
 @bot.command(pass_context = True)
 async def edgy(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="Extremely politically correct")
     await bot.add_roles(ctx.message.author, role)
-    await bot.say("Role successfully added!")
+    await ctx.send("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def producer(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="🎹🎹🎹Producer🎹🎹🎹")
     await bot.add_roles(ctx.message.author, role)
-    await bot.say("Role successfully added!")
+    await ctx.send("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def freestyler(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="FREESTYLER")
     await bot.add_roles(ctx.message.author, role)
-    await bot.say("Role successfully added!")
+    await ctx.send("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def engineer(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="🎧🎧🎧Engineer🎧🎧🎧")
     await bot.add_roles(ctx.message.author, role)
-    await bot.say("Role successfully added!")
+    await ctx.send("Role successfully added!")
   
 @bot.command(pass_context = True)
 async def feedback(ctx):
-    await bot.say("I probably just said you need to give somebody feedback in the feedback channel to get this role. It is not difficult to give somebody feedback. c'mon. don't be that guy.")
+    await ctx.send("I probably just said you need to give somebody feedback in the feedback channel to get this role. It is not difficult to give somebody feedback. c'mon. don't be that guy.")
 
 @bot.command(pass_context = True)
 async def singer(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="🎤🎤🎤Singer🎤🎤🎤")
     await bot.add_roles(ctx.message.author, role)
-    await bot.say("Role successfully added!")
+    await ctx.send("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def artist(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="🎤🎤🎤Singer🎤🎤🎤")
     await bot.add_roles(ctx.message.author, role)
-    await bot.say("Role successfully added!")
+    await ctx.send("Role successfully added!")
 
 @bot.command(pass_context = True)
 async def daw(ctx, *, dawname : str):
@@ -700,26 +700,26 @@ async def daw(ctx, *, dawname : str):
         role = discord.utils.get(ctx.message.guild.roles, name="LOGIC PRO X")
     if (role is not discord.utils.get(ctx.message.guild.roles, name="NONE")):
         await bot.add_roles(ctx.message.author, role)
-        await bot.say("Role successfully added!")
+        await ctx.send("Role successfully added!")
     if (role is discord.utils.get(ctx.message.guild.roles, name="NONE")):
-        await bot.say("Role not found :(")
+        await ctx.send("Role not found :(")
 
 @bot.command(pass_context = True)
 async def rapper(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="🎤🎤🎤Rapper🎤🎤🎤")
     await bot.add_roles(ctx.message.author, role)
-    await bot.say("Role successfully added!")
+    await ctx.send("Role successfully added!")
 
 @bot.command(pass_context = True)
 async def reset(ctx):
     id = str(ctx.message.author.id)
     
     if (id == 173850040568119296):
-        await bot.say("Resetting :D")
+        await ctx.send("Resetting :D")
         exit()
         
     if (id != 173850040568119296):
-        await bot.say("Hey now, you can't use that")
+        await ctx.send("Hey now, you can't use that")
 
 @bot.command(pass_context = True)
 async def givekarma(ctx, member: str):
@@ -729,11 +729,11 @@ async def givekarma(ctx, member: str):
     member = member.replace("!", "")
     
     if (ctx.message.author.id == member):
-        await bot.say("Hey now, you can't give yourself karma <:gtfo:479669715669745673>")
+        await ctx.send("Hey now, you can't give yourself karma <:gtfo:479669715669745673>")
     else:
         yo = karmamod(ctx.message.author.id, 1, "sub")
         xo = karmamod(member, 1, "add")
-        await bot.say("Gave them 1 karma")
+        await ctx.send("Gave them 1 karma")
         
 
 @bot.command(pass_context = True)
@@ -746,10 +746,10 @@ async def setkarma(ctx, amt: int, member: str):
         member = member.replace("!", "")
         
         xo = karmamod(member, amt, "set")
-        await bot.say("Set their karma to " + str(xo))
+        await ctx.send("Set their karma to " + str(xo))
 
     if "mod" not in [y.name.lower() for y in ctx.message.author.roles]:
-        await bot.say("Hey now, you can't use that")
+        await ctx.send("Hey now, you can't use that")
         
 @bot.command(pass_context = True)
 async def viewallkarma(ctx):
@@ -764,7 +764,7 @@ async def viewallkarma(ctx):
                 ping,count=line.split(',')
                 ping = "<@"+ping+">"
                 msx += ping+","+count
-        #await bot.say(msx)
+        #await ctx.send(msx)
         await bot.send_file(ctx.message.channel, "karma.txt")
             
         
@@ -790,7 +790,7 @@ async def viewkarma(ctx, member : discord.Member = None):
     
     xo = karmamod(member, 0, "add")
     
-    await bot.say(noun + " have " + str(xo) + " karma.")
+    await ctx.send(noun + " have " + str(xo) + " karma.")
 
 @bot.command(pass_context = True)
 async def sayinchannel(ctx, roomid: str, *, msg_str: str):
@@ -804,6 +804,6 @@ async def sayinchannel(ctx, roomid: str, *, msg_str: str):
         await chn.send(msg_str)
         
     if "admin" not in [y.name.lower() for y in ctx.message.author.roles]:
-        await bot.say("Hey now, you can't use that")
+        await ctx.send("Hey now, you can't use that")
         
 bot.run(os.environ['BOT_TOKEN'])
