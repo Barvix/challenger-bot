@@ -325,7 +325,7 @@ async def on_message(message):
                 await message.channel.send("Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it. To get the feedback role you must give someone feedback first. Please remember this is a **feedback** channel, not a promotion channel.")
                 chn = bot.get_channel(560534679229431808)
                 await chn.send("<@"+str(message.author.id)+">: " + message.content)
-                await Message.delete(message)
+                await message.delete(message)
         
         if (message.channel.id == 472402996378992650 and ("http" not in message.content.lower())):    
             if any(fbr in message.content.lower() for fbr in fb_list):
