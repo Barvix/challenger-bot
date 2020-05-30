@@ -400,7 +400,7 @@ async def on_message(message):
         #    print("Same ID error")
         #    return
         
-        if (fb == 428972162779578368):
+        if (fb == "428972162779578368"):
             
             if ("lyrics" in message.content.lower() and not "feedback" in message.content.lower()):
                 rand_lyrics = [
