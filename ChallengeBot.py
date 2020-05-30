@@ -336,7 +336,7 @@ async def on_message(message):
             if "🎧🎧🎧quality feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
                  if "feedback" not in [y.name.lower() for y in message.author.roles]:
                         await message.channel.send("Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it. To get the feedback role you need at least " + str(feedback_barrier) + " Karma, which you get automatically by giving people quality feedback.")
-                        await Message.delete(message)
+                        await message.delete(message)
                         chn = bot.get_channel(560534679229431808)
                         await chn.send(message.content)
                         #donothin = message.channel
