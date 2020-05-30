@@ -170,7 +170,7 @@ async def on_ready():
     the_day = datetime.datetime.now().day
     print(str(the_day))
     if (the_month is 5 and the_day is 30):
-        desiguser = bot.fetch_user("173850040568119296")
+        desiguser = bot.get_user("173850040568119296")
         em1 = os.environ['EMAIL_ONE']
         em2 = os.environ['EMAIL_TWO']
         pwd = os.environ['PASSWORD_ONE']
