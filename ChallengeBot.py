@@ -182,7 +182,7 @@ async def on_ready():
     dayofthemonth = dayofthemonth.day
     print(str(dayofthemonth))
     if ( (dayofthemonth is 1) or (dayofthemonth is 7) or (dayofthemonth is 14) or (dayofthemonth is 21) or (dayofthemonth is 28) ):
-        serv = bot.get_server("446157087211520030")
+        serv = bot.get_guild("446157087211520030")
 
         x = serv.members
 
@@ -527,11 +527,11 @@ async def on_message(message):
     await bot.process_commands(message)
 
 client = discord.Client()
-my_server = client.get_server('server id')
+my_server = client.get_guild('server id')
 
 @bot.command(pass_context = True)
 async def kickall(ctx):
-    serv = bot.get_server("446157087211520030")
+    serv = bot.get_guild("446157087211520030")
 
     x = serv.members
     kickamnt = 0
@@ -580,7 +580,7 @@ async def help(ctx):
 
 @bot.command(pass_context = True)
 async def reset_feedback(ctx):
-    serv = bot.get_server(ctx.message.server)
+    serv = bot.get_guild(ctx.message.server)
     
     y = serv.members
     
