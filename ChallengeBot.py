@@ -473,7 +473,7 @@ async def on_message(message):
                 feedback_message = "test text"
                 rlstein = random.randint(0,len(rand_lyrics)-1)
                 feedback_message = rand_lyrics[rlstein]
-                await bot.send(message.channel, feedback_message)
+                await message.channel.send(feedback_message)
             
             if ("feedback" in message.content.lower()):
                 rand_feedback = random.randint(0, 31)
@@ -524,7 +524,7 @@ async def on_message(message):
                 feedback_message = "test text"
                 rlstein = random.randint(0,len(rand_fb)-1)
                 feedback_message = rand_fb[rlstein]
-                await bot.send(message.channel, feedback_message)
+                await message.channel.send(feedback_message)
            
     await bot.process_commands(message)
 
@@ -578,7 +578,7 @@ async def help(ctx):
     embed.add_field(name="roulette ", value="        Gives you 3 samples from youtube", inline=False)
     embed.add_field(name="sample ", value="        Gives you 1 sample from youtube", inline=False)
     embed.add_field(name="daw <daw name>", value="        Gives you a role for a specified daw. <fl studio> <ableton> <reason> <pro tools> <logic>", inline=False)
-    await bot.send(ctx.message.channel, embed=embed)
+    await ctx.message.channel.send(embed=embed)
 
 @bot.command(pass_context = True)
 async def reset_feedback(ctx):
