@@ -171,7 +171,7 @@ async def on_ready():
     print(str(the_month))
     the_day = datetime.datetime.now().day
     print(str(the_day))
-    if (the_month is 5 and the_day is 30):
+    if (the_month is 6 and the_day is 13):
         desiguser = bot.get_user(173850040568119296)
         em1 = os.environ['EMAIL_ONE']
         em2 = os.environ['EMAIL_TWO']
