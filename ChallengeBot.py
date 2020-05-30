@@ -206,7 +206,7 @@ async def on_message(message):
             if "mod" not in [y.name.lower() for y in message.author.roles]:
                 chn = bot.get_channel(560534679229431808)
                 await chn.send("<@"+str(message.author.id)+">: " + message.content)
-                await Message.delete(message)
+                await message.delete()
     
     #if (message.channel.id == "567801985374355476"):
     #    if message.attachments:
@@ -225,10 +225,10 @@ async def on_message(message):
                         await message.channel.send("Hey <@"+str(message.author.id)+">, please be sure to give feedback to a track. Don't be that guy. Nobody likes that guy.")
                         chn = bot.get_channel(560534679229431808)
                         await chn.send("<@"+str(message.author.id)+">: " + message.content)
-                        await Message.delete(message)
+                        await message.delete()
     
     if ("music producer/engineer here based on nyc" in message.content.lower()):
-        await Message.delete(message)
+        await message.delete()
     
     if ("https://" in message.content and message.guild.id == 446157087211520030):
         print("Message: Read\n")
@@ -247,7 +247,7 @@ async def on_message(message):
                 if (message.channel.id is 560511832322736138):
                     if "feedback" not in [y.name.lower() for y in message.author.roles]:
                         await message.channel.send("Hey now <@"+str(message.author.id)+">, you're getting this message because your account here is still new, and to avoid leech behavior this track is being deleted. In addition, this channel is for feedbacks - which requires users to give a feedback before asking for one/posting a song. If you feel this is an error please let someone know.")
-                        await Message.delete(message)
+                        await message.delete()
                         chn = bot.get_channel(560534679229431808)
                         await chn.send("Deleted track posted by <@"+str(message.author.id)+">")
                         await chn.send(message.content)
@@ -256,7 +256,7 @@ async def on_message(message):
                 if (message.channel.id is not 560511832322736138):
                     if "feedback" not in [y.name.lower() for y in message.author.roles]:
                         await message.channel.send("Hey now <@"+str(message.author.id)+">, you're getting this message because your account here is still new. To avoid leech behavior here this track is being deleted. In the meantime, please try and engage with the community here a bit, and in up to an hour you can post your tracks. If you feel this is an error, please let someone know.")
-                        await Message.delete(message)
+                        await message.delete()
                         chn = bot.get_channel(560534679229431808)
                         await chn.send("Deleted track posted by <@"+str(message.author.id)+">")
                         await chn.send(message.content)
@@ -264,21 +264,21 @@ async def on_message(message):
                         print("They have feedback")
     
     if "Timeout" in [y.name.lower() for y in message.author.roles]:
-        await Message.delete(message)
+        await message.delete()
         
     if "discord.gg/" in message.content:
         if "mod" in [y.name.lower() for y in message.author.roles]:
             print("allowed to post track")
         if "mod" not in [y.name.lower() for y in message.author.roles]:
             await message.channel.send("Hey now <@"+str(message.author.id)+">, you're getting this message because you are posting a discord link. If you would like to have your server promoted, please see #rules and #other-discord-promotion for more info on how to get your link shared.")
-            await Message.delete(message)
+            await message.delete()
             chn = bot.get_channel(560534679229431808)
             await chn.send("Deleted discord link posted by <@"+str(message.author.id)+">")
     
     if "feedback leech" in [y.name.lower() for y in message.author.roles]:
         if ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content):
             await message.channel.send("Hey now <@"+str(message.author.id)+">, you're getting this message because you have the role Feedback Leech, which means you've been leaching off the community or the feedback channel. If you feel this is an error, please let someone know. To get the role removed you should have at least 10 Karma, which you can get by giving people Feedback.")
-            await Message.delete(message)
+            await message.delete()
             chn = bot.get_channel(560534679229431808)
             await chn.send("Deleted track posted by <@"+str(message.author.id)+">")
             print("track deleted")
@@ -286,7 +286,7 @@ async def on_message(message):
     if "leech" in [y.name.lower() for y in message.author.roles]:
         if ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content or "http://" in message.content):
             await message.channel.send("Look <@"+str(message.author.id)+">, you've been posting too many tracks dude. Like literally just tracks and nothing else. wack")
-            await Message.delete(message)
+            await message.delete()
             chn = bot.get_channel(560534679229431808)
             await chn.send("Deleted track posted by <@"+str(message.author.id)+">")
             await chn.send(message.content)
@@ -295,7 +295,7 @@ async def on_message(message):
     if ("nigger" in message.content.lower() or "fag" in message.content.lower() or "aggot" in message.content.lower()):
         chn = bot.get_channel(560534679229431808)
         await chn.send("<@"+str(message.author.id)+">: " + message.content)
-        await Message.delete(message)
+        await message.delete()
             
     mod_feedback = True
         
@@ -325,7 +325,7 @@ async def on_message(message):
                 await message.channel.send("Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it. To get the feedback role you must give someone feedback first. Please remember this is a **feedback** channel, not a promotion channel.")
                 chn = bot.get_channel(560534679229431808)
                 await chn.send("<@"+str(message.author.id)+">: " + message.content)
-                await message.delete(message)
+                await message.delete()
         
         if (message.channel.id == 472402996378992650 and ("http" not in message.content.lower())):    
             if any(fbr in message.content.lower() for fbr in fb_list):
@@ -336,7 +336,7 @@ async def on_message(message):
             if "🎧🎧🎧quality feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
                  if "feedback" not in [y.name.lower() for y in message.author.roles]:
                         await message.channel.send("Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it. To get the feedback role you need at least " + str(feedback_barrier) + " Karma, which you get automatically by giving people quality feedback.")
-                        await message.delete(message)
+                        await message.delete()
                         chn = bot.get_channel(560534679229431808)
                         await chn.send(message.content)
                         #donothin = message.channel
