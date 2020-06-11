@@ -166,18 +166,6 @@ async def on_ready():
         urls = str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)])
         rhythmchannel = bot.get_channel(560556421733810187)
         #await bot.send(rhythmchannel, urls)
-    
-    dayofthemonth = datetime.datetime.today()
-    dayofthemonth = dayofthemonth.day
-    print(str(dayofthemonth))
-    if ( (dayofthemonth is 1) or (dayofthemonth is 7) or (dayofthemonth is 14) or (dayofthemonth is 21) or (dayofthemonth is 28) ):
-        serv = bot.get_guild(446157087211520030)
-
-        x = serv.members
-
-        for str(member) in x:
-            role = discord.utils.get(serv.roles, name='Feedback')
-            #await message.author.remove_roles(member, role)
         
 @bot.event
 async def on_message(message):
@@ -607,19 +595,19 @@ async def roulette(ctx):
 @bot.command(pass_context = True)
 async def yeet(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="Extremely politically correct")
-    await message.author.add_roles(ctx.message.author, role)
+    await ctx.message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
 
 @bot.command(pass_context = True)
 async def archive(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="archive")
-    await message.author.add_roles(ctx.message.author, role)
+    await ctx.message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def twitch(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="TwitchFeedback")
-    await message.author.add_roles(ctx.message.author, role)
+    await ctx.message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
   
 @bot.command(pass_context = True)
@@ -629,25 +617,25 @@ async def admin(ctx):
 @bot.command(pass_context = True)
 async def edgy(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="Extremely politically correct")
-    await message.author.add_roles(ctx.message.author, role)
+    await ctx.message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def producer(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="🎹🎹🎹Producer🎹🎹🎹")
-    await message.author.add_roles(ctx.message.author, role)
+    await ctx.message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def freestyler(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="FREESTYLER")
-    await message.author.add_roles(ctx.message.author, role)
+    await ctx.message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def engineer(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="🎧🎧🎧Engineer🎧🎧🎧")
-    await message.author.add_roles(ctx.message.author, role)
+    await ctx.message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
   
 @bot.command(pass_context = True)
@@ -657,13 +645,13 @@ async def feedback(ctx):
 @bot.command(pass_context = True)
 async def singer(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="🎤🎤🎤Singer🎤🎤🎤")
-    await message.author.add_roles(ctx.message.author, role)
+    await ctx.message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def artist(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="🎤🎤🎤Singer🎤🎤🎤")
-    await message.author.add_roles(ctx.message.author, role)
+    await ctx.message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
 
 @bot.command(pass_context = True)
@@ -686,7 +674,7 @@ async def daw(ctx, *, dawname : str):
     if (dawname.lower() == "logic pro x" or dawname.lower() == "logic pro" or dawname.lower() == "logic"):
         role = discord.utils.get(ctx.message.guild.roles, name="LOGIC PRO X")
     if (role is not discord.utils.get(ctx.message.guild.roles, name="NONE")):
-        await message.author.add_roles(ctx.message.author, role)
+        await ctx.message.author.add_roles(ctx.message.author, role)
         await ctx.send("Role successfully added!")
     if (role is discord.utils.get(ctx.message.guild.roles, name="NONE")):
         await ctx.send("Role not found :(")
@@ -694,7 +682,7 @@ async def daw(ctx, *, dawname : str):
 @bot.command(pass_context = True)
 async def rapper(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="🎤🎤🎤Rapper🎤🎤🎤")
-    await message.author.add_roles(ctx.message.author, role)
+    await ctx.message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
 
 @bot.command(pass_context = True)
