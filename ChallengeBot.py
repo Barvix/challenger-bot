@@ -288,7 +288,7 @@ async def on_message(message):
                         if "feedback" in [y.name.lower() for y in message.author.roles]: cnn = 2;
                         if "good feedback" in [y.name.lower() for y in message.author.roles]: cnn = 2;
                         if "🎧🎧🎧quality feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]: cnn = 2;
-                        km = karmamod(message.author.id, cnn, "sub")
+                        km = karmamod(str(message.author.id), cnn, "sub")
                         if (km < feedback_barrier):
                             role = discord.utils.get(message.guild.roles, name="Feedback")
                             await message.author.remove_roles(message.author, role)
@@ -320,7 +320,7 @@ async def on_message(message):
                     if "feedback" in [y.name.lower() for y in message.author.roles]: cnn = 2;
                     if "good feedback" in [y.name.lower() for y in message.author.roles]: cnn = 1;
                     if "🎧🎧🎧quality feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]: cnn = 0;
-                    km = karmamod(message.author.id, cnn, "sub")
+                    km = karmamod(str(message.author.id), cnn, "sub")
                     if (km < feedback_barrier):
                         role = discord.utils.get(message.guild.roles, name="Feedback")
                         await message.author.remove_roles(message.author, role)
@@ -355,7 +355,7 @@ async def on_message(message):
                     
                 print("points from feedback " + str(points))
                 
-                xo = karmamod(message.author.id, points, "add")
+                xo = karmamod(str(message.author.id), points, "add")
                 if (xo >= feedback_barrier):
                     await message.author.add_roles(message.author, role)
                 if (xo >= 10):
