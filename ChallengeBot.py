@@ -177,7 +177,7 @@ async def on_ready():
 
         for member in x:
             role = discord.utils.get(serv.roles, name='Feedback')
-            #await bot.remove_roles(member, role)
+            #await message.author.remove_roles(member, role)
         
 @bot.event
 async def on_message(message):
@@ -303,7 +303,7 @@ async def on_message(message):
                         km = karmamod(message.author.id, cnn, "sub")
                         if (km < feedback_barrier):
                             role = discord.utils.get(message.guild.roles, name="Feedback")
-                            await bot.remove_roles(message.author, role)
+                            await message.author.remove_roles(message.author, role)
                         else:
                             return
         
@@ -317,7 +317,7 @@ async def on_message(message):
         if (message.channel.id == 472402996378992650 and ("http" not in message.content.lower())):    
             if any(fbr in message.content.lower() for fbr in fb_list):
                 role = discord.utils.get(message.guild.roles, name="Feedback")
-                await bot.add_roles(message.author, role)
+                await message.author.add_roles(message.author, role)
         
         if ( (message.channel.id == 560511832322736138) and ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content)):
             if "🎧🎧🎧quality feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
@@ -335,7 +335,7 @@ async def on_message(message):
                     km = karmamod(message.author.id, cnn, "sub")
                     if (km < feedback_barrier):
                         role = discord.utils.get(message.guild.roles, name="Feedback")
-                        await bot.remove_roles(message.author, role)
+                        await message.author.remove_roles(message.author, role)
                     else:
                         return
                             
@@ -369,13 +369,13 @@ async def on_message(message):
                 
                 xo = karmamod(message.author.id, points, "add")
                 if (xo >= feedback_barrier):
-                    await bot.add_roles(message.author, role)
+                    await message.author.add_roles(message.author, role)
                 if (xo >= 10):
-                    await bot.remove_roles(message.author, leech)
-                    await bot.add_roles(message.author, gfb)
+                    await message.author.remove_roles(message.author, leech)
+                    await message.author.add_roles(message.author, gfb)
                 if (xo >= 20):
-                    await bot.remove_roles(message.author, leech)
-                    await bot.add_roles(message.author, qfb)
+                    await message.author.remove_roles(message.author, leech)
+                    await message.authormessage.author.add_roles(message.author, qfb)
         
     if ("@" in message.content.lower()):
         
@@ -575,7 +575,7 @@ async def reset_feedback(ctx):
     
     for member in y:
         role = discord.utils.get(serv.roles, name='Feedback')
-        await bot.remove_roles(member, role)
+        await message.author.remove_roles(member, role)
 
 @bot.command(pass_context = True)
 async def vox23(ctx):
@@ -607,19 +607,19 @@ async def roulette(ctx):
 @bot.command(pass_context = True)
 async def yeet(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="Extremely politically correct")
-    await bot.add_roles(ctx.message.author, role)
+    await message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
 
 @bot.command(pass_context = True)
 async def archive(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="archive")
-    await bot.add_roles(ctx.message.author, role)
+    await message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def twitch(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="TwitchFeedback")
-    await bot.add_roles(ctx.message.author, role)
+    await message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
   
 @bot.command(pass_context = True)
@@ -629,25 +629,25 @@ async def admin(ctx):
 @bot.command(pass_context = True)
 async def edgy(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="Extremely politically correct")
-    await bot.add_roles(ctx.message.author, role)
+    await message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def producer(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="🎹🎹🎹Producer🎹🎹🎹")
-    await bot.add_roles(ctx.message.author, role)
+    await message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def freestyler(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="FREESTYLER")
-    await bot.add_roles(ctx.message.author, role)
+    await message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def engineer(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="🎧🎧🎧Engineer🎧🎧🎧")
-    await bot.add_roles(ctx.message.author, role)
+    await message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
   
 @bot.command(pass_context = True)
@@ -657,13 +657,13 @@ async def feedback(ctx):
 @bot.command(pass_context = True)
 async def singer(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="🎤🎤🎤Singer🎤🎤🎤")
-    await bot.add_roles(ctx.message.author, role)
+    await message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
     
 @bot.command(pass_context = True)
 async def artist(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="🎤🎤🎤Singer🎤🎤🎤")
-    await bot.add_roles(ctx.message.author, role)
+    await message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
 
 @bot.command(pass_context = True)
@@ -686,7 +686,7 @@ async def daw(ctx, *, dawname : str):
     if (dawname.lower() == "logic pro x" or dawname.lower() == "logic pro" or dawname.lower() == "logic"):
         role = discord.utils.get(ctx.message.guild.roles, name="LOGIC PRO X")
     if (role is not discord.utils.get(ctx.message.guild.roles, name="NONE")):
-        await bot.add_roles(ctx.message.author, role)
+        await message.author.add_roles(ctx.message.author, role)
         await ctx.send("Role successfully added!")
     if (role is discord.utils.get(ctx.message.guild.roles, name="NONE")):
         await ctx.send("Role not found :(")
@@ -694,7 +694,7 @@ async def daw(ctx, *, dawname : str):
 @bot.command(pass_context = True)
 async def rapper(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="🎤🎤🎤Rapper🎤🎤🎤")
-    await bot.add_roles(ctx.message.author, role)
+    await message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
 
 @bot.command(pass_context = True)
