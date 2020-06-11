@@ -92,7 +92,7 @@ def karmamod(member, amount, mod):
     KEY = ky + "/" + filename # replace with your object key
 
     if os.path.exists('karma.txt'):
-        if member in open('karma.txt').read():
+        if str(member) in open('karma.txt').read():
             mlist = [line.rstrip('\n') for line in open("karma.txt")]
 
             for idx in range(len(mlist)):
@@ -175,7 +175,7 @@ async def on_ready():
 
         x = serv.members
 
-        for member in x:
+        for str(member) in x:
             role = discord.utils.get(serv.roles, name='Feedback')
             #await message.author.remove_roles(member, role)
         
@@ -525,7 +525,7 @@ async def kickall(ctx):
     x = serv.members
     kickamnt = 0
     safeamnt = 0
-    for member in x:
+    for str(member) in x:
         dontkick = False;
         if "archive" in [y.name.lower() for y in member.roles]: dontkick = True
         if "mod" in [y.name.lower() for y in member.roles]: dontkick = True
@@ -573,7 +573,7 @@ async def reset_feedback(ctx):
     
     y = serv.members
     
-    for member in y:
+    for str(member) in y:
         role = discord.utils.get(serv.roles, name='Feedback')
         await message.author.remove_roles(member, role)
 
