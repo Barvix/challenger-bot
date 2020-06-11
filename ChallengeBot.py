@@ -506,29 +506,6 @@ async def on_message(message):
 client = discord.Client()
 my_server = client.get_guild('server id')
 
-@bot.command(pass_context = True)
-async def kickall(ctx):
-    serv = bot.get_guild(446157087211520030)
-
-    x = serv.members
-    kickamnt = 0
-    safeamnt = 0
-    for str(member) in x:
-        dontkick = False;
-        if "archive" in [y.name.lower() for y in member.roles]: dontkick = True
-        if "mod" in [y.name.lower() for y in member.roles]: dontkick = True
-        if "🎵🎵🎵VIP🎵🎵🎵" in [y.name.lower() for y in member.roles]: dontkick = True
-        if "admin" in [y.name.lower() for y in member.roles]: dontkick = True
-        if "bot" in [y.name.lower() for y in member.roles]: dontkick = True
-        if dontkick is True:
-            #chn = bot.get_channel(560534679229431808)
-            #await chn.send("<@"+str(member.id)+">: will not be kicked")
-            safeamnt=safeamnt+1
-        if dontkick is False:
-            kickamnt=kickamnt+1
-    chn = bot.get_channel(560534679229431808)
-    await chn.send(str(kickamnt) + " people will be kicked\n"+str(safeamnt)+" people will not be kicked")
-
 @bot.event
 async def on_member_join(member):
     server = member.guild.id
