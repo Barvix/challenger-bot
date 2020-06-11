@@ -533,16 +533,6 @@ async def help(ctx):
     await ctx.message.channel.send(embed=embed)
 
 @bot.command(pass_context = True)
-async def reset_feedback(ctx):
-    serv = bot.get_guild(ctx.message.guild)
-    
-    y = serv.members
-    
-    for str(member) in y:
-        role = discord.utils.get(serv.roles, name='Feedback')
-        await message.author.remove_roles(member, role)
-
-@bot.command(pass_context = True)
 async def vox23(ctx):
     await ctx.send("https://cdn.discordapp.com/attachments/446169554197151744/548588579329146890/VOX_23.wav");
 
