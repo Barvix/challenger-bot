@@ -295,42 +295,16 @@ async def on_message(message):
                         else:
                             return
         
-        if ( (message.channel.id == 472402996378992650) and ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content)):
+        channel_name = message.channel.name.lower()
+        
+        if ( ("feedback" in channel_name) and ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content)):
             if "feedback" not in [y.name.lower() for y in message.author.roles]:
                 await message.channel.send("Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it. To get the feedback role you must give someone feedback first. Please remember this is a **feedback** channel, not a promotion channel.")
                 chn = bot.get_channel(560534679229431808)
                 await chn.send("<@"+str(message.author.id)+">: " + message.content)
                 await message.delete()
         
-        if (message.channel.id == 472402996378992650 and ("http" not in message.content.lower())):    
-            if any(fbr in message.content.lower() for fbr in fb_list):
-                role = discord.utils.get(message.guild.roles, name="Feedback")
-                await message.author.add_roles(role)
-        
-        if ( (message.channel.id == 560511832322736138) and ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content)):
-            if "🎧🎧🎧quality feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
-                 if "feedback" not in [y.name.lower() for y in message.author.roles]:
-                        await message.channel.send("Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it. To get the feedback role you need at least " + str(feedback_barrier) + " Karma, which you get automatically by giving people quality feedback.")
-                        await message.delete()
-                        chn = bot.get_channel(560534679229431808)
-                        await chn.send(message.content)
-                        #donothin = message.channel
-                 if "feedback" in [y.name.lower() for y in message.author.roles]:
-                    cnn = feedback_barrier;
-                    if "feedback" in [y.name.lower() for y in message.author.roles]: cnn = 2;
-                    if "good feedback" in [y.name.lower() for y in message.author.roles]: cnn = 1;
-                    if "🎧🎧🎧quality feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]: cnn = 0;
-                    km = karmamod(str(message.author.id), cnn, "sub")
-                    if (km < feedback_barrier):
-                        role = discord.utils.get(message.guild.roles, name="Feedback")
-                        await message.author.remove_roles(message.author, role)
-                    else:
-                        return
-                            
-            if "🎧🎧🎧quality feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]:
-                return
-            
-        if (message.channel.id == 560511832322736138 and ("http" not in message.content.lower())):    
+        if ("feedback" in channel_name and ("http" not in message.content.lower())):    
             if any(fbr in message.content.lower() for fbr in fb_list):
                 role = discord.utils.get(message.guild.roles, name="Feedback")
                 await message.author.add_roles(role)
