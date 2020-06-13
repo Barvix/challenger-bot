@@ -302,7 +302,7 @@ async def on_message(message):
                 await chn.send("<@"+str(message.author.id)+">: " + message.content)
                 await message.delete()
         
-        if (message.channel.id == 560511832322736138 and ("http" not in message.content.lower())):    
+        if (message.channel.id == 472402996378992650 and ("http" not in message.content.lower())):    
             if any(fbr in message.content.lower() for fbr in fb_list):
                 role = discord.utils.get(message.guild.roles, name="Feedback")
                 await message.author.add_roles(role)
@@ -333,7 +333,7 @@ async def on_message(message):
         if (message.channel.id == 560511832322736138 and ("http" not in message.content.lower())):    
             if any(fbr in message.content.lower() for fbr in fb_list):
                 role = discord.utils.get(message.guild.roles, name="Feedback")
-                await message.author.add_roles(message.guild.id, message.author.id, role.id)
+                await message.author.add_roles(role)
         
     if ("@" in message.content.lower()):
         
