@@ -305,7 +305,7 @@ async def on_message(message):
         if (message.channel.id == 560511832322736138 and ("http" not in message.content.lower())):    
             if any(fbr in message.content.lower() for fbr in fb_list):
                 role = discord.utils.get(message.guild.roles, name="Feedback")
-                await message.author.add_roles(message.guild, message.author, role)
+                await message.author.add_roles(role)
         
         if ( (message.channel.id == 560511832322736138) and ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content)):
             if "🎧🎧🎧quality feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
