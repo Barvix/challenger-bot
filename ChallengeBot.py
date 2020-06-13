@@ -302,10 +302,10 @@ async def on_message(message):
                 await chn.send("<@"+str(message.author.id)+">: " + message.content)
                 await message.delete()
         
-        if (message.channel.id == 472402996378992650 and ("http" not in message.content.lower())):    
+        if (message.channel.id == 560511832322736138 and ("http" not in message.content.lower())):    
             if any(fbr in message.content.lower() for fbr in fb_list):
                 role = discord.utils.get(message.guild.roles, name="Feedback")
-                await message.author.add_roles(message.author, role)
+                await message.author.add_roles(message.guild.id, message.author.id, role.id)
         
         if ( (message.channel.id == 560511832322736138) and ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content)):
             if "🎧🎧🎧quality feedback giver🎧🎧🎧" not in [y.name.lower() for y in message.author.roles]:
@@ -333,37 +333,7 @@ async def on_message(message):
         if (message.channel.id == 560511832322736138 and ("http" not in message.content.lower())):    
             if any(fbr in message.content.lower() for fbr in fb_list):
                 role = discord.utils.get(message.guild.roles, name="Feedback")
-                gfb = discord.utils.get(message.guild.roles, name="Good Feedback")
-                qfb = discord.utils.get(message.guild.roles, name="🎧🎧🎧Quality Feedback Giver🎧🎧🎧")
-                leech = discord.utils.get(message.guild.roles, name="Leech")
-                
-                mg = message.content.split()
-                
-                points = 0
-                
-                mgr  = [word for word in mg if word.lower() in fb_list]
-                
-                for i in mgr:
-                    index = fb_list.index(i)
-                    pz = fb_points[index]
-                    if (points > 0 and pz < 0):
-                        return
-                    if (pz >= 0):
-                        points+=pz
-                    if (pz < 0 and points < 1):
-                        points += pz
-                    
-                print("points from feedback " + str(points))
-                
-                xo = karmamod(str(message.author.id), points, "add")
-                if (xo >= feedback_barrier):
-                    await message.author.add_roles(message.author, role)
-                if (xo >= 10):
-                    await message.author.remove_roles(message.author, leech)
-                    await message.author.add_roles(message.author, gfb)
-                if (xo >= 20):
-                    await message.author.remove_roles(message.author, leech)
-                    await message.authormessage.author.add_roles(message.author, qfb)
+                await message.author.add_roles(message.guild.id, message.author.id, role.id)
         
     if ("@" in message.content.lower()):
         
