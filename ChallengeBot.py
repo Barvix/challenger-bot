@@ -171,7 +171,7 @@ async def on_ready():
 async def on_reaction_add(reaction, user):
     #get reaction message channel
     #reaction.emoji.id
-    role = discord.utils.get(message.guild.roles, name="VOTED")
+    role = discord.utils.get(reaction.message.guild.roles, name="VOTED")
     await user.add_roles(role)
         
 @bot.event
