@@ -166,6 +166,13 @@ async def on_ready():
         urls = str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)])
         rhythmchannel = bot.get_channel(560556421733810187)
         #await bot.send(rhythmchannel, urls)
+
+@bot.event
+async def on_reaction_add(reaction, user):
+    #get reaction message channel
+    #reaction.emoji.id
+    role = discord.utils.get(message.guild.roles, name="VOTED")
+    await user.add_roles(role)
         
 @bot.event
 async def on_message(message):
