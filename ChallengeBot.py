@@ -506,7 +506,7 @@ async def sample(ctx):
 
 @bot.command(pass_context = True)
 async def remove_message(cid, mid):
-    await client.http.delete_message(cid, mid)
+    await bot.http.delete_message(cid, mid)
         
 @bot.command(pass_context = True)
 async def roulette(ctx):
