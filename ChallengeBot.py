@@ -505,8 +505,9 @@ async def sample(ctx):
         await ctx.send("Please use <#560556421733810187> instead so this channel doesn't get cluttered")
 
 @bot.command(pass_context = True)
-async def remove_message(cid, mid):
-    await bot.http.delete_message(cid, mid)
+async def remove_message(mid):
+    msg = await ctx.fetch_message( int(mid) )
+    await msg.delete()
         
 @bot.command(pass_context = True)
 async def roulette(ctx):
