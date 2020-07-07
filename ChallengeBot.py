@@ -213,9 +213,10 @@ async def on_message(message):
     if ("music producer/engineer here based on nyc" in message.content.lower()):
         await message.delete()
     
-    if ("https://" in message.content and message.author == 295297939977535488 and "prom" in message.content):
-        await message.channel.send("Dude . . . no")
-        await message.delete()
+    if ("https://" in message.content and message.author == 295297939977535488):
+        if ("prom" in message.content or "attention" in message.content or "plays" in message.content or "user" in message.content):
+            await message.channel.send("Dude . . . no")
+            await message.delete()
     
     if ("https://" in message.content and message.guild.id == 446157087211520030):
         print("Message: Read\n")
@@ -503,6 +504,10 @@ async def sample(ctx):
     if (ctx.message.channel.id != 560556421733810187 and ctx.message.guild.id == 446157087211520030):
         await ctx.send("Please use <#560556421733810187> instead so this channel doesn't get cluttered")
 
+@bot.command(pass_context = True)
+async def remove_message(cid, mid):
+    await client.http.delete_message(cid, mid)
+        
 @bot.command(pass_context = True)
 async def roulette(ctx):
     
