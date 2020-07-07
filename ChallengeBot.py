@@ -213,6 +213,10 @@ async def on_message(message):
     if ("music producer/engineer here based on nyc" in message.content.lower()):
         await message.delete()
     
+    if ("https://" in message.content and message.author == 295297939977535488 and "prom" in message.content):
+        await message.channel.send("Dude . . . no")
+        await message.delete()
+    
     if ("https://" in message.content and message.guild.id == 446157087211520030):
         print("Message: Read\n")
         user_join_day = message.author.joined_at.strftime("%d, %m, %y")
