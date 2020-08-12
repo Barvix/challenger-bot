@@ -325,7 +325,7 @@ async def on_message(message):
                 for ext in mus_ext:
                     if ext in mat:
                         if "feedback" not in [y.name.lower() for y in message.author.roles]:
-                           await message.channel.send("Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it. To get the feedback role you must give someone feedback first. Please remember this is a **feedback** channel, not a promotion channel.")
+                            await message.channel.send("Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it. To get the feedback role you must give someone feedback first. Please remember this is a **feedback** channel, not a promotion channel.")
                             chn = bot.get_channel(560534679229431808)
                             await chn.send("<@"+str(message.author.id)+">: " + message.content)
                             await message.delete()
