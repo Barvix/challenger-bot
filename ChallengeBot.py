@@ -261,7 +261,7 @@ async def on_message(message):
             await message.channel.send("Hey now <@"+str(message.author.id)+">, you're getting this message because you are posting a discord link. For more information please see <#560535198769348631>")
             await message.delete()
             chn = bot.get_channel(560534679229431808)
-            await chn.send("Deleted discord link posted by <@"+str(message.author.id)+">)
+            await chn.send("Deleted discord link posted by <@"+str(message.author.id)+">")
             await chn.send(message.content)
     
     if "feedback leech" in [y.name.lower() for y in message.author.roles]:
