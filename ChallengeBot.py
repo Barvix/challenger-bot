@@ -258,10 +258,11 @@ async def on_message(message):
         if "mod" in [y.name.lower() for y in message.author.roles]:
             print("allowed to post track")
         if "mod" not in [y.name.lower() for y in message.author.roles]:
-            await message.channel.send("Hey now <@"+str(message.author.id)+">, you're getting this message because you are posting a discord link. If you would like to have your server promoted, please see #rules and #other-discord-promotion for more info on how to get your link shared.")
+            await message.channel.send("Hey now <@"+str(message.author.id)+">, you're getting this message because you are posting a discord link. For more information please see <#560535198769348631>")
             await message.delete()
             chn = bot.get_channel(560534679229431808)
-            await chn.send("Deleted discord link posted by <@"+str(message.author.id)+">")
+            await chn.send("Deleted discord link posted by <@"+str(message.author.id)+">)
+            await chn.send(message.content)
     
     if "feedback leech" in [y.name.lower() for y in message.author.roles]:
         if ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content):
@@ -316,6 +317,20 @@ async def on_message(message):
                 chn = bot.get_channel(560534679229431808)
                 await chn.send("<@"+str(message.author.id)+">: " + message.content)
                 await message.delete()
+                           
+       if ( ("feedback" in channel_name) ):
+           if message.attachments:
+                mat = message.attachments[0]['url']
+                mus_ext = ['.wav','.mp3','.flax',".aiff",".ogg",".aiff",".alac"]
+                for ext in mus_ext:
+                    if ext in mat:
+                        if "feedback" not in [y.name.lower() for y in message.author.roles]:
+                           await message.channel.send("Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it. To get the feedback role you must give someone feedback first. Please remember this is a **feedback** channel, not a promotion channel.")
+                            chn = bot.get_channel(560534679229431808)
+                            await chn.send("<@"+str(message.author.id)+">: " + message.content)
+                            await message.delete()
+                        else:
+                            return
         
         if ("feedback" in channel_name and ("http" not in message.content.lower())):    
             if any(fbr in message.content.lower() for fbr in fb_list):
@@ -511,42 +526,20 @@ async def remove_message(ctx, *, mid):
         
 @bot.command(pass_context = True)
 async def roulette(ctx):
-    
-    if (ctx.message.channel.id == 560556421733810187 or ctx.message.guild.id != 446157087211520030):
-        f = open("BotSampleList.txt", 'r')
-        x = f.readlines()
-        f.close()
-        urls = str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)])
-        await ctx.send(urls)
-    if (ctx.message.channel.id != 560556421733810187 and ctx.message.guild.id == 446157087211520030):
-        await ctx.send("Please use <#560556421733810187> instead so this channel doesn't get cluttered")
+    f = open("BotSampleList.txt", 'r')
+    x = f.readlines()
+    f.close()
+    urls = str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)])
+    await ctx.send(urls)
 
 @bot.command(pass_context = True)
 async def yeet(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="Extremely politically correct")
     await ctx.message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
-
-@bot.command(pass_context = True)
-async def archive(ctx):
-    role = discord.utils.get(ctx.message.guild.roles, name="archive")
-    await ctx.message.author.add_roles(ctx.message.author, role)
-    await ctx.send("Role successfully added!")
-    
-@bot.command(pass_context = True)
-async def twitch(ctx):
-    role = discord.utils.get(ctx.message.guild.roles, name="TwitchFeedback")
-    await ctx.message.author.add_roles(ctx.message.author, role)
-    await ctx.send("Role successfully added!")
   
 @bot.command(pass_context = True)
 async def admin(ctx):
-    await ctx.send("Role successfully added!")
-
-@bot.command(pass_context = True)
-async def edgy(ctx):
-    role = discord.utils.get(ctx.message.guild.roles, name="Extremely politically correct")
-    await ctx.message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
     
 @bot.command(pass_context = True)
@@ -556,21 +549,11 @@ async def producer(ctx):
     await ctx.send("Role successfully added!")
     
 @bot.command(pass_context = True)
-async def freestyler(ctx):
-    role = discord.utils.get(ctx.message.guild.roles, name="FREESTYLER")
-    await ctx.message.author.add_roles(ctx.message.author, role)
-    await ctx.send("Role successfully added!")
-    
-@bot.command(pass_context = True)
 async def engineer(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="🎧🎧🎧Engineer🎧🎧🎧")
     await ctx.message.author.add_roles(ctx.message.author, role)
     await ctx.send("Role successfully added!")
-  
-@bot.command(pass_context = True)
-async def feedback(ctx):
-    await ctx.send("I probably just said you need to give somebody feedback in the feedback channel to get this role. It is not difficult to give somebody feedback. c'mon. don't be that guy.")
-
+                           
 @bot.command(pass_context = True)
 async def singer(ctx):
     role = discord.utils.get(ctx.message.guild.roles, name="🎤🎤🎤Singer🎤🎤🎤")
@@ -624,77 +607,6 @@ async def reset(ctx):
         
     if (id != 173850040568119296):
         await ctx.send("Hey now, you can't use that")
-
-@bot.command(pass_context = True)
-async def givekarma(ctx, member: str):
-    member = member.replace("@", "")
-    member = member.replace("<", "")
-    member = member.replace(">", "")
-    member = member.replace("!", "")
-    
-    if (ctx.message.author.id == member):
-        await ctx.send("Hey now, you can't give yourself karma <:gtfo:479669715669745673>")
-    else:
-        yo = karmamod(ctx.message.author.id, 1, "sub")
-        xo = karmamod(member, 1, "add")
-        await ctx.send("Gave them 1 karma")
-        
-
-@bot.command(pass_context = True)
-async def setkarma(ctx, amt: int, member: str):
-
-    if "mod" in [y.name.lower() for y in ctx.message.author.roles]:
-        member = member.replace("@", "")
-        member = member.replace("<", "")
-        member = member.replace(">", "")
-        member = member.replace("!", "")
-        
-        xo = karmamod(member, amt, "set")
-        await ctx.send("Set their karma to " + str(xo))
-
-    if "mod" not in [y.name.lower() for y in ctx.message.author.roles]:
-        await ctx.send("Hey now, you can't use that")
-        
-@bot.command(pass_context = True)
-async def viewallkarma(ctx):
-    #downloadfile(0)
-    xo = karmamod(428972162779578368, 0, "add")
-    msx = ""
-
-    with open("karma.txt", "r") as kfile:
-
-        for line in kfile:
-            if (line is not '\n'):
-                ping,count=line.split(',')
-                ping = "<@"+ping+">"
-                msx += ping+","+count
-        #await ctx.send(msx)
-        await bot.send_file(ctx.message.channel, "karma.txt")
-            
-        
-@bot.command(pass_context = True)
-async def viewkarma(ctx, member : discord.Member = None):
-
-    noun = "They"
-
-    if (member is not None):
-        member = str(member.id)
-        member = member.replace("@", "")
-        member = member.replace("<", "")
-        member = member.replace(">", "")
-        member = member.replace("!", "")
-    if member is None:
-        member = str(ctx.message.author.id)
-        noun = "You"
-
-    print (member)
-    
-    if (member == 428972162779578368):
-        noun = "I"
-    
-    xo = karmamod(member, 0, "add")
-    
-    await ctx.send(noun + " have " + str(xo) + " karma.")
 
 @bot.command(pass_context = True)
 async def sayinchannel(ctx, roomid: str, *, msg_str: str):
