@@ -318,8 +318,8 @@ async def on_message(message):
                 await chn.send("<@"+str(message.author.id)+">: " + message.content)
                 await message.delete()
                            
-       if ( ("feedback" in channel_name) ):
-           if message.attachments:
+        if ("feedback" in channel_name):
+            if message.attachments:
                 mat = message.attachments[0]['url']
                 mus_ext = ['.wav','.mp3','.flax',".aiff",".ogg",".aiff",".alac"]
                 for ext in mus_ext:
