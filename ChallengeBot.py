@@ -166,6 +166,10 @@ async def on_ready():
             if "feedback" in [y.name.lower() for y in member.roles]:
                 role = discord.utils.get(reaction.message.guild.roles, name="Feedback")
                 await message.author.remove_roles(message.author, role)
+            if "posted track" in [y.name.lower() for y in member.roles]:
+                role = discord.utils.get(reaction.message.guild.roles, name="Posted Track")
+                await message.author.remove_roles(message.author, role)
+            
 
 @bot.event
 async def on_reaction_add(reaction, user):
