@@ -176,7 +176,7 @@ async def on_reaction_add(reaction, user):
     #get reaction message channel
     #reaction.emoji.id
     if (reaction.message.author is not user):
-    print( reaction.message.channel.id )
+        print( reaction.message.channel.id )
         if (reaction.message.channel.id is 560511978255286314):
             role = discord.utils.get(reaction.message.guild.roles, name="VOTED")
             await user.add_roles(role)
