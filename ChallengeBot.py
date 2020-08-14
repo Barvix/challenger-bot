@@ -141,9 +141,7 @@ async def on_ready():
     chn = bot.get_channel(560534679229431808)
     await chn.send("Reset complete 😄")
     mygame = discord.Game("Making Music 🎹 🎼 🎧 🎤")
-    #game = discord.Game("with the API")
     await bot.change_presence(activity=mygame)
-    #await bot.change_presence(game=discord.Game(name=str(mygame)))
     
     xs3 = boto3.resource('s3', 
     aws_access_key_id=os.environ['CLOUDCUBE_ACCESS_KEY_ID'],
@@ -160,20 +158,23 @@ async def on_ready():
     thedate = thedate.weekday()
     print(str(thedate))
     if (thedate is 6):
-        f = open("BotSampleList.txt", 'r')
-        x = f.readlines()
-        f.close()
-        urls = str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)]) + "\n" + str(x[random.randrange(0, len(x)-1)])
-        rhythmchannel = bot.get_channel(560556421733810187)
-        #await bot.send(rhythmchannel, urls)
+        server = bot.get_guild(446157087211520030)
+        for member in server.members:
+            if "voted" in [y.name.lower() for y in member.roles]:
+                role = discord.utils.get(reaction.message.guild.roles, name="Voted")
+                await message.author.remove_roles(message.author, role)
+            if "feedback" in [y.name.lower() for y in member.roles]:
+                role = discord.utils.get(reaction.message.guild.roles, name="Feedback")
+                await message.author.remove_roles(message.author, role)
 
 @bot.event
 async def on_reaction_add(reaction, user):
     #get reaction message channel
     #reaction.emoji.id
     if (reaction.message.author is not user):
-        role = discord.utils.get(reaction.message.guild.roles, name="VOTED")
-        await user.add_roles(role)
+        if (reaction.message.channel.id is 560511978255286314):
+            role = discord.utils.get(reaction.message.guild.roles, name="VOTED")
+            await user.add_roles(role)
         
 @bot.event
 async def on_message(message):
@@ -209,14 +210,6 @@ async def on_message(message):
                         chn = bot.get_channel(560534679229431808)
                         await chn.send("<@"+str(message.author.id)+">: " + message.content)
                         await message.delete()
-    
-    if ("music producer/engineer here based on nyc" in message.content.lower()):
-        await message.delete()
-    
-    if ("https://" in message.content and message.author == 295297939977535488):
-        if ("prom" in message.content or "attention" in message.content or "plays" in message.content or "user" in message.content):
-            await message.channel.send("Dude . . . no")
-            await message.delete()
     
     if ("https://" in message.content and message.guild.id == 446157087211520030):
         print("Message: Read\n")
@@ -263,14 +256,6 @@ async def on_message(message):
             chn = bot.get_channel(560534679229431808)
             await chn.send("Deleted discord link posted by <@"+str(message.author.id)+">")
             await chn.send(message.content)
-    
-    if "feedback leech" in [y.name.lower() for y in message.author.roles]:
-        if ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content):
-            await message.channel.send("Hey now <@"+str(message.author.id)+">, you're getting this message because you have the role Feedback Leech, which means you've been leaching off the community or the feedback channel. If you feel this is an error, please let someone know. To get the role removed you should have at least 10 Karma, which you can get by giving people Feedback.")
-            await message.delete()
-            chn = bot.get_channel(560534679229431808)
-            await chn.send("Deleted track posted by <@"+str(message.author.id)+">")
-            print("track deleted")
 
     if "leech" in [y.name.lower() for y in message.author.roles]:
         if ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content or "http://" in message.content):
@@ -289,34 +274,15 @@ async def on_message(message):
     mod_feedback = True
         
     if (mod_feedback is True):
-        
-        feedback_barrier = 0
-        
-        if (message.channel.id == 560511832322736138):
-            if message.attachments:
-                mat = message.attachments[0]['url']
-                mus_ext = ['.wav','.mp3','.flax',".aiff",".ogg",".aiff",".alac"]
-                for ext in mus_ext:
-                    if ext in mat:
-                        cnn = feedback_barrier;
-                        if "feedback" in [y.name.lower() for y in message.author.roles]: cnn = 2;
-                        if "good feedback" in [y.name.lower() for y in message.author.roles]: cnn = 2;
-                        if "🎧🎧🎧quality feedback giver🎧🎧🎧" in [y.name.lower() for y in message.author.roles]: cnn = 2;
-                        km = karmamod(str(message.author.id), cnn, "sub")
-                        if (km < feedback_barrier):
-                            role = discord.utils.get(message.guild.roles, name="Feedback")
-                            await message.author.remove_roles(message.author, role)
-                        else:
-                            return
-        
-        channel_name = message.channel.name.lower()
-        
         if ( ("feedback" in channel_name) and ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content)):
-            if "feedback" not in [y.name.lower() for y in message.author.roles]:
+            if ("feedback" not in [y.name.lower() for y in message.author.roles]) or ("posted track" in [y.name.lower() for y in message.author.roles]):
                 await message.channel.send("Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it. To get the feedback role you must give someone feedback first. Please remember this is a **feedback** channel, not a promotion channel.")
                 chn = bot.get_channel(560534679229431808)
                 await chn.send("<@"+str(message.author.id)+">: " + message.content)
                 await message.delete()
+            if ("feedback" in [y.name.lower() for y in message.author.roles]) and ("posted track" not in [y.name.lower() for y in message.author.roles]):
+                role = discord.utils.get(message.guild.roles, name="Posted Track")
+                await message.author.add_roles(role)
                            
         if ("feedback" in channel_name):
             if message.attachments:
@@ -324,13 +290,14 @@ async def on_message(message):
                 mus_ext = ['.wav','.mp3','.flax',".aiff",".ogg",".aiff",".alac"]
                 for ext in mus_ext:
                     if ext in mat:
-                        if "feedback" not in [y.name.lower() for y in message.author.roles]:
+                        if ("feedback" not in [y.name.lower() for y in message.author.roles]) or ("posted track" in [y.name.lower() for y in message.author.roles]):
                             await message.channel.send("Hey now <@"+str(message.author.id)+">, in order to post here you must have the feedback role, and it looks like you don't have it. To get the feedback role you must give someone feedback first. Please remember this is a **feedback** channel, not a promotion channel.")
                             chn = bot.get_channel(560534679229431808)
                             await chn.send("<@"+str(message.author.id)+">: " + message.content)
                             await message.delete()
-                        else:
-                            return
+                        if ("feedback" in [y.name.lower() for y in message.author.roles]) and ("posted track" not in [y.name.lower() for y in message.author.roles]):
+                            role = discord.utils.get(message.guild.roles, name="Posted Track")
+                            await message.author.add_roles(role)
         
         if ("feedback" in channel_name and ("http" not in message.content.lower())):    
             if any(fbr in message.content.lower() for fbr in fb_list):
