@@ -230,7 +230,7 @@ async def on_message(message):
             if sub_time >= 60:
                 print("They may now post")
             if sub_time < 60:
-                if (message.channel.id is 560511832322736138):
+                if (message.channel.id == 560511832322736138):
                     if "feedback" not in [y.name.lower() for y in message.author.roles]:
                         await message.channel.send("Hey now <@"+str(message.author.id)+">, you're getting this message because your account here is still new, and to avoid leech behavior this track is being deleted. In addition, this channel is for feedbacks - which requires users to give a feedback before asking for one/posting a song. If you feel this is an error please let someone know.")
                         await message.delete()
@@ -239,7 +239,7 @@ async def on_message(message):
                         await chn.send(message.content)
                     if "feedback" in [y.name.lower() for y in message.author.roles]:
                         print("They have feedback")
-                if (message.channel.id is not 560511832322736138):
+                if (message.channel.id != 560511832322736138):
                     if "feedback" not in [y.name.lower() for y in message.author.roles]:
                         await message.channel.send("Hey now <@"+str(message.author.id)+">, you're getting this message because your account here is still new. To avoid leech behavior here this track is being deleted. In the meantime, please try and engage with the community here a bit, and in up to an hour you can post your tracks. If you feel this is an error, please let someone know.")
                         await message.delete()
@@ -278,7 +278,7 @@ async def on_message(message):
             
     mod_feedback = True
         
-    if (mod_feedback is True)  and (message.channel.id is not 743942136075911188):
+    if (mod_feedback is True)  and (message.channel.id != 743942136075911188):
         channel_name = message.channel.name
         if ( ("feedback" in channel_name) and ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content)):
             if ("feedback" not in [y.name.lower() for y in message.author.roles]) or ("posted track" in [y.name.lower() for y in message.author.roles]):
@@ -310,9 +310,9 @@ async def on_message(message):
                 role = discord.utils.get(message.guild.roles, name="Feedback")
                 await message.author.add_roles(role)
 
-    if (mod_feedback is True)  and (message.channel.id is 743942136075911188):
-        channel_name = message.channel.name
-        if ( ("feedback" in channel_name) and ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content)):
+    if (mod_feedback is True) and (message.channel.id == 743942136075911188):
+        print("channel name " + str(message.channel.id))
+        if ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content):
             if ("posted track" in [y.name.lower() for y in message.author.roles]):
                 await message.channel.send("Hey now <@"+str(message.author.id)+">, you can only post one track per week.")
                 chn = bot.get_channel(560534679229431808)
@@ -322,26 +322,24 @@ async def on_message(message):
                 role = discord.utils.get(message.guild.roles, name="Posted Track")
                 await message.author.add_roles(role)
                            
-        if ("feedback" in channel_name):
-            if message.attachments:
-                mat = message.attachments[0]['url']
-                mus_ext = ['.wav','.mp3','.flax',".aiff",".ogg",".aiff",".alac"]
-                for ext in mus_ext:
-                    if ext in mat:
-                        if ("posted track" in [y.name.lower() for y in message.author.roles]):
-                            await message.channel.send("Hey now <@"+str(message.author.id)+">, you can only post one track per week.")
-                            chn = bot.get_channel(560534679229431808)
-                            await chn.send("<@"+str(message.author.id)+">: " + message.content)
-                            await message.delete()
-                        if ("posted track" not in [y.name.lower() for y in message.author.roles]):
-                            role = discord.utils.get(message.guild.roles, name="Posted Track")
-                            await message.author.add_roles(role)
-        
-        if ("feedback" in channel_name and ("http" not in message.content.lower())):    
+        if message.attachments:
+            mat = message.attachments[0]['url']
+            mus_ext = ['.wav','.mp3','.flax',".aiff",".ogg",".aiff",".alac"]
+            for ext in mus_ext:
+                if ext in mat:
+                    if ("posted track" in [y.name.lower() for y in message.author.roles]):
+                        await message.channel.send("Hey now <@"+str(message.author.id)+">, you can only post one track per week.")
+                        chn = bot.get_channel(560534679229431808)
+                        await chn.send("<@"+str(message.author.id)+">: " + message.content)
+                        await message.delete()
+                    if ("posted track" not in [y.name.lower() for y in message.author.roles]):
+                        role = discord.utils.get(message.guild.roles, name="Posted Track")
+                        await message.author.add_roles(role)
+    
+        if ("http" not in message.content.lower()):    
             if any(fbr in message.content.lower() for fbr in fb_list):
                 role = discord.utils.get(message.guild.roles, name="Feedback")
                 await message.author.add_roles(role)
-        
     if ("@" in message.content.lower()):
         
         old,kar = message.content.split("@")
