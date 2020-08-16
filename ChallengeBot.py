@@ -161,14 +161,14 @@ async def on_ready():
         server = bot.get_guild(446157087211520030)
         for member in server.members:
             if "voted" in [y.name.lower() for y in member.roles]:
-                role = discord.utils.get(reaction.message.guild.roles, name="Voted")
+                role = discord.utils.get(server.roles, name="Voted")
                 await message.author.remove_roles(message.author, role)
             if "feedback" in [y.name.lower() for y in member.roles]:
-                role = discord.utils.get(reaction.message.guild.roles, name="Feedback")
-                await message.author.remove_roles(message.author, role)
+                role = discord.utils.get(server.roles, name="Feedback")
+                await message.author.remove_roles(server, role)
             if "posted track" in [y.name.lower() for y in member.roles]:
                 role = discord.utils.get(reaction.message.guild.roles, name="Posted Track")
-                await message.author.remove_roles(message.author, role)
+                await message.author.remove_roles(server, role)
             
 
 @bot.event
