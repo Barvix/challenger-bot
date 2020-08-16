@@ -162,13 +162,13 @@ async def on_ready():
         for member in server.members:
             if "voted" in [y.name.lower() for y in member.roles]:
                 role = discord.utils.get(server.roles, name="Voted")
-                await message.author.remove_roles(message.author, role)
+                await member.remove_roles(message.author, role)
             if "feedback" in [y.name.lower() for y in member.roles]:
                 role = discord.utils.get(server.roles, name="Feedback")
-                await message.author.remove_roles(server, role)
+                await member.remove_roles(server, role)
             if "posted track" in [y.name.lower() for y in member.roles]:
                 role = discord.utils.get(reaction.message.guild.roles, name="Posted Track")
-                await message.author.remove_roles(server, role)
+                await member.remove_roles(server, role)
             
 
 @bot.event
