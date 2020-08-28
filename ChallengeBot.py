@@ -172,15 +172,15 @@ async def on_ready():
     if (thedate == 0 or thedate == 2 or thedate == 4 or thedate == 6):
         chn = bot.get_channel(468434155525505059)
         rndmsg = [
-            "Hey <@112274978317041664> make a beat",
-            "<@112274978317041664> make a beat ho",
-            "Ayy <@112274978317041664> where that mf beat at?",
-            "<@112274978317041664> if you don't make a beat you get beat :)",
-            "<@112274978317041664> it's kinda cold out, you should make a fire ass beat to fix that :)",
-            "<@112274978317041664> if you don't make a beat I will cry",
+            "Hey <@112274978317041664> <@587146795285741578> make a beat",
+            "<@112274978317041664> <@587146795285741578> make a beat ho",
+            "Ayy <@112274978317041664> <@587146795285741578> where that mf beat at?",
+            "<@112274978317041664> <@587146795285741578> if you don't make a beat you get beat :)",
+            "<@112274978317041664> <@587146795285741578> it's kinda cold out, you should make a fire ass beat to fix that :)",
+            "<@112274978317041664> <@587146795285741578> if you don't make a beat I will cry",
         ]
-        rlstein = random.randint(0,len(rand_lyrics)-1)
-        feedback_message = rand_lyrics[rndmsg]
+        rlstein = random.randint(0,len(rndmsg)-1)
+        feedback_message = rndmsg[rlstein]
         await chn.send(feedback_message)
             
 
