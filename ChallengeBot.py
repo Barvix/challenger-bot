@@ -169,6 +169,19 @@ async def on_ready():
             if "posted track" in [y.name.lower() for y in member.roles]:
                 role = discord.utils.get(reaction.message.guild.roles, name="Posted Track")
                 await member.remove_roles(role)
+    if (thedate == 0 or thedate == 2 or thedate == 4 or thedate == 6):
+        chn = bot.get_channel(468434155525505059)
+        rndmsg = [
+            "Hey <@112274978317041664> make a beat",
+            "<@112274978317041664> make a beat ho",
+            "Ayy <@112274978317041664> where that mf beat at?",
+            "<@112274978317041664> if you don't make a beat you get beat :)",
+            "<@112274978317041664> it's kinda cold out, you should make a fire ass beat to fix that :)",
+            "<@112274978317041664> if you don't make a beat I will cry",
+        ]
+        rlstein = random.randint(0,len(rand_lyrics)-1)
+        feedback_message = rand_lyrics[rndmsg]
+        await chn.send(feedback_message)
             
 
 @bot.event
