@@ -180,6 +180,7 @@ async def on_ready():
             tags + " if you don't make a beat you get beat :)",
             tags + " it's kinda cold out, you should make a fire ass beat to fix that :)",
             tags + " if you don't make a beat I will cry",
+            tags + "\nif you ain't producing you losin",
         ]
         rlstein = random.randint(0,len(rndmsg)-1)
         feedback_message = rndmsg[rlstein]
