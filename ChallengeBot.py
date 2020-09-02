@@ -171,13 +171,15 @@ async def on_ready():
                 await member.remove_roles(role)
     if (thedate == 0 or thedate == 2 or thedate == 4 or thedate == 6):
         chn = bot.get_channel(468434155525505059)
+        #tags = "<@112274978317041664> <@587146795285741578>"
+        tags = "<@112274978317041664>"
         rndmsg = [
-            "Hey <@112274978317041664> <@587146795285741578> make a beat",
-            "<@112274978317041664> <@587146795285741578> make a beat ho",
-            "Ayy <@112274978317041664> <@587146795285741578> where that mf beat at?",
-            "<@112274978317041664> <@587146795285741578> if you don't make a beat you get beat :)",
-            "<@112274978317041664> <@587146795285741578> it's kinda cold out, you should make a fire ass beat to fix that :)",
-            "<@112274978317041664> <@587146795285741578> if you don't make a beat I will cry",
+            "Hey " + tags + " make a beat",
+            tags + " make a beat ho",
+            "Ayy " + tags + " where that mf beat at?",
+            tags + " if you don't make a beat you get beat :)",
+            tags + " it's kinda cold out, you should make a fire ass beat to fix that :)",
+            tags + " if you don't make a beat I will cry",
         ]
         rlstein = random.randint(0,len(rndmsg)-1)
         feedback_message = rndmsg[rlstein]
