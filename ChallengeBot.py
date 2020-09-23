@@ -184,7 +184,7 @@ async def on_ready():
         ]
         rlstein = random.randint(0,len(rndmsg)-1)
         feedback_message = rndmsg[rlstein]
-        await chn.send(feedback_message)
+        #await chn.send(feedback_message)
             
 
 @bot.event
