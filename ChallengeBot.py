@@ -540,7 +540,7 @@ async def sample(ctx):
         await ctx.send("Please use <#560556421733810187> instead so this channel doesn't get cluttered")
 
 @bot.command(pass_context = True)
-async def remove_message(ctx, *, mid):
+async def remove_message(ctx, *, mid: str):
     msg = await ctx.fetch_message( int(mid) )
     await msg.delete()
         
