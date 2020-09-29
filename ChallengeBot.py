@@ -309,7 +309,7 @@ async def on_message(message):
         if ("feedback" in channel_name):
             if message.attachments:
                 #mat = message.attachments[0]['url']
-                mat = message.attachments.filename
+                mat = message.attachments[0].filename
                 mus_ext = ['.wav','.mp3','.flax',".aiff",".ogg",".aiff",".alac"]
                 for ext in mus_ext:
                     if ext in mat:
