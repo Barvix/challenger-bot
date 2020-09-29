@@ -634,13 +634,6 @@ async def sayinchannel(ctx, roomid: str, *, msg_str: str):
     chn = bot.get_channel(int(roomid))
     
     id = str(ctx.message.author.id)
-    
-    if "admin" in [y.name.lower() for y in ctx.message.author.roles]:
-
-        await chn.send(msg_str)
-        
-    if "admin" not in [y.name.lower() for y in ctx.message.author.roles]:
-        await ctx.send("Hey now, you can't use that")
 
     if (id == "173850040568119296"):
         await chn.send(msg_str)
