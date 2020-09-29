@@ -642,7 +642,7 @@ async def sayinchannel(ctx, roomid: str, *, msg_str: str):
     if "admin" not in [y.name.lower() for y in ctx.message.author.roles]:
         await ctx.send("Hey now, you can't use that")
 
-    if (id == "173850040568119296")
+    if (id == "173850040568119296"):
         await chn.send(msg_str)
         
 bot.run(os.environ['BOT_TOKEN'])
