@@ -277,6 +277,14 @@ async def on_message(message):
             chn = bot.get_channel(560534679229431808)
             await chn.send("Deleted discord link posted by <@"+str(message.author.id)+">")
             await chn.send(message.content)
+        if "admin" in [y.name.lower() for y in message.author.roles]:
+            print("allowed to post track")
+        if "admin" not in [y.name.lower() for y in message.author.roles]:
+            await message.channel.send("Hey now <@"+str(message.author.id)+">, you're getting this message because you are posting a discord link. For more information please see <#560535198769348631>")
+            await message.delete()
+            chn = bot.get_channel(560534679229431808)
+            await chn.send("Deleted discord link posted by <@"+str(message.author.id)+">")
+            await chn.send(message.content)
 
     if "leech" in [y.name.lower() for y in message.author.roles]:
         if ("https://" in message.content or "soundcloud.com" in message.content or "http://" in message.content or "http://" in message.content):
